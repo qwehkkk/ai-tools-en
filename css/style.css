@@ -515,6 +515,32 @@ input[type="file"]::file-selector-button:hover {
   line-height: 1.55;
 }
 
+/* ---------- Sitemap page ---------- */
+.sitemap-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.sitemap-list li {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.sitemap-list li:last-child {
+  border-bottom: none;
+}
+
+.sitemap-list a {
+  font-weight: 600;
+}
+
+.sitemap-list .desc {
+  color: var(--text-muted);
+}
+
 /* ---------- Footer ---------- */
 .footer {
   border-top: 1px solid var(--border);
