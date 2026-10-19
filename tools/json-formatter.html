@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Formatter - Beautify &amp; Validate JSON Online | AI Tools</title>
+  <meta name="description" content="Free online JSON formatter. Beautify, minify, and validate JSON instantly. Paste your JSON, get formatted output. No signup, runs in browser.">
+  <link rel="canonical" href="https://aitools-en.pages.dev/tools/json-formatter.html">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JSON Formatter",
+    "url": "https://aitools-en.pages.dev/tools/json-formatter.html",
+    "description": "Free online JSON formatter. Beautify, minify, and validate JSON.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../" class="logo">AI Tools</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>JSON Formatter</h1>
+    <p>Beautify, minify, and validate your JSON data. Paste your JSON below and click Format.</p>
+  </div>
+
+  <label for="input">Paste JSON here:</label>
+  <textarea id="input" placeholder='{"name":"John","age":30,"city":"New York"}' style="margin-top:8px;"></textarea>
+
+  <div class="btn-row">
+    <button class="btn" onclick="formatJSON()">Format</button>
+    <button class="btn-secondary btn" onclick="minifyJSON()">Minify</button>
+    <button class="btn-secondary btn" onclick="validateJSON()">Validate</button>
+    <button class="btn-secondary btn" onclick="copyOutput()">Copy Result</button>
+    <button class="btn-secondary btn" onclick="clearAll()">Clear</button>
+  </div>
+
+  <div id="msg" class="msg" style="display:none;"></div>
+
+  <label for="output">Result:</label>
+  <div id="output" class="output" style="margin-top:8px;"></div>
+
+  <section class="faq">
+    <h2>About JSON Formatter</h2>
+    <div class="faq-item">
+      <h3>What is JSON formatting?</h3>
+      <p>JSON formatting (also called beautifying or pretty-printing) adds proper indentation and line breaks to JSON data, making it easier to read and debug.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is this tool free?</h3>
+      <p>Yes, completely free. No signup, no limits. All processing happens in your browser.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is my data sent to a server?</h3>
+      <p>No. Your JSON is processed entirely in your browser. Nothing is uploaded.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What is JSON minification?</h3>
+      <p>Minification removes all unnecessary whitespace from JSON, reducing its size for faster transmission.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 AI Tools. All processing happens in your browser.</p>
+</footer>
+
+<script src="../js/json-formatter.js"></script>
+</body>
+</html>

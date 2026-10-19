@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Encoder &amp; Decoder - Encode URL Online | AI Tools</title>
+  <meta name="description" content="Free online URL encoder and decoder. Encode text to URL-safe format or decode URL-encoded strings back to text. Supports UTF-8. No signup, runs in your browser.">
+  <link rel="canonical" href="https://aitools-en.pages.dev/tools/url-encoder.html">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "URL Encoder & Decoder",
+    "url": "https://aitools-en.pages.dev/tools/url-encoder.html",
+    "description": "Free online URL encoder and decoder. Supports UTF-8 characters.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../" class="logo">AI Tools</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>URL Encoder &amp; Decoder</h1>
+    <p>Encode text to URL-safe format (percent-encoding) or decode URL-encoded strings back to readable text. Supports UTF-8.</p>
+  </div>
+
+  <label for="input">Input text:</label>
+  <textarea id="input" placeholder="Type or paste text here..." style="margin-top:8px;"></textarea>
+
+  <div class="btn-row">
+    <button class="btn" onclick="encodeURL()">Encode URL</button>
+    <button class="btn-secondary btn" onclick="decodeURL()">Decode URL</button>
+    <button class="btn-secondary btn" onclick="copyOutput()">Copy Result</button>
+    <button class="btn-secondary btn" onclick="clearAll()">Clear</button>
+  </div>
+
+  <div id="msg" class="msg" style="display:none;"></div>
+
+  <label for="output">Result:</label>
+  <div id="output" class="output" style="margin-top:8px;"></div>
+
+  <section class="faq">
+    <h2>About URL Encoding</h2>
+    <div class="faq-item">
+      <h3>What is URL encoding?</h3>
+      <p>URL encoding (percent-encoding) converts special characters into a format that can be safely transmitted in a URL. For example, spaces become <code>%20</code> and <code>&</code> becomes <code>%26</code>.</p>
+    </div>
+    <div class="faq-item">
+      <h3>When should I use URL encoding?</h3>
+      <p>Use it whenever you need to include special characters, spaces, or non-ASCII text in a URL query string, form data, or API request.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Does this tool support Unicode?</h3>
+      <p>Yes. It uses <code>encodeURIComponent</code> which properly handles UTF-8 characters, including emoji and non-Latin scripts.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What's the difference between encodeURI and encodeURIComponent?</h3>
+      <p><code>encodeURI</code> keeps URL-reserved characters like <code>:/?#&=</code> intact (for full URLs). <code>encodeURIComponent</code> encodes everything (for query parameter values). This tool uses the latter for stricter encoding.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 AI Tools. All processing happens in your browser.</p>
+</footer>
+
+<script src="../js/url-encoder.js"></script>
+</body>
+</html>

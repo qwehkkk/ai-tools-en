@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word &amp; Character Counter - Count Text Online | AI Tools</title>
+  <meta name="description" content="Free online word and character counter. Count words, characters, sentences, paragraphs, and reading time in real time. No signup, runs in your browser.">
+  <link rel="canonical" href="https://aitools-en.pages.dev/tools/word-counter.html">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Word & Character Counter",
+    "url": "https://aitools-en.pages.dev/tools/word-counter.html",
+    "description": "Free online word, character, sentence, and paragraph counter. Real-time stats.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../" class="logo">AI Tools</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>Word &amp; Character Counter</h1>
+    <p>Count words, characters, sentences, paragraphs, and estimated reading time as you type. Useful for essays, tweets, meta descriptions, and SEO.</p>
+  </div>
+
+  <label for="input">Paste or type your text:</label>
+  <textarea id="input" placeholder="Start typing..." style="margin-top:8px; min-height:240px;"></textarea>
+
+  <div class="stats-grid" style="margin-top:16px; display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:12px;">
+    <div class="stat-card" style="padding:14px; background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);">
+      <div class="stat-value" id="stat-words" style="font-size:24px; font-weight:700; color:var(--primary); font-family:var(--font-mono);">0</div>
+      <div class="stat-label" style="font-size:12px; color:var(--text-muted); margin-top:2px;">Words</div>
+    </div>
+    <div class="stat-card" style="padding:14px; background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);">
+      <div class="stat-value" id="stat-chars" style="font-size:24px; font-weight:700; color:var(--primary); font-family:var(--font-mono);">0</div>
+      <div class="stat-label" style="font-size:12px; color:var(--text-muted); margin-top:2px;">Characters</div>
+    </div>
+    <div class="stat-card" style="padding:14px; background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);">
+      <div class="stat-value" id="stat-chars-nospace" style="font-size:24px; font-weight:700; color:var(--primary); font-family:var(--font-mono);">0</div>
+      <div class="stat-label" style="font-size:12px; color:var(--text-muted); margin-top:2px;">Chars (no spaces)</div>
+    </div>
+    <div class="stat-card" style="padding:14px; background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);">
+      <div class="stat-value" id="stat-sentences" style="font-size:24px; font-weight:700; color:var(--primary); font-family:var(--font-mono);">0</div>
+      <div class="stat-label" style="font-size:12px; color:var(--text-muted); margin-top:2px;">Sentences</div>
+    </div>
+    <div class="stat-card" style="padding:14px; background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);">
+      <div class="stat-value" id="stat-paragraphs" style="font-size:24px; font-weight:700; color:var(--primary); font-family:var(--font-mono);">0</div>
+      <div class="stat-label" style="font-size:12px; color:var(--text-muted); margin-top:2px;">Paragraphs</div>
+    </div>
+    <div class="stat-card" style="padding:14px; background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius);">
+      <div class="stat-value" id="stat-reading" style="font-size:24px; font-weight:700; color:var(--primary); font-family:var(--font-mono);">0s</div>
+      <div class="stat-label" style="font-size:12px; color:var(--text-muted); margin-top:2px;">Reading time</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-secondary btn" onclick="copyStats()">Copy Stats</button>
+    <button class="btn-secondary btn" onclick="clearAll()">Clear Text</button>
+  </div>
+
+  <section class="faq">
+    <h2>About This Counter</h2>
+    <div class="faq-item">
+      <h3>How are words counted?</h3>
+      <p>Words are counted by splitting on whitespace. A "word" is any sequence of non-whitespace characters. Punctuation attached to a word is counted as part of that word.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How are sentences counted?</h3>
+      <p>Sentences are split on <code>.</code>, <code>!</code>, and <code>?</code> followed by whitespace or end of text. Empty segments are ignored.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How is reading time calculated?</h3>
+      <p>At 200 words per minute (the average adult reading speed). For 100 words you'll see about 30 seconds. Useful for blog posts and presentation pacing.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is my text sent anywhere?</h3>
+      <p>No. All counting happens in your browser. The text never leaves your device.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 AI Tools. All processing happens in your browser.</p>
+</footer>
+
+<script src="../js/word-counter.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UUID Generator - Generate UUID v4 Online | AI Tools</title>
+  <meta name="description" content="Free online UUID generator. Generate one or many RFC 4122 version 4 UUIDs instantly. Cryptographically secure. No signup, runs in your browser.">
+  <link rel="canonical" href="https://aitools-en.pages.dev/tools/uuid-generator.html">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "UUID Generator",
+    "url": "https://aitools-en.pages.dev/tools/uuid-generator.html",
+    "description": "Free online UUID v4 generator. Generate one or many UUIDs instantly.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../" class="logo">AI Tools</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>UUID Generator</h1>
+    <p>Generate RFC 4122 version 4 UUIDs instantly. Uses the browser's cryptographic random generator for maximum security.</p>
+  </div>
+
+  <label for="count">How many UUIDs?</label>
+  <div class="control-row">
+    <input type="number" id="count" value="1" min="1" max="1000" style="max-width:120px;">
+    <button class="btn" onclick="generateUUIDs()">Generate</button>
+    <button class="btn-secondary btn" onclick="copyOutput()">Copy All</button>
+    <button class="btn-secondary btn" onclick="clearAll()">Clear</button>
+  </div>
+
+  <div id="msg" class="msg" style="display:none;"></div>
+
+  <label for="output">Generated UUIDs:</label>
+  <div id="output" class="output" style="margin-top:8px; min-height:60px;"></div>
+
+  <section class="faq">
+    <h2>About UUIDs</h2>
+    <div class="faq-item">
+      <h3>What is a UUID?</h3>
+      <p>A UUID (Universally Unique Identifier) is a 128-bit number used to uniquely identify information in computer systems. It is typically shown as 32 hexadecimal digits separated by hyphens, e.g. <code>550e8400-e29b-41d4-a716-446655440000</code>.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What is UUID version 4?</h3>
+      <p>Version 4 UUIDs are randomly generated. The randomness makes collisions extremely unlikely — about 1 in 2.71 × 10^36 even after generating 103 trillion UUIDs.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is this generator cryptographically secure?</h3>
+      <p>Yes. It uses the browser's <code>crypto.getRandomValues()</code> API when available, falling back to <code>crypto.randomUUID()</code> on modern browsers. The output is suitable for session tokens, IDs, and other security-sensitive uses.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How many UUIDs can I generate at once?</h3>
+      <p>Up to 1000 at a time. Each generation is independent and the chance of any duplicates is effectively zero.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 AI Tools. All processing happens in your browser.</p>
+</footer>
+
+<script src="../js/uuid-generator.js"></script>
+</body>
+</html>

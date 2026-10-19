@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base64 Converter - Encode &amp; Decode Online | AI Tools</title>
+  <meta name="description" content="Free online Base64 converter. Encode text to Base64 or decode Base64 to text. Supports UTF-8. No signup, runs in your browser.">
+  <link rel="canonical" href="https://aitools-en.pages.dev/tools/base64-converter.html">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Base64 Converter",
+    "url": "https://aitools-en.pages.dev/tools/base64-converter.html",
+    "description": "Free online Base64 converter. Encode and decode Base64 strings.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../" class="logo">AI Tools</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>Base64 Converter</h1>
+    <p>Encode text to Base64 or decode Base64 back to text. Supports UTF-8 characters.</p>
+  </div>
+
+  <label for="input">Input text:</label>
+  <textarea id="input" placeholder="Type or paste text here..." style="margin-top:8px;"></textarea>
+
+  <div class="btn-row">
+    <button class="btn" onclick="encodeBase64()">Encode to Base64</button>
+    <button class="btn-secondary btn" onclick="decodeBase64()">Decode from Base64</button>
+    <button class="btn-secondary btn" onclick="copyOutput()">Copy Result</button>
+    <button class="btn-secondary btn" onclick="clearAll()">Clear</button>
+  </div>
+
+  <div id="msg" class="msg" style="display:none;"></div>
+
+  <label for="output">Result:</label>
+  <div id="output" class="output" style="margin-top:8px;"></div>
+
+  <section class="faq">
+    <h2>About Base64 Converter</h2>
+    <div class="faq-item">
+      <h3>What is Base64 encoding?</h3>
+      <p>Base64 is an encoding scheme that converts binary data into ASCII text. It is commonly used to embed data in URLs, emails, and JSON.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is Base64 encryption?</h3>
+      <p>No. Base64 is encoding, not encryption. It does not provide security. Anyone can decode it.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Does this support Unicode/UTF-8?</h3>
+      <p>Yes. This tool properly handles UTF-8 characters, including emoji and non-Latin scripts.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 AI Tools. All processing happens in your browser.</p>
+</footer>
+
+<script src="../js/base64-converter.js"></script>
+</body>
+</html>

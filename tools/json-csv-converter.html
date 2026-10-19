@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON to CSV Converter - Convert JSON to CSV Online | AI Tools</title>
+  <meta name="description" content="Free online JSON to CSV converter. Paste JSON array, get CSV output instantly. Also convert CSV back to JSON. No signup, runs in browser.">
+  <link rel="canonical" href="https://aitools-en.pages.dev/tools/json-csv-converter.html">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JSON to CSV Converter",
+    "url": "https://aitools-en.pages.dev/tools/json-csv-converter.html",
+    "description": "Convert JSON to CSV and CSV to JSON. Free, no signup.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../" class="logo">AI Tools</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>JSON to CSV Converter</h1>
+    <p>Convert a JSON array of objects to CSV format, or convert CSV back to JSON. Great for spreadsheet export.</p>
+  </div>
+
+  <label for="input">Input (JSON array or CSV):</label>
+  <textarea id="input" placeholder='[{"name":"John","age":30},{"name":"Jane","age":25}]' style="margin-top:8px;"></textarea>
+
+  <div class="btn-row">
+    <button class="btn" onclick="jsonToCsv()">JSON &rarr; CSV</button>
+    <button class="btn-secondary btn" onclick="csvToJson()">CSV &rarr; JSON</button>
+    <button class="btn-secondary btn" onclick="copyOutput()">Copy Result</button>
+    <button class="btn-secondary btn" onclick="downloadResult()">Download</button>
+    <button class="btn-secondary btn" onclick="clearAll()">Clear</button>
+  </div>
+
+  <div id="msg" class="msg" style="display:none;"></div>
+
+  <label for="output">Result:</label>
+  <div id="output" class="output" style="margin-top:8px;"></div>
+
+  <section class="faq">
+    <h2>About JSON to CSV Converter</h2>
+    <div class="faq-item">
+      <h3>What input format does this tool expect?</h3>
+      <p>For JSON to CSV, paste a JSON array of objects (e.g. [{"name":"John"},{"name":"Jane"}]). For CSV to JSON, paste comma-separated values with a header row.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Does it handle nested objects?</h3>
+      <p>Nested objects are flattened using dot notation (e.g. "address.city" becomes a column header).</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I download the result?</h3>
+      <p>Yes. Click Download to save the output as a file.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 AI Tools. All processing happens in your browser.</p>
+</footer>
+
+<script src="../js/json-csv-converter.js"></script>
+</body>
+</html>

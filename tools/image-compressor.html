@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Compressor - Compress &amp; Resize Images Online | AI Tools</title>
+  <meta name="description" content="Free online image compressor. Compress JPG, PNG, and WebP images in your browser. Resize and reduce file size without uploading. No signup, fully private.">
+  <link rel="canonical" href="https://aitools-en.pages.dev/tools/image-compressor.html">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Image Compressor",
+    "url": "https://aitools-en.pages.dev/tools/image-compressor.html",
+    "description": "Compress and resize images in your browser. JPG, PNG, WebP.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../" class="logo">AI Tools</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>Image Compressor</h1>
+    <p>Compress and resize images right in your browser. Supports JPG, PNG, and WebP. Your images never leave your device.</p>
+  </div>
+
+  <div class="btn-row">
+    <input type="file" id="fileInput" accept="image/*" style="display:none;">
+    <button class="btn" onclick="document.getElementById('fileInput').click()">Choose Image</button>
+  </div>
+
+  <div id="fileInfo" style="margin-bottom:16px; font-size:13px; color:var(--text-muted);"></div>
+
+  <label for="quality">Quality: <span id="qualityValue">80</span>%</label>
+  <input type="range" id="quality" min="10" max="100" value="80" oninput="document.getElementById('qualityValue').textContent=this.value" style="width:100%; margin:8px 0;">
+
+  <label for="maxWidth">Max width (px, 0 = no resize):</label>
+  <input type="text" id="maxWidth" value="0" style="margin-top:8px;">
+
+  <label for="format" style="margin-top:12px; display:block;">Output format:</label>
+  <select id="format" style="margin-top:8px;">
+    <option value="image/jpeg">JPEG</option>
+    <option value="image/png">PNG</option>
+    <option value="image/webp">WebP</option>
+  </select>
+
+  <div class="btn-row" style="margin-top:16px;">
+    <button class="btn" onclick="compressImage()">Compress</button>
+    <button class="btn-secondary btn" onclick="downloadCompressed()">Download Result</button>
+  </div>
+
+  <div id="msg" class="msg" style="display:none;"></div>
+
+  <div style="margin-top:24px;">
+    <h3 style="font-size:15px; margin-bottom:8px;">Preview</h3>
+    <div id="previewContainer" style="border:1px solid var(--border); border-radius:var(--radius); padding:16px; text-align:center; min-height:120px; display:flex; align-items:center; justify-content:center; color:var(--text-muted); font-size:13px;">
+      Compressed image will appear here
+    </div>
+  </div>
+
+  <section class="faq">
+    <h2>About Image Compressor</h2>
+    <div class="faq-item">
+      <h3>Is my image uploaded to a server?</h3>
+      <p>No. All compression happens in your browser using Canvas API. Your images never leave your device.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What formats are supported?</h3>
+      <p>You can upload JPG, PNG, WebP, and GIF. Output can be saved as JPG, PNG, or WebP.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How does quality affect the result?</h3>
+      <p>Lower quality means smaller file size but more compression artifacts. 80% is a good balance for most use cases.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Why WebP?</h3>
+      <p>WebP produces smaller files than JPG at similar quality, and is supported by all modern browsers.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 AI Tools. All processing happens in your browser.</p>
+</footer>
+
+<script src="../js/image-compressor.js"></script>
+</body>
+</html>
