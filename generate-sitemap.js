@@ -12,9 +12,14 @@
 const fs = require('fs');
 const path = require('path');
 
-const SITE_URL = 'https://aitools-en.pages.dev';
 const ROOT = __dirname;
 const TOOLS_DIR = path.join(ROOT, 'tools');
+
+// Single source of truth for the site domain — see set-domain.js to change it.
+const SITE_CONFIG = path.join(ROOT, 'site.json');
+const SITE_URL = fs.existsSync(SITE_CONFIG)
+  ? JSON.parse(fs.readFileSync(SITE_CONFIG, 'utf8')).url.replace(/\/+$/, '')
+  : 'https://aitools-en.pages.dev';
 
 function escapeXml(s) {
   return String(s)
