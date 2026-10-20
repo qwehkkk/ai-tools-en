@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Converter - camelCase, snake_case, kebab-case | GetToolkit</title>
+  <meta name="description" content="Free online case converter. Turn any text into camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case or Sentence case at once. Runs in your browser.">
+  <link rel="canonical" href="https://getoolkit.com/tools/case-converter">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GetToolkit">
+  <meta property="og:title" content="Case Converter - camelCase, snake_case, kebab-case | GetToolkit">
+  <meta property="og:description" content="Turn any text into camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case or Sentence case at once.">
+  <meta property="og:url" content="https://getoolkit.com/tools/case-converter">
+  <meta property="og:image" content="https://getoolkit.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Case Converter",
+    "url": "https://getoolkit.com/tools/case-converter",
+    "description": "Free online case converter. Turn any text into camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case or Sentence case at once.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+<!-- BREADCRUMB-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://getoolkit.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://getoolkit.com/#tools" },
+      { "@type": "ListItem", "position": 3, "name": "Case Converter", "item": "https://getoolkit.com/tools/case-converter" }
+    ]
+  }
+  </script>
+  <!-- BREADCRUMB-LD:END -->
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../" class="logo">GetToolkit</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+<!-- CRUMBS:START -->
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="../">Home</a><span class="sep">&rsaquo;</span><a href="../#tools">Tools</a><span class="sep">&rsaquo;</span><span aria-current="page">Case Converter</span>
+  </nav>
+  <!-- CRUMBS:END -->
+  <div class="tool-header">
+    <h1>Case Converter</h1>
+    <p>Type or paste anything and every common naming convention appears at once. Copy whichever one you need.</p>
+  </div>
+
+  <label for="input">Your text</label>
+  <textarea id="input" spellcheck="false" placeholder="getToolkit user id or GET_USER_ID" style="margin-top:8px; min-height:120px;"></textarea>
+
+  <div class="btn-row">
+    <button class="btn" onclick="convert()">Convert</button>
+    <button class="btn btn-secondary" onclick="loadSample()">Load example</button>
+    <button class="btn btn-secondary" onclick="clearAll()">Clear</button>
+  </div>
+
+  <div id="msg" class="msg" style="display:none;"></div>
+
+  <div id="results" class="result-list" style="display:none;">
+    <div class="result-row wide"><span class="label">camelCase</span><span class="value" id="out-camel"></span><button class="btn btn-secondary" onclick="copyOne('out-camel')">Copy</button></div>
+    <div class="result-row wide"><span class="label">PascalCase</span><span class="value" id="out-pascal"></span><button class="btn btn-secondary" onclick="copyOne('out-pascal')">Copy</button></div>
+    <div class="result-row wide"><span class="label">snake_case</span><span class="value" id="out-snake"></span><button class="btn btn-secondary" onclick="copyOne('out-snake')">Copy</button></div>
+    <div class="result-row wide"><span class="label">kebab-case</span><span class="value" id="out-kebab"></span><button class="btn btn-secondary" onclick="copyOne('out-kebab')">Copy</button></div>
+    <div class="result-row wide"><span class="label">CONSTANT_CASE</span><span class="value" id="out-constant"></span><button class="btn btn-secondary" onclick="copyOne('out-constant')">Copy</button></div>
+    <div class="result-row wide"><span class="label">Title Case</span><span class="value" id="out-title"></span><button class="btn btn-secondary" onclick="copyOne('out-title')">Copy</button></div>
+    <div class="result-row wide"><span class="label">Sentence case</span><span class="value" id="out-sentence"></span><button class="btn btn-secondary" onclick="copyOne('out-sentence')">Copy</button></div>
+  </div>
+
+  <section class="faq">
+    <h2>About naming conventions</h2>
+    <div class="faq-item">
+      <h3>Which convention should I use?</h3>
+      <p>It depends on the language and the file. JavaScript and Java use <code>camelCase</code> for variables and <code>PascalCase</code> for classes; Python and Ruby prefer <code>snake_case</code>; CSS classes, URLs and npm package names conventionally use <code>kebab-case</code>; constants are usually <code>CONSTANT_CASE</code>. Follow the style guide of the codebase you are in before anything else.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How is the text split into words?</h3>
+      <p>First on separators such as spaces, underscores and hyphens, then on case boundaries: <code>getToolkit</code> becomes <code>get</code> and <code>Toolkit</code>, and <code>XMLHttpRequest</code> becomes <code>XML</code>, <code>Http</code> and <code>Request</code>. Numbers stay attached to the word they touch, so <code>sha256Hash</code> splits into <code>sha256</code> and <code>Hash</code> rather than falling apart.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Why did my acronym change shape?</h3>
+      <p>Each output applies its own capitalisation rules, so an acronym like <code>ID</code> comes out as <code>Id</code> in PascalCase and <code>id</code> in camelCase. That matches how most converters behave and how identifiers are usually written, but if you need the original casing preserved in a specific spot, edit the pasted result.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What about non-English text?</h3>
+      <p>The word splitter works on ASCII letters and digits. Text in other scripts is passed through mostly unchanged into the spaced variants, but the camel and snake forms will not be meaningful — those conventions assume Latin script.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is my text uploaded anywhere?</h3>
+      <p>No. The conversion runs entirely in your browser with JavaScript. Nothing leaves your device.</p>
+    </div>
+  </section>
+<!-- RELATED:START -->
+  <section class="related">
+    <h2>Related tools</h2>
+    <div class="tool-grid compact">
+    <a href="word-counter" class="tool-card">
+      <h3>Word &amp; Character Counter</h3>
+      <p>Count words, characters, sentences, paragraphs, and reading time in real time.</p>
+    </a>
+    <a href="lorem-ipsum-generator" class="tool-card">
+      <h3>Lorem Ipsum Generator</h3>
+      <p>Placeholder paragraphs, sentences or words for mockups and layout tests.</p>
+    </a>
+    <a href="json-csv-converter" class="tool-card">
+      <h3>JSON to CSV Converter</h3>
+      <p>Convert JSON data to CSV format and back. Export spreadsheet-friendly data.</p>
+    </a>
+    <a href="html-entities" class="tool-card">
+      <h3>HTML Entity Encoder</h3>
+      <p>Escape or decode HTML entities such as &amp;lt; and &amp;amp; for safe markup.</p>
+    </a>
+    </div>
+    <p class="related-all"><a href="../">See all 15 free tools &rarr;</a></p>
+  </section>
+  <!-- RELATED:END -->
+</main>
+
+<footer class="footer">
+  <nav class="footer-nav">
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/contact">Contact</a>
+    <a href="/sitemap">Sitemap</a>
+  </nav>
+  <p>&copy; 2026 GetToolkit. All processing happens in your browser.</p>
+</footer>
+
+<script src="../js/case-converter.js"></script>
+</body>
+</html>

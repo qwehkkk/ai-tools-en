@@ -14,7 +14,7 @@
 
 ```
 ai-tools-en/
-├── index.html                     # 首页（14 个工具卡片）
+├── index.html                     # 首页（15 个工具卡片）
 ├── about.html                     # 关于页
 ├── privacy.html                   # 隐私政策（含广告 Cookie 披露，AdSense 必需）
 ├── contact.html                   # 联系页（mailto，无表单/无后端）
@@ -46,6 +46,7 @@ ai-tools-en/
     ├── hash-calculator.html       # MD5 / SHA-1 / 256 / 384 / 512
     ├── color-converter.html       # HEX / RGB / HSL
     ├── lorem-ipsum-generator.html # 占位文本
+    ├── case-converter.html         # 命名风格转换（7 种一次出结果）
     ├── text-diff.html             # 文本差异对比（LCS + 词级高亮）
     └── regex-tester.html          # 正则测试（高亮/分组/替换预览）
 ```
@@ -57,6 +58,7 @@ ai-tools-en/
 ```bash
 node .tmp/test-text-diff.js     # 20 项断言
 node .tmp/test-regex.js         # 24 项断言
+node .tmp/test-case.js          # 30 项断言
 ```
 
 全站级检查：
@@ -160,7 +162,7 @@ sitemap 已提交时通常不必手动加，但新站点前期手动点几次更
 - [x] Text Diff（LCS 逐行 + 词级高亮 + 大文件降级）
 - [x] Regex Tester（flags / 命名分组 / 替换预览 / 零宽匹配保护）
 - [ ] JSON ↔ YAML
-- [ ] Case Converter
+- [x] Case Converter
 - [ ] Cron Expression Explainer
 
 **引入 JS 库（本地托管，不走 CDN，避免第三方依赖）：**

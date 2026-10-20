@@ -24,17 +24,18 @@ const SITE_URL = fs.existsSync(path.join(ROOT, 'site.json'))
 /** Hand-picked neighbours, 4 per tool. Order matters: strongest link first. */
 const GROUPS = {
   'json-formatter': ['json-csv-converter', 'regex-tester', 'url-encoder', 'html-entities'],
-  'json-csv-converter': ['json-formatter', 'regex-tester', 'word-counter', 'lorem-ipsum-generator'],
+  'json-csv-converter': ['json-formatter', 'case-converter', 'word-counter', 'lorem-ipsum-generator'],
   'base64-converter': ['url-encoder', 'hash-calculator', 'html-entities', 'image-compressor'],
   'url-encoder': ['base64-converter', 'html-entities', 'regex-tester', 'json-csv-converter'],
-  'html-entities': ['url-encoder', 'base64-converter', 'regex-tester', 'word-counter'],
+  'html-entities': ['url-encoder', 'base64-converter', 'case-converter', 'word-counter'],
   'uuid-generator': ['hash-calculator', 'base64-converter', 'lorem-ipsum-generator', 'timestamp-converter'],
-  'word-counter': ['lorem-ipsum-generator', 'regex-tester', 'text-diff', 'html-entities'],
-  'lorem-ipsum-generator': ['word-counter', 'uuid-generator', 'regex-tester', 'text-diff'],
+  'word-counter': ['lorem-ipsum-generator', 'regex-tester', 'text-diff', 'case-converter'],
+  'lorem-ipsum-generator': ['word-counter', 'uuid-generator', 'case-converter', 'text-diff'],
   'hash-calculator': ['base64-converter', 'uuid-generator', 'timestamp-converter', 'text-diff'],
   'timestamp-converter': ['hash-calculator', 'uuid-generator', 'color-converter', 'regex-tester'],
   'color-converter': ['image-compressor', 'timestamp-converter', 'hash-calculator', 'lorem-ipsum-generator'],
   'image-compressor': ['color-converter', 'base64-converter', 'json-formatter', 'word-counter'],
+  'case-converter': ['word-counter', 'lorem-ipsum-generator', 'json-csv-converter', 'html-entities'],
   'text-diff': ['regex-tester', 'json-formatter', 'word-counter', 'html-entities'],
   'regex-tester': ['text-diff', 'word-counter', 'json-formatter', 'html-entities']
 };
