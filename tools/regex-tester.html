@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regex Tester - Test Regular Expressions Online | GetToolkit</title>
+  <meta name="description" content="Free online regex tester for JavaScript. Test a pattern against your text with live match highlighting, capture groups, named groups and a replace preview. Nothing is uploaded.">
+  <link rel="canonical" href="https://getoolkit.com/tools/regex-tester">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GetToolkit">
+  <meta property="og:title" content="Regex Tester - Test Regular Expressions Online | GetToolkit">
+  <meta property="og:description" content="Test a JavaScript regular expression with live match highlighting, capture groups and a replace preview.">
+  <meta property="og:url" content="https://getoolkit.com/tools/regex-tester">
+  <meta property="og:image" content="https://getoolkit.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Regex Tester",
+    "url": "https://getoolkit.com/tools/regex-tester",
+    "description": "Free online regex tester for JavaScript. Test a pattern against your text with live match highlighting, capture groups, named groups and a replace preview.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../" class="logo">GetToolkit</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>Regex Tester</h1>
+    <p>Test JavaScript regular expressions against real text. See every match highlighted, inspect capture groups, and preview a replacement — all in your browser.</p>
+  </div>
+
+  <label for="pattern">Regular expression</label>
+  <input type="text" id="pattern" spellcheck="false" placeholder="(\w+)@(\w+)\.com" style="margin-top:8px;">
+
+  <div class="flag-row">
+    <span class="check-row"><input type="checkbox" id="flag-g" checked><label for="flag-g" style="margin:0; font-weight:400;">global (g)</label></span>
+    <span class="check-row"><input type="checkbox" id="flag-i"><label for="flag-i" style="margin:0; font-weight:400;">ignore case (i)</label></span>
+    <span class="check-row"><input type="checkbox" id="flag-m"><label for="flag-m" style="margin:0; font-weight:400;">multiline (m)</label></span>
+    <span class="check-row"><input type="checkbox" id="flag-s"><label for="flag-s" style="margin:0; font-weight:400;">dotAll (s)</label></span>
+    <span class="check-row"><input type="checkbox" id="flag-u"><label for="flag-u" style="margin:0; font-weight:400;">unicode (u)</label></span>
+  </div>
+
+  <label for="test">Test string</label>
+  <textarea id="test" spellcheck="false" placeholder="Paste the text you want to match against." style="margin-top:8px; min-height:150px;"></textarea>
+
+  <label for="replacement" style="margin-top:16px;">Replacement (optional)</label>
+  <input type="text" id="replacement" spellcheck="false" placeholder="$2.$1@example.com — use $1, $2 or $<name> for groups" style="margin-top:8px;">
+
+  <div class="btn-row">
+    <button class="btn" onclick="run()">Test</button>
+    <button class="btn btn-secondary" onclick="loadSample()">Load example</button>
+    <button class="btn btn-secondary" onclick="copyMatches()">Copy matches</button>
+    <button class="btn btn-secondary" onclick="clearAll()">Clear</button>
+  </div>
+
+  <div id="msg" class="msg" style="display:none;"></div>
+
+  <div id="stats" class="stat-grid" style="display:none;"></div>
+
+  <div id="highlightLabel" style="display:none;">
+    <label for="highlight" style="margin-top:18px;">Highlighted text</label>
+    <div id="highlight" class="output" style="display:block;"></div>
+  </div>
+
+  <div id="matchLabel" style="display:none;">
+    <label for="matches" style="margin-top:18px;">Matches</label>
+    <div id="matches" class="result-list"></div>
+  </div>
+
+  <div id="replaceLabel" style="display:none;">
+    <label for="replaced" style="margin-top:18px;">Replacement result</label>
+    <textarea id="replaced" readonly style="margin-top:8px; min-height:100px;"></textarea>
+  </div>
+
+  <section class="faq">
+    <h2>About regular expressions</h2>
+    <div class="faq-item">
+      <h3>Which regex flavour is this?</h3>
+      <p>JavaScript (<code>RegExp</code>, ES2018 and later), because the test runs in your browser with the same engine your code will use. Lookbehind, named groups and Unicode property escapes all work. Patterns written for PCRE, Python or .NET sometimes differ — most commonly around lookbehind and <code>\d</code> matching only ASCII digits here unless you enable the unicode flag.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What do the flags mean?</h3>
+      <p><code>g</code> finds every match instead of stopping at the first. <code>i</code> ignores case. <code>m</code> makes <code>^</code> and <code>$</code> match at line breaks. <code>s</code> lets <code>.</code> match newlines. <code>u</code> turns on full Unicode handling, which is required for property escapes such as <code>\p{L}</code> and for correct behaviour with emoji.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Why does it stop at 10,000 matches?</h3>
+      <p>To keep the page usable. A pattern like <code>.*</code> over a large file can produce an enormous number of matches, and rendering them all would freeze the tab. When the cap is reached you are told, and the highlighting shows the first portion.</p>
+    </div>
+    <div class="faq-item">
+      <h3>My pattern seems to hang. What happened?</h3>
+      <p>Almost certainly catastrophic backtracking — nested quantifiers such as <code>(a+)+$</code> against a long non-matching string take exponential time. The browser tab has to be force-closed in that case; there is no way to interrupt a running regular expression from JavaScript. Flatten nested quantifiers or use a possessive-style rewrite before testing again.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How do the replacement references work?</h3>
+      <p><code>$1</code>, <code>$2</code> and so on insert numbered capture groups, <code>$&lt;name&gt;</code> inserts a named group, <code>$&amp;</code> inserts the whole match, and <code>$$</code> is a literal dollar sign. The replacement preview uses exactly the same semantics as <code>String.replace()</code> in JavaScript.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is my text uploaded anywhere?</h3>
+      <p>No. The pattern and the test string are both handled by JavaScript in your browser. There is no server involved and nothing leaves your device.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <nav class="footer-nav">
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/contact">Contact</a>
+    <a href="/sitemap">Sitemap</a>
+  </nav>
+  <p>&copy; 2026 GetToolkit. All processing happens in your browser.</p>
+</footer>
+
+<script src="../js/regex-tester.js"></script>
+</body>
+</html>

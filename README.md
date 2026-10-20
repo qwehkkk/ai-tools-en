@@ -14,7 +14,7 @@
 
 ```
 ai-tools-en/
-├── index.html                     # 首页（12 个工具卡片）
+├── index.html                     # 首页（14 个工具卡片）
 ├── about.html                     # 关于页
 ├── privacy.html                   # 隐私政策（含广告 Cookie 披露，AdSense 必需）
 ├── contact.html                   # 联系页（mailto，无表单/无后端）
@@ -44,7 +44,18 @@ ai-tools-en/
     ├── timestamp-converter.html   # Unix 时间戳 ↔ 日期
     ├── hash-calculator.html       # MD5 / SHA-1 / 256 / 384 / 512
     ├── color-converter.html       # HEX / RGB / HSL
-    └── lorem-ipsum-generator.html # 占位文本
+    ├── lorem-ipsum-generator.html # 占位文本
+    ├── text-diff.html             # 文本差异对比（LCS + 词级高亮）
+    └── regex-tester.html          # 正则测试（高亮/分组/替换预览）
+```
+
+## 测试
+
+浏览器脚本用 Node + 假 DOM 直接跑，无需浏览器：
+
+```bash
+node .tmp/test-text-diff.js     # 20 项断言
+node .tmp/test-regex.js         # 24 项断言
 ```
 
 ## 加一个新工具的流程
@@ -100,16 +111,17 @@ AdSense 审核要求站点具备可访问的「关于 / 隐私政策 / 联系方
 
 - `privacy.html` 覆盖：本地处理声明、服务器日志（Cloudflare）、无 Cookie 统计、
   第三方广告 Cookie（Google / DoubleClick）与退出链接、GDPR/CCPA 权利、未成年人条款
-- `contact.html` 使用 `mailto:hello@getoolkit.com`，站内不留任何表单与收集字段
+- `contact.html` 使用 `mailto:asdzcc@gmail.com`，站内不留任何表单与收集字段
 - 三页均带 canonical、OG、JSON-LD，并在全站 footer 导航中互相链接
-- **需自行确认**：`hello@getoolkit.com` 要真实可达。DNS 托管在 Cloudflare 时，
-  用 Cloudflare Email Routing 免费把该地址转发到常用邮箱即可
+- `ads.txt` 位于站点根目录，用于 AdSense 的 ads.txt 站点验证：
+  `google.com, pub-4065367396215160, DIRECT, f08c47fec0942fa0`
+  （换发布商 ID 时只改这一行，文件必须能通过 `https://getoolkit.com/ads.txt` 拿到）
 
 ## 待加工具
 
 **纯前端，零依赖：**
-- [ ] Text Diff（两段文本对比）
-- [ ] Regex Tester
+- [x] Text Diff（LCS 逐行 + 词级高亮 + 大文件降级）
+- [x] Regex Tester（flags / 命名分组 / 替换预览 / 零宽匹配保护）
 - [ ] JSON ↔ YAML
 - [ ] Case Converter
 - [ ] Cron Expression Explainer

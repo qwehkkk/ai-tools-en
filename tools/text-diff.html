@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Diff - Compare Two Texts Online | GetToolkit</title>
+  <meta name="description" content="Free online text diff. Compare two blocks of text or code line by line and see added, removed and changed lines highlighted. Runs in your browser, nothing is uploaded.">
+  <link rel="canonical" href="https://getoolkit.com/tools/text-diff">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GetToolkit">
+  <meta property="og:title" content="Text Diff - Compare Two Texts Online | GetToolkit">
+  <meta property="og:description" content="Compare two blocks of text or code line by line and see added, removed and changed lines highlighted.">
+  <meta property="og:url" content="https://getoolkit.com/tools/text-diff">
+  <meta property="og:image" content="https://getoolkit.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Text Diff",
+    "url": "https://getoolkit.com/tools/text-diff",
+    "description": "Free online text diff. Compare two blocks of text or code line by line and see added, removed and changed lines highlighted.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../" class="logo">GetToolkit</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>Text Diff</h1>
+    <p>Compare two versions of any text or code and see exactly which lines were added, removed, or changed. Everything runs in your browser.</p>
+  </div>
+
+  <div class="diff-inputs">
+    <div class="diff-pane">
+      <label for="left">Original</label>
+      <textarea id="left" spellcheck="false" placeholder="Paste the original text here."></textarea>
+    </div>
+    <div class="diff-pane">
+      <label for="right">Modified</label>
+      <textarea id="right" spellcheck="false" placeholder="Paste the modified text here."></textarea>
+    </div>
+  </div>
+
+  <div class="check-row">
+    <input type="checkbox" id="ignoreCase">
+    <label for="ignoreCase" style="margin:0; font-weight:400;">Ignore case</label>
+  </div>
+  <div class="check-row">
+    <input type="checkbox" id="ignoreSpace" checked>
+    <label for="ignoreSpace" style="margin:0; font-weight:400;">Ignore leading and trailing whitespace</label>
+  </div>
+  <div class="check-row">
+    <input type="checkbox" id="inlineDiff" checked>
+    <label for="inlineDiff" style="margin:0; font-weight:400;">Highlight word changes inside changed lines</label>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" onclick="compare()">Compare</button>
+    <button class="btn btn-secondary" onclick="swap()">Swap</button>
+    <button class="btn btn-secondary" onclick="loadSample()">Load example</button>
+    <button class="btn btn-secondary" onclick="copyDiff()">Copy diff</button>
+    <button class="btn btn-secondary" onclick="clearAll()">Clear</button>
+  </div>
+
+  <div id="msg" class="msg" style="display:none;"></div>
+
+  <div id="stats" class="stat-grid" style="display:none;"></div>
+
+  <label for="diffView" id="diffLabel" style="display:none;">Result:</label>
+  <div id="diffView" class="diff-view" style="display:none;"></div>
+
+  <section class="faq">
+    <h2>About text diff</h2>
+    <div class="faq-item">
+      <h3>What kind of diff is this?</h3>
+      <p>A line-by-line diff computed with a longest-common-subsequence algorithm, the same approach behind classic <code>diff</code>. Lines that exist on one side only are marked as added or removed; a removed line followed by an added one is treated as a single changed line and paired up, so you see it once instead of twice.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Why does it highlight words inside a line?</h3>
+      <p>When a line is marked as changed, the words inside it are diffed separately, so you can see which part of the line moved. Turning the option off shows the whole line as removed and added instead. Word highlighting is skipped on very long lines to keep the page responsive.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How much text can it handle?</h3>
+      <p>Comfortably a few thousand lines per side. The comparison table is capped: past that the tool falls back to a simpler comparison, trims the shared beginning and end of both texts, and marks the rest as changed. You will be told when that happens instead of waiting for the tab to freeze.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I use it for config files and code?</h3>
+      <p>Yes. It is the everyday use case: compare two versions of a config file, a log excerpt, a JSON response, or a function before and after a refactor. Line endings in CRLF, CR and LF files are normalised first, so a Windows file compared against a Unix one will not show every line as changed.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is my text uploaded anywhere?</h3>
+      <p>No. Both texts stay in your browser and the comparison is done in JavaScript. There is no server component, and nothing to upload to. You can disconnect from the network after the page loads and it will still work.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <nav class="footer-nav">
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/contact">Contact</a>
+    <a href="/sitemap">Sitemap</a>
+  </nav>
+  <p>&copy; 2026 GetToolkit. All processing happens in your browser.</p>
+</footer>
+
+<script src="../js/text-diff.js"></script>
+</body>
+</html>
