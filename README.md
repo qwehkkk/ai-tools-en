@@ -14,7 +14,7 @@
 
 ```
 ai-tools-en/
-├── index.html                     # 首页（16 个工具卡片）
+├── index.html                     # 首页（17 个工具卡片）
 ├── about.html                     # 关于页
 ├── privacy.html                   # 隐私政策（含广告 Cookie 披露，AdSense 必需）
 ├── contact.html                   # 联系页（mailto，无表单/无后端）
@@ -33,6 +33,8 @@ ai-tools-en/
 ├── js/
 │   ├── theme.js                   # 暗色模式切换（head 同步加载，防闪烁）
 │   ├── md5.js                     # 自实现 MD5（SHA 系列走 Web Crypto）
+│   ├── qr-tables.js               # QR 纠错块表 + alignment 坐标（生成物，勿手改）
+│   ├── qrcode.js                  # 自实现 QR 编码器（Reed-Solomon + 掩码评分）
 │   └── <tool>.js                  # 每个工具一个脚本
 └── tools/
     ├── json-formatter.html        # JSON 格式化 / 校验
@@ -48,6 +50,7 @@ ai-tools-en/
     ├── color-converter.html       # HEX / RGB / HSL
     ├── lorem-ipsum-generator.html # 占位文本
     ├── case-converter.html         # 命名风格转换（7 种一次出结果）
+    ├── qr-code-generator.html      # QR 码生成（自实现编码器，PNG/SVG 下载）
     ├── cron-explainer.html        # cron 表达式解释 + 未来 5 次执行时间
     ├── text-diff.html             # 文本差异对比（LCS + 词级高亮）
     └── regex-tester.html          # 正则测试（高亮/分组/替换预览）
@@ -62,6 +65,7 @@ node .tmp/test-text-diff.js     # 20 项断言
 node .tmp/test-regex.js         # 24 项断言
 node .tmp/test-case.js          # 30 项断言
 node .tmp/test-cron.js          # 44 项断言
+node .tmp/test-qr.js            # 48 组用例与参考实现逐格对比
 ```
 
 全站级检查：
@@ -70,6 +74,32 @@ node .tmp/test-cron.js          # 44 项断言
 node .tmp/check-ld.js                                    # JSON-LD 合法性 + 内链分布
 python .tmp/static-check.py                              # 元素 id / onclick 函数是否都存在
 ```
+
+## QR 编码器（自实现，零第三方库）
+
+`js/qrcode.js` 是一个完整的 QR 编码器，没有引用任何外部库：自己在 GF(256) 上做
+Reed-Solomon 纠错、按 ISO 表分块与交织、铺功能图形、蛇形填数据、算 8 种掩码的
+惩罚分选最优。`js/qr-tables.js` 里的两张表（纠错块结构、alignment 坐标）是从
+python-qrcode 参考实现导出的，**不要手改**——手写这两张表几乎必错。
+（实测：常见的 alignment 坐标公式在 version 28 上就会算错。）
+
+只实现 byte mode（UTF-8）。数字/字母模式能省容量，但要多两套编码路径，
+URL 场景也用不上，不值得。
+
+**三层验证，缺一层都不敢说它能扫：**
+
+1. 与参考实现逐格对比 —— `.tmp/ref-qr.json` 由 python-qrcode 生成（强制 byte 模式），
+   `node .tmp/test-qr.js` 对 48 组用例（版本 1–36 × 四个级别）遍历 8 个掩码，
+   要求存在一个掩码使矩阵**完全一致**。
+2. 真实解码器回读 —— 用 OpenCV 的 `QRCodeDetector` 解码渲染图，覆盖中文、emoji、
+   1200 字符的超大码（v39）。超大码在低缩放下解不出是检测器的分辨率限制，
+   参考实现同样如此，可用 `scale=16` 复核。
+3. 行为断言 —— 空输入、超长拒绝、容量边界（v1-L 恰好 17 字节、18 字节升 v2）、
+   确定性输出。
+
+**注意**：本实现的掩码选择用 ISO 的完整惩罚规则，python-qrcode 的 level2 会跳过
+重叠的 2×2 块、level3 检测方式也不同，所以两者约三成用例会选到不同掩码。
+不同掩码都合法规，扫描器读 format 位即可还原，不需要对齐。
 
 ## 加一个新工具的流程
 
@@ -180,7 +210,7 @@ sitemap 已提交时通常不必手动加，但新站点前期手动点几次更
 - [x] Cron Expression Explainer（5/6/7 字段 + L / W / # 扩展语法）
 
 **引入 JS 库（本地托管，不走 CDN，避免第三方依赖）：**
-- [ ] QR Code Generator
+- [x] QR Code Generator（自实现编码器，零第三方库）
 - [ ] PDF Compressor（pdf-lib）
 - [ ] Markdown Previewer
 - [ ] PDF ↔ Image

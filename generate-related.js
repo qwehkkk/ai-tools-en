@@ -26,19 +26,20 @@ const GROUPS = {
   'json-formatter': ['json-csv-converter', 'regex-tester', 'url-encoder', 'html-entities'],
   'json-csv-converter': ['json-formatter', 'case-converter', 'word-counter', 'lorem-ipsum-generator'],
   'base64-converter': ['url-encoder', 'hash-calculator', 'html-entities', 'image-compressor'],
-  'url-encoder': ['base64-converter', 'html-entities', 'regex-tester', 'json-csv-converter'],
+  'url-encoder': ['qr-code-generator', 'base64-converter', 'html-entities', 'regex-tester'],
   'html-entities': ['url-encoder', 'base64-converter', 'case-converter', 'word-counter'],
   'uuid-generator': ['hash-calculator', 'base64-converter', 'lorem-ipsum-generator', 'timestamp-converter'],
   'word-counter': ['lorem-ipsum-generator', 'regex-tester', 'text-diff', 'case-converter'],
   'lorem-ipsum-generator': ['word-counter', 'uuid-generator', 'case-converter', 'text-diff'],
   'hash-calculator': ['base64-converter', 'uuid-generator', 'timestamp-converter', 'text-diff'],
   'timestamp-converter': ['cron-explainer', 'hash-calculator', 'uuid-generator', 'color-converter'],
-  'color-converter': ['image-compressor', 'timestamp-converter', 'hash-calculator', 'lorem-ipsum-generator'],
-  'image-compressor': ['color-converter', 'base64-converter', 'json-formatter', 'word-counter'],
+  'color-converter': ['qr-code-generator', 'image-compressor', 'timestamp-converter', 'hash-calculator'],
+  'image-compressor': ['qr-code-generator', 'color-converter', 'base64-converter', 'json-formatter'],
   'case-converter': ['word-counter', 'lorem-ipsum-generator', 'json-csv-converter', 'html-entities'],
   'text-diff': ['regex-tester', 'json-formatter', 'word-counter', 'html-entities'],
   'regex-tester': ['cron-explainer', 'text-diff', 'word-counter', 'json-formatter'],
-  'cron-explainer': ['timestamp-converter', 'regex-tester', 'uuid-generator', 'json-formatter']
+  'cron-explainer': ['timestamp-converter', 'regex-tester', 'uuid-generator', 'json-formatter'],
+  'qr-code-generator': ['image-compressor', 'color-converter', 'url-encoder', 'uuid-generator']
 };
 
 function decodeEntities(s) {

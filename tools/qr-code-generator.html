@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Generator - Free, No Signup | GetToolkit</title>
+  <meta name="description" content="Free QR code generator. Turn any link or text into a QR code, pick the colours and size, then download it as a PNG or SVG. Nothing is uploaded and codes never expire.">
+  <link rel="canonical" href="https://gettoolkit.com/tools/qr-code-generator">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GetToolkit">
+  <meta property="og:title" content="QR Code Generator - Free, No Signup | GetToolkit">
+  <meta property="og:description" content="Turn any link or text into a QR code and download it as a PNG or SVG. No signup, no expiry, nothing uploaded.">
+  <meta property="og:url" content="https://getoolkit.com/tools/qr-code-generator">
+  <meta property="og:image" content="https://getoolkit.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "QR Code Generator",
+    "url": "https://getoolkit.com/tools/qr-code-generator",
+    "description": "Free QR code generator. Turn any link or text into a QR code and download it as a PNG or SVG.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+<!-- BREADCRUMB-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://getoolkit.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://getoolkit.com/#tools" },
+      { "@type": "ListItem", "position": 3, "name": "QR Code Generator", "item": "https://getoolkit.com/tools/qr-code-generator" }
+    ]
+  }
+  </script>
+  <!-- BREADCRUMB-LD:END -->
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../" class="logo">GetToolkit</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+<!-- CRUMBS:START -->
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="../">Home</a><span class="sep">&rsaquo;</span><a href="../#tools">Tools</a><span class="sep">&rsaquo;</span><span aria-current="page">QR Code Generator</span>
+  </nav>
+  <!-- CRUMBS:END -->
+  <div class="tool-header">
+    <h1>QR Code Generator</h1>
+    <p>Turn a link or a block of text into a QR code and download it as PNG or SVG. The code is generated in your browser, so nothing you type is uploaded.</p>
+  </div>
+
+  <label for="qrText">Text or URL</label>
+  <textarea id="qrText" rows="3" placeholder="https://example.com" spellcheck="false"></textarea>
+
+  <div class="qr-controls">
+    <div class="control-pair">
+      <div>
+        <label for="qrLevel">Error correction</label>
+        <select id="qrLevel">
+          <option value="0">L &mdash; 7% recoverable</option>
+          <option value="1" selected>M &mdash; 15% recoverable</option>
+          <option value="2">Q &mdash; 25% recoverable</option>
+          <option value="3">H &mdash; 30% recoverable</option>
+        </select>
+      </div>
+      <div>
+        <label for="qrSize">Download size</label>
+        <select id="qrSize">
+          <option value="256">256 &times; 256 px</option>
+          <option value="512" selected>512 &times; 512 px</option>
+          <option value="1024">1024 &times; 1024 px</option>
+          <option value="2048">2048 &times; 2048 px</option>
+        </select>
+      </div>
+    </div>
+    <div class="control-pair">
+      <div>
+        <label for="qrFg">Foreground</label>
+        <input type="color" id="qrFg" value="#000000">
+      </div>
+      <div>
+        <label for="qrBg">Background</label>
+        <input type="color" id="qrBg" value="#ffffff">
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" onclick="downloadPng()">Download PNG</button>
+    <button class="btn btn-secondary" onclick="downloadSvg()">Download SVG</button>
+    <button class="btn btn-secondary" onclick="loadSample()">Load example</button>
+    <button class="btn btn-secondary" onclick="clearAll()">Clear</button>
+  </div>
+
+  <div id="msg" class="msg" style="display:none;"></div>
+
+  <div id="preview" class="qr-preview" style="display:none;">
+    <canvas id="qrCanvas" width="320" height="320"></canvas>
+    <p id="qrMeta" class="qr-meta"></p>
+  </div>
+
+  <section class="faq">
+    <h2>About QR codes</h2>
+    <div class="faq-item">
+      <h3>Do these codes expire or stop working?</h3>
+      <p>No. This is a plain QR code that stores your text directly, not a short link pointing at someone else's redirect. There is no account, no counter and no server that could be switched off, so the code keeps working for as long as the thing it points at exists.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Which error correction level should I pick?</h3>
+      <p><strong>M</strong> is the sensible default and what most scanners expect. Raise it to <strong>Q</strong> or <strong>H</strong> if the code will be printed small, placed behind glass, or is likely to get scuffed — the trade-off is that a higher level stores more redundancy, so the code becomes denser for the same amount of text. Drop to <strong>L</strong> only when you are close to the length limit.</p>
+    </div>
+    <div class="faq-item">
+      <h3>PNG or SVG?</h3>
+      <p>Use <strong>SVG</strong> for anything printed — business cards, stickers, posters. It is vector, so it stays sharp at any size and the file is usually smaller. Use <strong>PNG</strong> for screens: slides, websites, chat messages. Both are generated at full quality here, with no watermark.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Why did my coloured code stop scanning?</h3>
+      <p>Scanners need luminance contrast, not colour contrast. A dark blue on light red can look obviously different to you and still fail. Keep the foreground clearly darker than the background, and never invert them: a light code on a dark background is rejected by many phone cameras. If a scan fails, set both colours back to black and white and try again.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How much text fits?</h3>
+      <p>Up to about 2,950 bytes at level L, which is roughly 2,950 Latin characters or 980 Chinese characters, since this generator uses UTF-8. Practical codes for a URL are far shorter. Note that every character you add makes the modules smaller at a fixed print size, so shorter text scans more reliably.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is my text sent anywhere?</h3>
+      <p>No. The encoder is a few hundred lines of JavaScript running on this page. Nothing is transmitted, which is why it also works offline once loaded.</p>
+    </div>
+  </section>
+<!-- RELATED:START -->
+  <section class="related">
+    <h2>Related tools</h2>
+    <div class="tool-grid compact">
+    <a href="image-compressor" class="tool-card">
+      <h3>Image Compressor</h3>
+      <p>Compress and resize images in your browser. Supports JPG, PNG, WebP.</p>
+    </a>
+    <a href="color-converter" class="tool-card">
+      <h3>Color Converter</h3>
+      <p>Convert between HEX, RGB and HSL with a live color preview.</p>
+    </a>
+    <a href="url-encoder" class="tool-card">
+      <h3>URL Encoder / Decoder</h3>
+      <p>Encode text to URL-safe format or decode URL-encoded strings back. Supports UTF-8.</p>
+    </a>
+    <a href="uuid-generator" class="tool-card">
+      <h3>UUID Generator</h3>
+      <p>Generate RFC 4122 version 4 UUIDs. Cryptographically secure, up to 1000 at a time.</p>
+    </a>
+    </div>
+    <p class="related-all"><a href="../">See all 17 free tools &rarr;</a></p>
+  </section>
+  <!-- RELATED:END -->
+</main>
+
+<footer class="footer">
+  <nav class="footer-nav">
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/contact">Contact</a>
+    <a href="/sitemap">Sitemap</a>
+  </nav>
+  <p>&copy; 2026 GetToolkit. All processing happens in your browser.</p>
+</footer>
+
+<script src="../js/qr-tables.js"></script>
+<script src="../js/qrcode.js"></script>
+<script src="../js/qr-code-generator.js"></script>
+</body>
+</html>
