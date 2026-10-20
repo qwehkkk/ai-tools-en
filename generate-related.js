@@ -32,12 +32,13 @@ const GROUPS = {
   'word-counter': ['lorem-ipsum-generator', 'regex-tester', 'text-diff', 'case-converter'],
   'lorem-ipsum-generator': ['word-counter', 'uuid-generator', 'case-converter', 'text-diff'],
   'hash-calculator': ['base64-converter', 'uuid-generator', 'timestamp-converter', 'text-diff'],
-  'timestamp-converter': ['hash-calculator', 'uuid-generator', 'color-converter', 'regex-tester'],
+  'timestamp-converter': ['cron-explainer', 'hash-calculator', 'uuid-generator', 'color-converter'],
   'color-converter': ['image-compressor', 'timestamp-converter', 'hash-calculator', 'lorem-ipsum-generator'],
   'image-compressor': ['color-converter', 'base64-converter', 'json-formatter', 'word-counter'],
   'case-converter': ['word-counter', 'lorem-ipsum-generator', 'json-csv-converter', 'html-entities'],
   'text-diff': ['regex-tester', 'json-formatter', 'word-counter', 'html-entities'],
-  'regex-tester': ['text-diff', 'word-counter', 'json-formatter', 'html-entities']
+  'regex-tester': ['cron-explainer', 'text-diff', 'word-counter', 'json-formatter'],
+  'cron-explainer': ['timestamp-converter', 'regex-tester', 'uuid-generator', 'json-formatter']
 };
 
 function decodeEntities(s) {

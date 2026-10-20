@@ -14,7 +14,7 @@
 
 ```
 ai-tools-en/
-├── index.html                     # 首页（15 个工具卡片）
+├── index.html                     # 首页（16 个工具卡片）
 ├── about.html                     # 关于页
 ├── privacy.html                   # 隐私政策（含广告 Cookie 披露，AdSense 必需）
 ├── contact.html                   # 联系页（mailto，无表单/无后端）
@@ -27,6 +27,7 @@ ai-tools-en/
 ├── site.json                      # 站点 URL 的唯一配置源
 ├── generate-sitemap.js            # 扫描 tools/ + 根目录页面生成两个站点地图
 ├── generate-related.js            # 给每个工具页注入面包屑 + 相关工具内链
+├── indexnow.js                     # 把 sitemap 里的 URL 推给 Bing / Yandex（IndexNow）
 ├── set-domain.js                  # 一条命令全站换域名
 ├── css/style.css                  # 全站样式（含暗色模式变量）
 ├── js/
@@ -47,6 +48,7 @@ ai-tools-en/
     ├── color-converter.html       # HEX / RGB / HSL
     ├── lorem-ipsum-generator.html # 占位文本
     ├── case-converter.html         # 命名风格转换（7 种一次出结果）
+    ├── cron-explainer.html        # cron 表达式解释 + 未来 5 次执行时间
     ├── text-diff.html             # 文本差异对比（LCS + 词级高亮）
     └── regex-tester.html          # 正则测试（高亮/分组/替换预览）
 ```
@@ -59,6 +61,7 @@ ai-tools-en/
 node .tmp/test-text-diff.js     # 20 项断言
 node .tmp/test-regex.js         # 24 项断言
 node .tmp/test-case.js          # 30 项断言
+node .tmp/test-cron.js          # 44 项断言
 ```
 
 全站级检查：
@@ -120,7 +123,8 @@ node generate-sitemap.js          # 重新生成站点地图
 - **面包屑 + 相关工具内链**：`generate-related.js` 给每个工具页注入
   `Home › Tools › 当前` 与 `BreadcrumbList` 结构化数据，底部再挂 4 个相关工具卡片。
   此前 14 个工具页之间**零链接**，只有首页通进来，属于典型的孤岛结构；
-  改造后每个工具页至少 4 条入链，卡片文案直接复用首页卡片保证一致
+  改造后每个工具页至少 2 条相关入链（外加首页与站点地图各 1 条），
+  卡片文案直接复用首页卡片保证一致
 
 ## 法务页与 AdSense 合规
 
@@ -140,6 +144,16 @@ AdSense 审核要求站点具备可访问的「关于 / 隐私政策 / 联系方
 Cloudflare 控制台 → 左侧 **Analytics & Logs → Web Analytics** → Add a site →
 填 getoolkit.com → 创建后拿到一小段 JS（Beacon）。
 想不往每个页面插代码就用 **Automatic** 模式（在 zone 层自动注入，Pages 站点直接生效）。
+
+**IndexNow 主动推送（Bing / Yandex / Seznam / Naver 即时收录）**
+新站等爬虫自己来最慢，IndexNow 是主动告诉搜索引擎「这些 URL 变了」。
+key 文件必须先部署上线再推送；首次执行会自动生成 key 并写回 `site.json`：
+```bash
+node generate-sitemap.js                              # 保证 sitemap 是最新的
+git add -A && git commit -m "..." && git push         # 先部署，让 /<key>.txt 可访问
+node indexnow.js                                      # 部署完成后推送全部 URL
+node indexnow.js --dry                                # 只看要发的 JSON，不真发
+```
 
 **Bing Webmaster Tools**
 1. 打开 https://www.bing.com/webmasters ，用微软账号登录
@@ -163,7 +177,7 @@ sitemap 已提交时通常不必手动加，但新站点前期手动点几次更
 - [x] Regex Tester（flags / 命名分组 / 替换预览 / 零宽匹配保护）
 - [ ] JSON ↔ YAML
 - [x] Case Converter
-- [ ] Cron Expression Explainer
+- [x] Cron Expression Explainer（5/6/7 字段 + L / W / # 扩展语法）
 
 **引入 JS 库（本地托管，不走 CDN，避免第三方依赖）：**
 - [ ] QR Code Generator
