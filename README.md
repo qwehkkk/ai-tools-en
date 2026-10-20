@@ -36,6 +36,7 @@ ai-tools-en/
 │   ├── qr-tables.js               # QR 纠错块表 + alignment 坐标（生成物，勿手改）
 │   ├── qrcode.js                  # 自实现 QR 编码器（Reed-Solomon + 掩码评分）
 │   └── <tool>.js                  # 每个工具一个脚本
+├── tests/                         # 测试与检查脚本（node tests/run-all.js）
 └── tools/
     ├── json-formatter.html        # JSON 格式化 / 校验
     ├── base64-converter.html      # Base64 编解码
@@ -56,23 +57,38 @@ ai-tools-en/
     └── regex-tester.html          # 正则测试（高亮/分组/替换预览）
 ```
 
-## 测试
+## 测试与检查
 
-浏览器脚本用 Node + 假 DOM 直接跑，无需浏览器：
+脚本都在 `tests/`，用 Node + 假 DOM 直接跑，不需要浏览器。每个脚本都能从任意
+目录启动（内部会自己切到仓库根）。
 
 ```bash
-node .tmp/test-text-diff.js     # 20 项断言
-node .tmp/test-regex.js         # 24 项断言
-node .tmp/test-case.js          # 30 项断言
-node .tmp/test-cron.js          # 44 项断言
-node .tmp/test-qr.js            # 48 组用例与参考实现逐格对比
+node tests/run-all.js           # 一次跑完全部，非零退出码表示有失败
 ```
 
-全站级检查：
+单独运行：
 
 ```bash
-node .tmp/check-ld.js                                    # JSON-LD 合法性 + 内链分布
-python .tmp/static-check.py                              # 元素 id / onclick 函数是否都存在
+node tests/test-text-diff.js    # 20 项断言
+node tests/test-regex.js        # 24 项断言
+node tests/test-case.js         # 30 项断言
+node tests/test-cron.js         # 44 项断言
+node tests/test-qr.js           # 158 项断言，含 48 组与参考实现逐格对比
+node tests/check-ld.js          # JSON-LD 合法性 + 内链分布
+python tests/static-check.py    # 元素 id / onclick 函数是否都存在
+python tests/audit.py           # 全站 SEO 体检
+```
+
+`tests/audit.py` 查的是**坏了会直接掉流量**的东西：title / description 长度是否
+落在 Google 的显示窗口内、canonical 是否指向自身且不带 `.html`、og:image 是否为
+绝对地址、每页是否恰好一个 `<h1>`、页面与 sitemap 是否双向一致、内部链接是否有效。
+任何一条不通过都会返回非零退出码，可以挂在部署前当门禁。
+
+`tests/server.js` 在本地模拟 Cloudflare Pages 的路由行为（无扩展名 200、
+`.html` 308、未知路径 404），用来在推送前验证 URL 形态：
+
+```bash
+node tests/server.js            # http://127.0.0.1:8081
 ```
 
 ## QR 编码器（自实现，零第三方库）
@@ -88,8 +104,8 @@ URL 场景也用不上，不值得。
 
 **三层验证，缺一层都不敢说它能扫：**
 
-1. 与参考实现逐格对比 —— `.tmp/ref-qr.json` 由 python-qrcode 生成（强制 byte 模式），
-   `node .tmp/test-qr.js` 对 48 组用例（版本 1–36 × 四个级别）遍历 8 个掩码，
+1. 与参考实现逐格对比 —— `tests/ref-qr.json` 由 python-qrcode 生成（强制 byte 模式），
+   `node tests/test-qr.js` 对 48 组用例（版本 1–36 × 四个级别）遍历 8 个掩码，
    要求存在一个掩码使矩阵**完全一致**。
 2. 真实解码器回读 —— 用 OpenCV 的 `QRCodeDetector` 解码渲染图，覆盖中文、emoji、
    1200 字符的超大码（v39）。超大码在低缩放下解不出是检测器的分辨率限制，
@@ -108,7 +124,7 @@ URL 场景也用不上，不值得。
    - canonical 与 OG url **不带 `.html`**（Cloudflare Pages 会把 `/x.html` 308 跳到 `/x`）
 2. 在 `index.html` 的 `.tool-grid` 里加一张卡片（`href="tools/<slug>"`）
 3. 在 `generate-related.js` 的 `GROUPS` 里给它配 4 个邻居（同时保证别人也链到它，
-   跑一次 `node .tmp/check-ld.js` 看「inbound internal links」分布是否均衡）
+   跑一次 `node tests/check-ld.js` 看「inbound internal links」分布是否均衡）
 4. 跑生成脚本，站点地图 + 面包屑 + 相关工具全部自动更新：
    ```bash
    node generate-related.js
@@ -118,7 +134,7 @@ URL 场景也用不上，不值得。
    ```bash
    git add -A && git commit -m "Add <tool> tool" && git push
    ```
-5. 新页面不需要去 GSC 手动提交——Google 会从 sitemap 发现。想加速再用「网址检查 → 请求编入索引」。
+6. 新页面不需要去 GSC 手动提交——Google 会从 sitemap 发现。想加速再用「网址检查 → 请求编入索引」。
 
 ## 换域名
 
