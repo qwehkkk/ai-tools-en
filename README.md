@@ -37,7 +37,7 @@ ai-tools-en/
 1. 登录 Cloudflare Dashboard → Pages
 2. Create a project → Upload assets
 3. 把 `ai-tools-en` 目录下所有文件拖进去
-4. 项目名填 `aitools-en`（会生成 aitools-en.pages.dev）
+4. 项目名填 `aitools-en`（会生成 getoolkit.com）
 5. 部署完成
 
 ### 方法 2：Git 连接（推荐，后续更新方便）
@@ -49,9 +49,9 @@ ai-tools-en/
 
 ## 部署后必做
 
-1. **Google Search Console**：添加站点 `https://aitools-en.pages.dev`
+1. **Google Search Console**：添加站点 `https://getoolkit.com`
    - 验证方式：HTML meta 标签（加到 index.html）或 DNS TXT 记录
-   - 提交 sitemap：`https://aitools-en.pages.dev/sitemap.xml`
+   - 提交 sitemap：`https://getoolkit.com/sitemap.xml`
 2. **Google Analytics**：接入 GA4，跟踪 ID 加到每个页面
 3. **域名**（可选，等起量后）：买个好域名绑上去，Cloudflare Pages 支持自定义域名 + 301 重定向
 

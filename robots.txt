@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aitools-en.pages.dev/sitemap.xml
+Sitemap: https://getoolkit.com/sitemap.xml

@@ -19,7 +19,7 @@ const TOOLS_DIR = path.join(ROOT, 'tools');
 const SITE_CONFIG = path.join(ROOT, 'site.json');
 const SITE_URL = fs.existsSync(SITE_CONFIG)
   ? JSON.parse(fs.readFileSync(SITE_CONFIG, 'utf8')).url.replace(/\/+$/, '')
-  : 'https://aitools-en.pages.dev';
+  : 'https://getoolkit.com';
 
 function escapeXml(s) {
   return String(s)
