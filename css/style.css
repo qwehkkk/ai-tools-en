@@ -1,4 +1,4 @@
-/* AI Tools - English Static Site
+/* GetToolkit - English Static Site
    Clean Minimal style with Dark Mode toggle.
    Mobile-first, fast, no external requests. */
 
@@ -580,4 +580,128 @@ input[type="file"]::file-selector-button:hover {
   .control-row input[type="range"] {
     min-width: 100%;
   }
+}
+
+/* ---------- Result rows (hash, color, timestamp) ---------- */
+.result-list {
+  margin-top: 8px;
+}
+
+.result-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.result-row:last-child {
+  border-bottom: none;
+}
+
+.result-row .label {
+  flex: 0 0 96px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+}
+
+.result-row.wide .label {
+  flex: 0 0 132px;
+}
+
+.result-row .value {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  word-break: break-all;
+  color: var(--text);
+}
+
+.result-row .btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  flex: 0 0 auto;
+}
+
+/* Color preview swatch */
+.color-swatch {
+  height: 96px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin: 14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* Inline checkbox row */
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.check-row input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+/* Two-column control pair */
+.control-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+@media (max-width: 600px) {
+  .control-pair {
+    grid-template-columns: 1fr;
+  }
+  .result-row {
+    flex-wrap: wrap;
+  }
+  .result-row .label {
+    flex: 0 0 100%;
+  }
+}
+
+/* Summary stat cards (word counter style, reused) */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.stat-card {
+  padding: 14px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.stat-card .num {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.stat-card .key {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
 }

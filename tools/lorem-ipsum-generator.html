@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lorem Ipsum Generator - Placeholder Text Generator | GetToolkit</title>
+  <meta name="description" content="Generate lorem ipsum placeholder text instantly. Choose paragraphs, sentences or words, copy with one click. Free, no signup, works in your browser.">
+  <link rel="canonical" href="https://getoolkit.com/tools/lorem-ipsum-generator">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GetToolkit">
+  <meta property="og:title" content="Lorem Ipsum Generator - Placeholder Text Generator | GetToolkit">
+  <meta property="og:description" content="Generate lorem ipsum placeholder text instantly. Choose paragraphs, sentences or words, copy with one click.">
+  <meta property="og:url" content="https://getoolkit.com/tools/lorem-ipsum-generator">
+  <meta property="og:image" content="https://getoolkit.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Lorem Ipsum Generator",
+    "url": "https://getoolkit.com/tools/lorem-ipsum-generator",
+    "description": "Generate lorem ipsum placeholder text as paragraphs, sentences or words.",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../" class="logo">GetToolkit</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>Lorem Ipsum Generator</h1>
+    <p>Filler text for mockups, wireframes and layout tests. Pick a unit and an amount, then generate.</p>
+  </div>
+
+  <div class="control-pair">
+    <div>
+      <label for="type">Generate</label>
+      <select id="type">
+        <option value="paragraphs" selected>Paragraphs</option>
+        <option value="sentences">Sentences</option>
+        <option value="words">Words</option>
+      </select>
+    </div>
+    <div>
+      <label for="count">Amount (1–100)</label>
+      <input type="number" id="count" value="3" min="1" max="100">
+    </div>
+  </div>
+
+  <div class="check-row">
+    <input type="checkbox" id="startClassic" checked>
+    <label for="startClassic" style="margin:0;font-weight:400;">Start with "Lorem ipsum dolor sit amet…"</label>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" onclick="generate()">Generate</button>
+    <button class="btn btn-secondary" onclick="copyResult()">Copy</button>
+    <button class="btn btn-secondary" onclick="clearAll()">Clear</button>
+  </div>
+
+  <div id="msg" class="msg" style="display:none;"></div>
+
+  <label for="output">Result:</label>
+  <textarea id="output" readonly style="margin-top:8px;min-height:260px;" placeholder="Click Generate."></textarea>
+
+  <section class="faq">
+    <h2>About Lorem Ipsum</h2>
+    <div class="faq-item">
+      <h3>What is lorem ipsum?</h3>
+      <p>Lorem ipsum is scrambled Latin text derived from Cicero's <em>De finibus bonorum et malorum</em> (45 BC). Designers and developers have used it as placeholder copy since the 1960s because readers ignore it instead of reading it, so they focus on the layout.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How many paragraphs should I generate?</h3>
+      <p>For a landing page mockup, 2–3 paragraphs per section is usually enough. For testing long-form layout or overflow behaviour, generate 10 or more. You can generate up to 100 units at once.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Why does the first sentence always repeat?</h3>
+      <p>Because the classic opening ("Lorem ipsum dolor sit amet, consectetur adipiscing elit") is what makes filler text immediately recognisable as placeholder. Uncheck the box if you want random text from the start.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is the text copyrighted?</h3>
+      <p>No. Lorem ipsum is public domain and has been used freely for over fifty years.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Does it work offline?</h3>
+      <p>Yes. The generator is plain JavaScript running in your browser — nothing is sent to a server.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 GetToolkit. All processing happens in your browser. &middot; <a href="../sitemap">Sitemap</a></p>
+</footer>
+
+<script src="../js/lorem-ipsum-generator.js"></script>
+</body>
+</html>

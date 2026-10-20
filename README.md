@@ -1,95 +1,109 @@
-# GetToolkit (English) - Free Online Tools
+# GetToolkit — Free Online Tools (English)
 
-面向欧美用户的纯静态在线工具站。零后端、零 API 成本，所有处理在浏览器端完成。
+面向欧美用户的纯静态在线工具站。零后端、零 API 成本，所有处理都在浏览器端完成。
+
+线上地址：https://getoolkit.com
 
 ## 技术栈
 
 - 纯 HTML + CSS + 原生 JavaScript（和 easytool 一致）
-- 无框架、无打包工具、无后端
-- 部署到 Cloudflare Pages（免费）
+- 无框架、无打包工具、无后端、无第三方请求
+- 部署在 Cloudflare Pages（免费，Git 自动部署）
 
-## 项目结构
+## 目录结构
 
 ```
 ai-tools-en/
-├── index.html                      # 首页（工具导航）
-├── tools/
-│   ├── json-formatter.html         # JSON 格式化
-│   ├── base64-converter.html       # Base64 编解码
-│   ├── json-csv-converter.html     # JSON ↔ CSV 互转
-│   └── image-compressor.html       # 图片压缩（Canvas API）
-├── css/
-│   └── style.css                   # 全站样式
+├── index.html                     # 首页（12 个工具卡片）
+├── 404.html                       # 真 404（noindex）
+├── sitemap.html                   # 生成物：全工具列表页
+├── sitemap.xml                    # 生成物：给搜索引擎
+├── robots.txt
+├── favicon.svg
+├── og-image.png                   # 1200×630 社交分享图
+├── site.json                      # 站点 URL 的唯一配置源
+├── generate-sitemap.js            # 扫描 tools/ 生成两个站点地图
+├── set-domain.js                  # 一条命令全站换域名
+├── css/style.css                  # 全站样式（含暗色模式变量）
 ├── js/
-│   ├── json-formatter.js
-│   ├── base64-converter.js
-│   ├── json-csv-converter.js
-│   └── image-compressor.js
-├── sitemap.xml                     # SEO
-├── robots.txt                      # SEO
-└── README.md                       # 本文件
+│   ├── theme.js                   # 暗色模式切换（head 同步加载，防闪烁）
+│   ├── md5.js                     # 自实现 MD5（SHA 系列走 Web Crypto）
+│   └── <tool>.js                  # 每个工具一个脚本
+└── tools/
+    ├── json-formatter.html        # JSON 格式化 / 校验
+    ├── base64-converter.html      # Base64 编解码
+    ├── json-csv-converter.html    # JSON ↔ CSV
+    ├── image-compressor.html      # 图片压缩（Canvas API）
+    ├── url-encoder.html           # URL 编解码
+    ├── uuid-generator.html        # UUID v4，可批量
+    ├── word-counter.html          # 字数 / 字符 / 阅读时间
+    ├── html-entities.html         # HTML 实体编解码
+    ├── timestamp-converter.html   # Unix 时间戳 ↔ 日期
+    ├── hash-calculator.html       # MD5 / SHA-1 / 256 / 384 / 512
+    ├── color-converter.html       # HEX / RGB / HSL
+    └── lorem-ipsum-generator.html # 占位文本
 ```
 
-## 部署到 Cloudflare Pages
+## 加一个新工具的流程
 
-### 方法 1：直接上传（最简单）
+1. 在 `tools/` 下写 `<slug>.html`，在 `js/` 下写 `<slug>.js`
+   - 页面 head 照抄现有工具页：title / description / canonical / icon / OG / JSON-LD
+   - canonical 与 OG url **不带 `.html`**（Cloudflare Pages 会把 `/x.html` 308 跳到 `/x`）
+2. 在 `index.html` 的 `.tool-grid` 里加一张卡片（`href="tools/<slug>"`）
+3. 跑一次生成脚本，两个站点地图自动更新：
+   ```bash
+   node generate-sitemap.js
+   ```
+4. 提交并推送，Cloudflare 自动部署：
+   ```bash
+   git add -A && git commit -m "Add <tool> tool" && git push
+   ```
+5. 新页面不需要去 GSC 手动提交——Google 会从 sitemap 发现。想加速再用「网址检查 → 请求编入索引」。
 
-1. 登录 Cloudflare Dashboard → Pages
-2. Create a project → Upload assets
-3. 把 `ai-tools-en` 目录下所有文件拖进去
-4. 项目名填 `aitools-en`（会生成 getoolkit.com）
-5. 部署完成
+## 换域名
 
-### 方法 2：Git 连接（推荐，后续更新方便）
+`site.json` 是域名唯一配置源，其它文件里的 URL 都由脚本替换：
 
-1. 把 `ai-tools-en` 推到 GitHub 仓库
-2. Cloudflare Pages → Create a project → Connect to Git
-3. 选仓库，构建命令留空（纯静态），输出目录填 `.`
-4. 部署
+```bash
+node set-domain.js example.com    # 替换全站所有绝对 URL
+node generate-sitemap.js          # 重新生成站点地图
+```
 
-## 部署后必做
+## Cloudflare Pages 构建配置
 
-1. **Google Search Console**：添加站点 `https://getoolkit.com`
-   - 验证方式：HTML meta 标签（加到 index.html）或 DNS TXT 记录
-   - 提交 sitemap：`https://getoolkit.com/sitemap.xml`
-2. **Google Analytics**：接入 GA4，跟踪 ID 加到每个页面
-3. **域名**（可选，等起量后）：买个好域名绑上去，Cloudflare Pages 支持自定义域名 + 301 重定向
+| 字段 | 值 |
+|---|---|
+| Framework preset | **None** |
+| Build command | **留空** |
+| Build output directory | `/` |
 
-## 每个工具的 SEO 要点
+选任何框架预设都会导致构建失败——这是纯静态站。
 
-- 每个工具页有独立 URL、独立 title、独立 description
-- 每个工具页有 Schema.org 结构化数据（WebApplication 类型）
-- 每个工具页有 FAQ section（增加长尾词覆盖）
-- canonical 指向自身（避免重复内容）
+## SEO 现状（已完成）
 
-## 下一步
+- 每个工具页独立 URL、title、description、canonical、FAQ
+- canonical / sitemap / 内链全部使用无扩展名 URL（与 Pages 的 308 目标一致）
+- Schema.org `WebApplication` 结构化数据（每页），首页为 `WebSite`
+- OG + Twitter 卡片元数据，统一使用 `og-image.png`
+- `404.html` 返回真正的 404 状态（此前未知路径会返回 200 + 首页，属软 404）
+- sitemap.xml 由脚本生成，自动带当天 `lastmod`
 
-- Week 2-3：再加 6-8 个工具页（参考下面的选题清单）
-- Week 4 起：每周看 Google Search Console 数据，哪类人气旺加倍投入
-- Week 8：方向复盘
-
-## 待加工具清单（按简单到复杂）
+## 待加工具
 
 **纯前端，零依赖：**
-- [ ] HTML Entity Encoder/Decoder
-- [ ] Text Diff (对比两段文本)
-- [ ] Lorem Ipsum Generator
-- [ ] Hash Calculator (MD5/SHA-1/SHA-256，用 SubtleCrypto API)
-- [ ] Timestamp Converter
-- [ ] Color Format Converter (HEX/RGB/HSL)
+- [ ] Text Diff（两段文本对比）
 - [ ] Regex Tester
-- [x] URL Encoder/Decoder ✅
-- [x] UUID Generator ✅
-- [x] Word/Character Counter ✅
+- [ ] JSON ↔ YAML
+- [ ] Case Converter
+- [ ] Cron Expression Explainer
 
-**纯前端，引入 JS 库（CDN）：**
-- [ ] QR Code Generator (用 qrcode.js)
-- [ ] PDF Compressor (用 pdf-lib)
-- [ ] Markdown Previewer (用 marked.js)
-- [ ] Code Highlighter (用 highlight.js)
+**引入 JS 库（本地托管，不走 CDN，避免第三方依赖）：**
+- [ ] QR Code Generator
+- [ ] PDF Compressor（pdf-lib）
+- [ ] Markdown Previewer
+- [ ] PDF ↔ Image
 
-**需要 AI API（第二波，用 Cloudflare Workers）：**
+**需要 AI（第二波，用 Cloudflare Workers 做代理，密钥不暴露在前端）：**
 - [ ] AI Email Rewriter
-- [ ] AI Reply Generator
-- [ ] AI Instagram Caption Generator
 - [ ] AI Summarizer
+- [ ] AI Caption Generator

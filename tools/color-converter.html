@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Converter - HEX to RGB, RGB to HEX &amp; HSL | GetToolkit</title>
+  <meta name="description" content="Convert colors between HEX, RGB and HSL instantly. Paste any CSS color value and get every format with a live preview. Free, no signup.">
+  <link rel="canonical" href="https://getoolkit.com/tools/color-converter">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GetToolkit">
+  <meta property="og:title" content="Color Converter - HEX to RGB, RGB to HEX &amp; HSL | GetToolkit">
+  <meta property="og:description" content="Convert colors between HEX, RGB and HSL instantly with a live preview.">
+  <meta property="og:url" content="https://getoolkit.com/tools/color-converter">
+  <meta property="og:image" content="https://getoolkit.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Color Converter",
+    "url": "https://getoolkit.com/tools/color-converter",
+    "description": "Convert colors between HEX, RGB and HSL formats with a live preview.",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../" class="logo">GetToolkit</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>Color Converter</h1>
+    <p>Paste a HEX, RGB or HSL value — every other format updates as you type.</p>
+  </div>
+
+  <label for="color">Color value</label>
+  <input type="text" id="color" value="#0969da" placeholder="#0969da, rgb(9, 105, 218) or hsl(212, 92%, 44%)" style="margin-top:8px;">
+
+  <div class="btn-row">
+    <button class="btn btn-secondary" onclick="tryColor('#0969da')">#0969da</button>
+    <button class="btn btn-secondary" onclick="tryColor('rgb(26, 127, 55)')">rgb(26, 127, 55)</button>
+    <button class="btn btn-secondary" onclick="tryColor('hsl(35, 92%, 50%)')">hsl(35, 92%, 50%)</button>
+    <button class="btn btn-secondary" onclick="tryColor('#e11d48')">#e11d48</button>
+  </div>
+
+  <div id="msg" class="msg" style="display:none;"></div>
+
+  <div class="color-swatch" id="swatch">#0969DA</div>
+
+  <div class="result-list">
+    <div class="result-row">
+      <span class="label">HEX</span>
+      <span class="value" id="o-hex">—</span>
+      <button class="btn btn-secondary" onclick="copyText('o-hex')">Copy</button>
+    </div>
+    <div class="result-row">
+      <span class="label">RGB</span>
+      <span class="value" id="o-rgb">—</span>
+      <button class="btn btn-secondary" onclick="copyText('o-rgb')">Copy</button>
+    </div>
+    <div class="result-row">
+      <span class="label">HSL</span>
+      <span class="value" id="o-hsl">—</span>
+      <button class="btn btn-secondary" onclick="copyText('o-hsl')">Copy</button>
+    </div>
+    <div class="result-row">
+      <span class="label">CSS</span>
+      <span class="value" id="o-css">—</span>
+      <button class="btn btn-secondary" onclick="copyText('o-css')">Copy</button>
+    </div>
+  </div>
+
+  <section class="faq">
+    <h2>About Color Formats</h2>
+    <div class="faq-item">
+      <h3>What is the difference between HEX, RGB and HSL?</h3>
+      <p>They describe the same color in different coordinate systems. HEX and RGB are the same thing — red, green and blue channels from 0–255 (HEX is just those numbers in base 16). HSL restates the color as hue (0–360°), saturation and lightness, which is far easier to reason about when you need "the same blue, but darker".</p>
+    </div>
+    <div class="faq-item">
+      <h3>Why does my HEX turn into a different RGB value?</h3>
+      <p>If you paste a three-digit shorthand like <code>#09d</code>, it expands to <code>#0099dd</code>. If you paste an eight-digit value, the last two characters are alpha and are ignored here.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How is HSL calculated from RGB?</h3>
+      <p>Lightness is the average of the highest and lowest channel. Saturation describes how far the channels spread apart. Hue is derived from which channel dominates — red at 0°, green at 120°, blue at 240°. Rounding means converting RGB → HSL → RGB can shift a channel by one point.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I paste a named color like "tomato"?</h3>
+      <p>Yes, as long as your browser recognises the name. The tool asks the browser to compute the color, then reads the resulting RGB channels back.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is anything uploaded?</h3>
+      <p>No. All conversion happens in your browser.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 GetToolkit. All processing happens in your browser. &middot; <a href="../sitemap">Sitemap</a></p>
+</footer>
+
+<script src="../js/color-converter.js"></script>
+</body>
+</html>

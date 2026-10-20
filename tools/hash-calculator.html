@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hash Generator - MD5, SHA-1, SHA-256, SHA-512 Online | GetToolkit</title>
+  <meta name="description" content="Generate MD5, SHA-1, SHA-256, SHA-384 and SHA-512 hashes of any text in your browser. Compare checksums, verify integrity. Nothing is uploaded.">
+  <link rel="canonical" href="https://getoolkit.com/tools/hash-calculator">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GetToolkit">
+  <meta property="og:title" content="Hash Generator - MD5, SHA-1, SHA-256, SHA-512 Online | GetToolkit">
+  <meta property="og:description" content="Generate MD5, SHA-1, SHA-256, SHA-384 and SHA-512 hashes of any text in your browser.">
+  <meta property="og:url" content="https://getoolkit.com/tools/hash-calculator">
+  <meta property="og:image" content="https://getoolkit.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Hash Generator",
+    "url": "https://getoolkit.com/tools/hash-calculator",
+    "description": "Generate MD5, SHA-1, SHA-256, SHA-384 and SHA-512 hashes of any text.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../" class="logo">GetToolkit</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>Hash Generator</h1>
+    <p>Type or paste text to get its MD5, SHA-1, SHA-256, SHA-384 and SHA-512 digests at once. Everything is computed locally.</p>
+  </div>
+
+  <label for="input">Text to hash</label>
+  <textarea id="input" placeholder="Type anything — the hashes update as you type." style="margin-top:8px;min-height:160px;"></textarea>
+
+  <div class="btn-row">
+    <button class="btn" onclick="run()">Hash</button>
+    <button class="btn btn-secondary" onclick="copyAll()">Copy all</button>
+    <button class="btn btn-secondary" onclick="clearAll()">Clear</button>
+  </div>
+
+  <div id="msg" class="msg" style="display:none;"></div>
+
+  <div class="result-list">
+    <div class="result-row wide">
+      <span class="label">MD5</span>
+      <span class="value" id="r-md5">—</span>
+      <button class="btn btn-secondary" onclick="copyText('r-md5')">Copy</button>
+    </div>
+    <div class="result-row wide">
+      <span class="label">SHA-1</span>
+      <span class="value" id="r-sha1">—</span>
+      <button class="btn btn-secondary" onclick="copyText('r-sha1')">Copy</button>
+    </div>
+    <div class="result-row wide">
+      <span class="label">SHA-256</span>
+      <span class="value" id="r-sha256">—</span>
+      <button class="btn btn-secondary" onclick="copyText('r-sha256')">Copy</button>
+    </div>
+    <div class="result-row wide">
+      <span class="label">SHA-384</span>
+      <span class="value" id="r-sha384">—</span>
+      <button class="btn btn-secondary" onclick="copyText('r-sha384')">Copy</button>
+    </div>
+    <div class="result-row wide">
+      <span class="label">SHA-512</span>
+      <span class="value" id="r-sha512">—</span>
+      <button class="btn btn-secondary" onclick="copyText('r-sha512')">Copy</button>
+    </div>
+  </div>
+
+  <section class="faq">
+    <h2>About Hashes</h2>
+    <div class="faq-item">
+      <h3>Is MD5 still safe to use?</h3>
+      <p>Not for passwords or signatures. MD5 has practical collision attacks, so an attacker can craft two different inputs with the same digest. It is still fine for non-security uses like cache keys, ETags or quick file-change detection. For anything security-related use SHA-256 or better.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Should I use SHA-1?</h3>
+      <p>No, for the same reason — SHA-1 collisions have been demonstrated. It remains useful only for matching legacy checksums that were already published as SHA-1.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Why is a hash different from encryption?</h3>
+      <p>Hashing is one-way: there is no key and no way to recover the input from the digest. Encryption is reversible with the right key. A hash is used to verify that data has not changed, not to hide it.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Does the output depend on encoding?</h3>
+      <p>Yes. The text is hashed as UTF-8 bytes. Hashing "é" in UTF-8 (two bytes) gives a different digest than a tool that used Latin-1 (one byte). This tool always uses UTF-8, which is what APIs and modern systems expect.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Are my inputs sent to a server?</h3>
+      <p>No. MD5 is implemented in this page's JavaScript, and the SHA family uses the browser's built-in Web Crypto API. Nothing leaves your device.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 GetToolkit. All processing happens in your browser. &middot; <a href="../sitemap">Sitemap</a></p>
+</footer>
+
+<script src="../js/md5.js"></script>
+<script src="../js/hash-calculator.js"></script>
+</body>
+</html>

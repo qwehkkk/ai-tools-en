@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unix Timestamp Converter - Epoch to Date &amp; Date to Epoch | GetToolkit</title>
+  <meta name="description" content="Convert Unix timestamps to readable dates and back. Supports seconds and milliseconds, UTC and local time, ISO 8601. Live epoch clock. Free, no signup.">
+  <link rel="canonical" href="https://getoolkit.com/tools/timestamp-converter">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GetToolkit">
+  <meta property="og:title" content="Unix Timestamp Converter - Epoch to Date &amp; Date to Epoch | GetToolkit">
+  <meta property="og:description" content="Convert Unix timestamps to readable dates and back. Seconds and milliseconds, UTC and local time, ISO 8601.">
+  <meta property="og:url" content="https://getoolkit.com/tools/timestamp-converter">
+  <meta property="og:image" content="https://getoolkit.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Unix Timestamp Converter",
+    "url": "https://getoolkit.com/tools/timestamp-converter",
+    "description": "Convert Unix timestamps to readable dates and back, in seconds or milliseconds.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="../" class="logo">GetToolkit</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>Unix Timestamp Converter</h1>
+    <p>Convert epoch timestamps into human-readable dates, and dates back into epoch time. Seconds and milliseconds are detected automatically.</p>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="num" id="nowSec">—</div>
+      <div class="key">Current Unix time (seconds)</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" id="nowMs" style="font-size:15px;">—</div>
+      <div class="key">Current Unix time (milliseconds)</div>
+    </div>
+  </div>
+
+  <h2 style="font-size:16px;font-weight:700;margin:32px 0 12px;">Timestamp → Date</h2>
+  <label for="ts">Unix timestamp (seconds or milliseconds)</label>
+  <input type="text" id="ts" inputmode="numeric" placeholder="1700000000" style="margin-top:8px;">
+
+  <div class="btn-row">
+    <button class="btn" onclick="convertTs()">Convert</button>
+    <button class="btn btn-secondary" onclick="useNow()">Use current time</button>
+  </div>
+
+  <div id="msg1" class="msg" style="display:none;"></div>
+
+  <div class="result-list">
+    <div class="result-row wide">
+      <span class="label">UTC</span>
+      <span class="value" id="r-utc">—</span>
+      <button class="btn btn-secondary" onclick="copyText('r-utc')">Copy</button>
+    </div>
+    <div class="result-row wide">
+      <span class="label">Your local time</span>
+      <span class="value" id="r-local">—</span>
+      <button class="btn btn-secondary" onclick="copyText('r-local')">Copy</button>
+    </div>
+    <div class="result-row wide">
+      <span class="label">ISO 8601</span>
+      <span class="value" id="r-iso">—</span>
+      <button class="btn btn-secondary" onclick="copyText('r-iso')">Copy</button>
+    </div>
+    <div class="result-row wide">
+      <span class="label">Day of week</span>
+      <span class="value" id="r-day">—</span>
+    </div>
+    <div class="result-row wide">
+      <span class="label">Relative</span>
+      <span class="value" id="r-rel">—</span>
+    </div>
+    <div class="result-row wide">
+      <span class="label">Milliseconds</span>
+      <span class="value" id="r-ms">—</span>
+      <button class="btn btn-secondary" onclick="copyText('r-ms')">Copy</button>
+    </div>
+  </div>
+
+  <h2 style="font-size:16px;font-weight:700;margin:36px 0 12px;">Date → Timestamp</h2>
+  <label for="dateStr">Any date string your browser understands</label>
+  <input type="text" id="dateStr" placeholder="2026-10-20 10:00:00" style="margin-top:8px;">
+
+  <div class="btn-row">
+    <button class="btn" onclick="convertDate()">Convert</button>
+    <button class="btn btn-secondary" onclick="useNowDate()">Use current time</button>
+  </div>
+
+  <div id="msg2" class="msg" style="display:none;"></div>
+
+  <div class="result-list">
+    <div class="result-row wide">
+      <span class="label">Unix (seconds)</span>
+      <span class="value" id="d-sec">—</span>
+      <button class="btn btn-secondary" onclick="copyText('d-sec')">Copy</button>
+    </div>
+    <div class="result-row wide">
+      <span class="label">Unix (ms)</span>
+      <span class="value" id="d-ms">—</span>
+      <button class="btn btn-secondary" onclick="copyText('d-ms')">Copy</button>
+    </div>
+    <div class="result-row wide">
+      <span class="label">ISO 8601</span>
+      <span class="value" id="d-iso">—</span>
+    </div>
+    <div class="result-row wide">
+      <span class="label">UTC</span>
+      <span class="value" id="d-utc">—</span>
+    </div>
+  </div>
+
+  <section class="faq">
+    <h2>About Unix Timestamps</h2>
+    <div class="faq-item">
+      <h3>What is a Unix timestamp?</h3>
+      <p>A Unix timestamp (also called epoch time) is the number of seconds that have elapsed since 00:00:00 UTC on 1 January 1970, not counting leap seconds. It is timezone-independent, which is why APIs and databases use it.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How do I tell seconds from milliseconds?</h3>
+      <p>By length. A 10-digit number is almost always seconds (good until the year 2286), while a 13-digit number is milliseconds — what JavaScript's <code>Date.now()</code> returns. This tool detects the format from the digit count, so you can paste either.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Why is my converted time off by hours?</h3>
+      <p>A timestamp has no timezone — it is an absolute instant. The "UTC" row is the canonical value; the "Your local time" row is that same instant rendered in your browser's timezone. If you expected UTC but read the local row (or the other way round), it looks shifted.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What is the 2038 problem?</h3>
+      <p>Systems that store Unix time in a signed 32-bit integer overflow on 19 January 2038 at 03:14:07 UTC. This tool uses JavaScript numbers (64-bit floats), so dates far beyond 2038 convert fine.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Which date formats can I paste?</h3>
+      <p>Anything your browser's <code>Date</code> parser accepts: <code>2026-10-20</code>, <code>2026-10-20T10:00:00Z</code>, <code>Oct 20, 2026 10:00</code>, <code>10/20/2026</code>. Ambiguous numeric formats are read in US order (month first).</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 GetToolkit. All processing happens in your browser. &middot; <a href="../sitemap">Sitemap</a></p>
+</footer>
+
+<script src="../js/timestamp-converter.js"></script>
+</body>
+</html>
