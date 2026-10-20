@@ -58,8 +58,8 @@ function readMeta(file) {
   const t = html.match(/<title>([\s\S]*?)<\/title>/);
   const d = html.match(/<meta\s+name="description"\s+content="([\s\S]*?)"/);
   let title = t ? decodeEntities(t[1]).trim() : '';
-  // Trim the " | AI Tools" suffix for cleaner display
-  title = title.replace(/\s*\|\s*AI Tools\s*$/, '').trim();
+  // Trim the " | GetToolkit" suffix for cleaner display
+  title = title.replace(/\s*\|\s*GetToolkit\s*$/, '').trim();
   return {
     title: title || path.basename(file, '.html'),
     description: d ? decodeEntities(d[1]).trim() : ''
@@ -120,7 +120,7 @@ const html = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sitemap - All ${tools.length} Free Tools | AI Tools</title>
+  <title>Sitemap - All ${tools.length} Free Tools | GetToolkit</title>
   <meta name="description" content="Complete list of all ${tools.length} free online tools. JSON formatter, encoders, converters, image tools and more. No signup required.">
   <link rel="canonical" href="${SITE_URL}/sitemap.html">
   <link rel="stylesheet" href="css/style.css">
@@ -130,7 +130,7 @@ const html = `<!DOCTYPE html>
 
 <header class="header">
   <div class="header-inner">
-    <a href="/" class="logo">AI Tools</a>
+    <a href="/" class="logo">GetToolkit</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
       <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
@@ -151,7 +151,7 @@ ${listItems}
 </main>
 
 <footer class="footer">
-  <p>&copy; 2026 AI Tools. All processing happens in your browser.</p>
+  <p>&copy; 2026 GetToolkit. All processing happens in your browser.</p>
 </footer>
 
 </body>
