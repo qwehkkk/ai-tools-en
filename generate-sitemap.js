@@ -77,9 +77,18 @@ const toolFiles = fs
   .filter(f => f.endsWith('.html'))
   .sort();
 
+/**
+ * Cloudflare Pages serves HTML at extensionless paths and 308-redirects
+ * "/foo.html" -> "/foo". Canonicals, sitemap <loc>s and internal links must
+ * point at the final URL, otherwise Google indexes redirect hops.
+ */
+function cleanUrl(p) {
+  return p.replace(/\.html$/, '');
+}
+
 const tools = toolFiles.map(f => {
   const meta = readMeta(path.join(TOOLS_DIR, f));
-  return { file: f, url: `${SITE_URL}/tools/${f}`, ...meta };
+  return { file: f, slug: cleanUrl(f), url: `${SITE_URL}/tools/${cleanUrl(f)}`, ...meta };
 });
 
 if (tools.length === 0) {
@@ -99,7 +108,7 @@ function addUrl(loc, changefreq, priority) {
 
 addUrl(`${SITE_URL}/`, 'weekly', '1.0');
 for (const t of tools) addUrl(t.url, 'monthly', '0.8');
-addUrl(`${SITE_URL}/sitemap.html`, 'monthly', '0.5');
+addUrl(`${SITE_URL}/sitemap`, 'monthly', '0.5');
 xml += '</urlset>\n';
 
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml, 'utf8');
@@ -109,7 +118,7 @@ console.log(`✅ sitemap.xml  —  ${tools.length + 2} URLs`);
 const listItems = tools
   .map(
     t =>
-      `    <li><a href="tools/${t.file}">${escapeHtml(t.title)}</a>${
+      `    <li><a href="tools/${t.slug}">${escapeHtml(t.title)}</a>${
         t.description ? ` <span class="desc">— ${escapeHtml(t.description)}</span>` : ''
       }</li>`
   )
@@ -122,7 +131,7 @@ const html = `<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sitemap - All ${tools.length} Free Tools | GetToolkit</title>
   <meta name="description" content="Complete list of all ${tools.length} free online tools. JSON formatter, encoders, converters, image tools and more. No signup required.">
-  <link rel="canonical" href="${SITE_URL}/sitemap.html">
+  <link rel="canonical" href="${SITE_URL}/sitemap">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/theme.js"></script>
 </head>
