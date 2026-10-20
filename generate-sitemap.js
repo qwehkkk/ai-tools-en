@@ -132,6 +132,16 @@ const html = `<!DOCTYPE html>
   <title>Sitemap - All ${tools.length} Free Tools | GetToolkit</title>
   <meta name="description" content="Complete list of all ${tools.length} free online tools. JSON formatter, encoders, converters, image tools and more. No signup required.">
   <link rel="canonical" href="${SITE_URL}/sitemap">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GetToolkit">
+  <meta property="og:title" content="Sitemap - All ${tools.length} Free Tools | GetToolkit">
+  <meta property="og:description" content="Complete list of all ${tools.length} free online tools. JSON formatter, encoders, converters, image tools and more. No signup required.">
+  <meta property="og:url" content="${SITE_URL}/sitemap">
+  <meta property="og:image" content="${SITE_URL}/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/theme.js"></script>
 </head>
