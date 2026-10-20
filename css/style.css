@@ -940,3 +940,60 @@ input[type="file"]::file-selector-button:hover {
   color: var(--text-soft);
   font-style: italic;
 }
+
+/* ---------- Breadcrumbs ---------- */
+.crumbs {
+  font-size: 13px;
+  color: var(--text-soft);
+  margin-bottom: 14px;
+}
+
+.crumbs a {
+  color: var(--text-soft);
+}
+
+.crumbs a:hover {
+  color: var(--primary);
+}
+
+.crumbs .sep {
+  margin: 0 7px;
+  color: var(--border);
+}
+
+.crumbs [aria-current="page"] {
+  color: var(--text-muted);
+}
+
+/* ---------- Related tools ---------- */
+.related {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.related h2 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+
+.tool-grid.compact {
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
+  margin-top: 0;
+}
+
+.tool-grid.compact .tool-card {
+  padding: 14px;
+}
+
+.tool-grid.compact .tool-card h3 {
+  font-size: 14px;
+}
+
+.related-all {
+  margin-top: 14px;
+  font-size: 14px;
+}

@@ -34,6 +34,19 @@
     }
   }
   </script>
+<!-- BREADCRUMB-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://getoolkit.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://getoolkit.com/#tools" },
+      { "@type": "ListItem", "position": 3, "name": "Color Converter", "item": "https://getoolkit.com/tools/color-converter" }
+    ]
+  }
+  </script>
+  <!-- BREADCRUMB-LD:END -->
 </head>
 <body>
 
@@ -48,6 +61,11 @@
 </header>
 
 <main class="container">
+<!-- CRUMBS:START -->
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="../">Home</a><span class="sep">&rsaquo;</span><a href="../#tools">Tools</a><span class="sep">&rsaquo;</span><span aria-current="page">Color Converter</span>
+  </nav>
+  <!-- CRUMBS:END -->
   <div class="tool-header">
     <h1>Color Converter</h1>
     <p>Paste a HEX, RGB or HSL value — every other format updates as you type.</p>
@@ -113,6 +131,30 @@
       <p>No. All conversion happens in your browser.</p>
     </div>
   </section>
+<!-- RELATED:START -->
+  <section class="related">
+    <h2>Related tools</h2>
+    <div class="tool-grid compact">
+    <a href="image-compressor" class="tool-card">
+      <h3>Image Compressor</h3>
+      <p>Compress and resize images in your browser. Supports JPG, PNG, WebP.</p>
+    </a>
+    <a href="timestamp-converter" class="tool-card">
+      <h3>Unix Timestamp Converter</h3>
+      <p>Turn epoch timestamps into readable dates, and dates back into epoch time.</p>
+    </a>
+    <a href="hash-calculator" class="tool-card">
+      <h3>Hash Generator</h3>
+      <p>MD5, SHA-1, SHA-256, SHA-384 and SHA-512 digests of any text.</p>
+    </a>
+    <a href="lorem-ipsum-generator" class="tool-card">
+      <h3>Lorem Ipsum Generator</h3>
+      <p>Placeholder paragraphs, sentences or words for mockups and layout tests.</p>
+    </a>
+    </div>
+    <p class="related-all"><a href="../">See all 14 free tools &rarr;</a></p>
+  </section>
+  <!-- RELATED:END -->
 </main>
 
 <footer class="footer">

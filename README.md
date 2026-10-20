@@ -25,7 +25,8 @@ ai-tools-en/
 ├── favicon.svg
 ├── og-image.png                   # 1200×630 社交分享图
 ├── site.json                      # 站点 URL 的唯一配置源
-├── generate-sitemap.js            # 扫描 tools/ 生成两个站点地图
+├── generate-sitemap.js            # 扫描 tools/ + 根目录页面生成两个站点地图
+├── generate-related.js            # 给每个工具页注入面包屑 + 相关工具内链
 ├── set-domain.js                  # 一条命令全站换域名
 ├── css/style.css                  # 全站样式（含暗色模式变量）
 ├── js/
@@ -58,17 +59,27 @@ node .tmp/test-text-diff.js     # 20 项断言
 node .tmp/test-regex.js         # 24 项断言
 ```
 
+全站级检查：
+
+```bash
+node .tmp/check-ld.js                                    # JSON-LD 合法性 + 内链分布
+python .tmp/static-check.py                              # 元素 id / onclick 函数是否都存在
+```
+
 ## 加一个新工具的流程
 
 1. 在 `tools/` 下写 `<slug>.html`，在 `js/` 下写 `<slug>.js`
    - 页面 head 照抄现有工具页：title / description / canonical / icon / OG / JSON-LD
    - canonical 与 OG url **不带 `.html`**（Cloudflare Pages 会把 `/x.html` 308 跳到 `/x`）
 2. 在 `index.html` 的 `.tool-grid` 里加一张卡片（`href="tools/<slug>"`）
-3. 跑一次生成脚本，两个站点地图自动更新：
+3. 在 `generate-related.js` 的 `GROUPS` 里给它配 4 个邻居（同时保证别人也链到它，
+   跑一次 `node .tmp/check-ld.js` 看「inbound internal links」分布是否均衡）
+4. 跑生成脚本，站点地图 + 面包屑 + 相关工具全部自动更新：
    ```bash
+   node generate-related.js
    node generate-sitemap.js
    ```
-4. 提交并推送，Cloudflare 自动部署：
+5. 提交并推送，Cloudflare 自动部署：
    ```bash
    git add -A && git commit -m "Add <tool> tool" && git push
    ```
@@ -104,6 +115,10 @@ node generate-sitemap.js          # 重新生成站点地图
 - `generate-sitemap.js` 同时扫描根目录页面（about / privacy / contact 等），
   自动排除 `index`、`404`、`sitemap`、`google*.html`（GSC 验证文件）
 - 列表标题优先取页面 `<h1>`，描述超过 110 字符按词边界截断
+- **面包屑 + 相关工具内链**：`generate-related.js` 给每个工具页注入
+  `Home › Tools › 当前` 与 `BreadcrumbList` 结构化数据，底部再挂 4 个相关工具卡片。
+  此前 14 个工具页之间**零链接**，只有首页通进来，属于典型的孤岛结构；
+  改造后每个工具页至少 4 条入链，卡片文案直接复用首页卡片保证一致
 
 ## 法务页与 AdSense 合规
 
@@ -116,6 +131,28 @@ AdSense 审核要求站点具备可访问的「关于 / 隐私政策 / 联系方
 - `ads.txt` 位于站点根目录，用于 AdSense 的 ads.txt 站点验证：
   `google.com, pub-4065367396215160, DIRECT, f08c47fec0942fa0`
   （换发布商 ID 时只改这一行，文件必须能通过 `https://getoolkit.com/ads.txt` 拿到）
+
+## 后台操作 SOP
+
+**Cloudflare Web Analytics（无 cookie，推荐优先于 GA）**
+Cloudflare 控制台 → 左侧 **Analytics & Logs → Web Analytics** → Add a site →
+填 getoolkit.com → 创建后拿到一小段 JS（Beacon）。
+想不往每个页面插代码就用 **Automatic** 模式（在 zone 层自动注入，Pages 站点直接生效）。
+
+**Bing Webmaster Tools**
+1. 打开 https://www.bing.com/webmasters ，用微软账号登录
+2. 选 **Import from Google Search Console**（最省事，站点和 sitemap 一并导入）
+3. 若手动添加：Add site → 填 `https://getoolkit.com` → 验证方式选
+   **Import from Google Search Console** 或 XML 文件验证
+4. 进站后左侧 **Sitemaps** → 提交 `https://getoolkit.com/sitemap.xml`
+
+**GSC 加页速索引**
+Search Console → 顶部「网址检查」→ 粘贴新工具 URL → **请求编入索引**。
+sitemap 已提交时通常不必手动加，但新站点前期手动点几次更快。
+
+**AdSense**
+站点根目录的 `ads.txt` 用于发布商验证，AdSense 后台添加站点后可点「立即验证」。
+更换发布商 ID 只改 `ads.txt` 里那一行。
 
 ## 待加工具
 

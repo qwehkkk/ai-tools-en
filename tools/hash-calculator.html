@@ -34,6 +34,19 @@
     }
   }
   </script>
+<!-- BREADCRUMB-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://getoolkit.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://getoolkit.com/#tools" },
+      { "@type": "ListItem", "position": 3, "name": "Hash Generator", "item": "https://getoolkit.com/tools/hash-calculator" }
+    ]
+  }
+  </script>
+  <!-- BREADCRUMB-LD:END -->
 </head>
 <body>
 
@@ -48,6 +61,11 @@
 </header>
 
 <main class="container">
+<!-- CRUMBS:START -->
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="../">Home</a><span class="sep">&rsaquo;</span><a href="../#tools">Tools</a><span class="sep">&rsaquo;</span><span aria-current="page">Hash Generator</span>
+  </nav>
+  <!-- CRUMBS:END -->
   <div class="tool-header">
     <h1>Hash Generator</h1>
     <p>Type or paste text to get its MD5, SHA-1, SHA-256, SHA-384 and SHA-512 digests at once. Everything is computed locally.</p>
@@ -115,6 +133,30 @@
       <p>No. MD5 is implemented in this page's JavaScript, and the SHA family uses the browser's built-in Web Crypto API. Nothing leaves your device.</p>
     </div>
   </section>
+<!-- RELATED:START -->
+  <section class="related">
+    <h2>Related tools</h2>
+    <div class="tool-grid compact">
+    <a href="base64-converter" class="tool-card">
+      <h3>Base64 Converter</h3>
+      <p>Encode and decode Base64 strings. Supports text and UTF-8.</p>
+    </a>
+    <a href="uuid-generator" class="tool-card">
+      <h3>UUID Generator</h3>
+      <p>Generate RFC 4122 version 4 UUIDs. Cryptographically secure, up to 1000 at a time.</p>
+    </a>
+    <a href="timestamp-converter" class="tool-card">
+      <h3>Unix Timestamp Converter</h3>
+      <p>Turn epoch timestamps into readable dates, and dates back into epoch time.</p>
+    </a>
+    <a href="text-diff" class="tool-card">
+      <h3>Text Diff</h3>
+      <p>Compare two texts line by line and highlight added, removed and changed lines.</p>
+    </a>
+    </div>
+    <p class="related-all"><a href="../">See all 14 free tools &rarr;</a></p>
+  </section>
+  <!-- RELATED:END -->
 </main>
 
 <footer class="footer">
