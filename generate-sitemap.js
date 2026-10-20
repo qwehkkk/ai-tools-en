@@ -37,6 +37,12 @@ function escapeHtml(s) {
     .replace(/>/g, '&gt;');
 }
 
+/** Keep sitemap.html readable: long meta descriptions get cut at a word boundary */
+function truncate(s, max = 110) {
+  if (!s || s.length <= max) return s;
+  return s.slice(0, max).replace(/[\s,;:.]+\S*$/, '') + '…';
+}
+
 /**
  * Titles/descriptions extracted from HTML are already entity-encoded
  * (e.g. "Encode &amp; Decode"). Decode them first so escapeHtml() below
@@ -52,16 +58,20 @@ function decodeEntities(s) {
     .replace(/&amp;/g, '&'); // must be last
 }
 
-/** Pull <title> and <meta name="description"> out of a tool page */
+/** Pull <h1>, <title> and <meta name="description"> out of a page */
 function readMeta(file) {
   const html = fs.readFileSync(file, 'utf8');
   const t = html.match(/<title>([\s\S]*?)<\/title>/);
+  const h = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
   const d = html.match(/<meta\s+name="description"\s+content="([\s\S]*?)"/);
   let title = t ? decodeEntities(t[1]).trim() : '';
   // Trim the " | GetToolkit" suffix for cleaner display
   title = title.replace(/\s*\|\s*GetToolkit\s*$/, '').trim();
+  // Prefer the on-page <h1>: it is written for humans and reads better in a
+  // list than a full SEO title ("About GetToolkit - Free Browser-Based Tools").
+  const heading = h ? decodeEntities(h[1]).replace(/<[^>]+>/g, '').trim() : '';
   return {
-    title: title || path.basename(file, '.html'),
+    title: heading || title || path.basename(file, '.html'),
     description: d ? decodeEntities(d[1]).trim() : ''
   };
 }
@@ -96,6 +106,24 @@ if (tools.length === 0) {
   process.exit(1);
 }
 
+// ---- Collect root-level pages (About, Privacy, Contact, ...) ----
+// Anything ending in .html at the project root is included automatically,
+// except the ones that must never appear in a sitemap:
+//   index.html  -> represented by "/" itself
+//   404.html    -> noindex
+//   sitemap.html-> added manually at the lowest priority
+//   google*.html-> search-console verification file, not a page
+const ROOT_EXCLUDE = /^(index|404|sitemap|google[a-z0-9]+)\.html$/i;
+
+const pages = fs
+  .readdirSync(ROOT)
+  .filter(f => f.endsWith('.html') && !ROOT_EXCLUDE.test(f))
+  .sort()
+  .map(f => {
+    const meta = readMeta(path.join(ROOT, f));
+    return { file: f, slug: cleanUrl(f), url: `${SITE_URL}/${cleanUrl(f)}`, ...meta };
+  });
+
 // ---- 1. Generate sitemap.xml ----
 const today = new Date().toISOString().split('T')[0];
 
@@ -108,18 +136,28 @@ function addUrl(loc, changefreq, priority) {
 
 addUrl(`${SITE_URL}/`, 'weekly', '1.0');
 for (const t of tools) addUrl(t.url, 'monthly', '0.8');
-addUrl(`${SITE_URL}/sitemap`, 'monthly', '0.5');
+for (const p of pages) addUrl(p.url, 'yearly', '0.4');
+addUrl(`${SITE_URL}/sitemap`, 'monthly', '0.3');
 xml += '</urlset>\n';
 
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml, 'utf8');
-console.log(`✅ sitemap.xml  —  ${tools.length + 2} URLs`);
+console.log(`✅ sitemap.xml  —  ${tools.length + pages.length + 2} URLs`);
 
 // ---- 2. Generate sitemap.html (human-readable, good for internal linking) ----
 const listItems = tools
   .map(
     t =>
       `    <li><a href="tools/${t.slug}">${escapeHtml(t.title)}</a>${
-        t.description ? ` <span class="desc">— ${escapeHtml(t.description)}</span>` : ''
+        t.description ? ` <span class="desc">— ${escapeHtml(truncate(t.description))}</span>` : ''
+      }</li>`
+  )
+  .join('\n');
+
+const pageItems = pages
+  .map(
+    p =>
+      `    <li><a href="${p.slug}">${escapeHtml(p.title)}</a>${
+        p.description ? ` <span class="desc">— ${escapeHtml(truncate(p.description))}</span>` : ''
       }</li>`
   )
   .join('\n');
@@ -167,9 +205,21 @@ const html = `<!DOCTYPE html>
     <li><a href="/">Home</a> <span class="desc">— Browse all tools</span></li>
 ${listItems}
   </ul>
+
+  <h2 class="sitemap-heading">Site pages</h2>
+  <ul class="sitemap-list">
+${pageItems}
+    <li><a href="sitemap">Sitemap</a> <span class="desc">— This page</span></li>
+  </ul>
 </main>
 
 <footer class="footer">
+  <nav class="footer-nav">
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/contact">Contact</a>
+    <a href="/sitemap">Sitemap</a>
+  </nav>
   <p>&copy; 2026 GetToolkit. All processing happens in your browser.</p>
 </footer>
 

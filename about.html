@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About GetToolkit - Free Browser-Based Tools</title>
+  <meta name="description" content="GetToolkit is a small collection of free online utilities that run entirely in your browser. Why it exists, how it works, and why nothing you paste ever leaves your device.">
+  <link rel="canonical" href="https://getoolkit.com/about">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GetToolkit">
+  <meta property="og:title" content="About GetToolkit - Free Browser-Based Tools">
+  <meta property="og:description" content="A small collection of free online utilities that run entirely in your browser. Why it exists and how it works.">
+  <meta property="og:url" content="https://getoolkit.com/about">
+  <meta property="og:image" content="https://getoolkit.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About GetToolkit",
+    "url": "https://getoolkit.com/about",
+    "description": "A small collection of free online utilities that run entirely in your browser."
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">GetToolkit</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>About GetToolkit</h1>
+    <p>A handful of small utilities, built to be boring in the best way: they open fast, they work offline, and they never phone home.</p>
+  </div>
+
+  <div class="prose">
+    <p>GetToolkit is a collection of everyday developer and text tools &mdash; format JSON, decode a string, compress an image, generate a UUID, hash some text. Nothing here is novel. You can find a version of each of these in a dozen other places, many of them stuffed with pop-ups, forced sign-ups, or an upload step that quietly sends your data to a server you have never heard of.</p>
+
+    <p>This site exists because that last part is a genuine problem. People paste API responses, database dumps, and configuration files into whichever tool ranks first. Often those tools work fine. Sometimes the thing you pasted is a private key.</p>
+
+    <h2>How it works</h2>
+
+    <p>Every tool here is a single HTML page with a bit of plain JavaScript. When you load a tool, your browser downloads the page and the script that powers it. That is the entire interaction. There is no application server, no database, and no endpoint that receives your input &mdash; the code that formats your JSON or hashes your text is already running on your own machine by the time you type the first character.</p>
+
+    <p>The practical consequences:</p>
+
+    <ul>
+      <li><strong>Your input stays local.</strong> Text you type, files you drop in, images you compress &mdash; none of it is uploaded. You can verify this yourself: open your browser&rsquo;s Network tab, then use any tool on the site.</li>
+      <li><strong>It works offline.</strong> Once a tool page has loaded, disconnecting from the internet does not break it.</li>
+      <li><strong>There is nothing to sign up for.</strong> No account, no email address, no usage limit, no export button hidden behind a paywall.</li>
+    </ul>
+
+    <p>The only exception worth naming is how the pages get to you. They are served as static files by a content delivery network, and the usual web server logs apply to that request &mdash; IP address, browser, timestamp. Details are in the <a href="/privacy">privacy policy</a>.</p>
+
+    <h2>What is on the site</h2>
+
+    <p>Twelve tools at the moment, covering the things that come up most often: <a href="/tools/json-formatter">JSON formatting and validation</a>, <a href="/tools/json-csv-converter">JSON to CSV conversion</a>, <a href="/tools/base64-converter">Base64 encoding</a>, <a href="/tools/url-encoder">URL encoding</a>, <a href="/tools/html-entities">HTML entity escaping</a>, <a href="/tools/hash-calculator">MD5 and SHA hashing</a>, <a href="/tools/uuid-generator">UUID generation</a>, <a href="/tools/timestamp-converter">Unix timestamp conversion</a>, <a href="/tools/color-converter">color conversion</a>, <a href="/tools/word-counter">word and character counting</a>, <a href="/tools/lorem-ipsum-generator">Lorem Ipsum placeholder text</a>, and <a href="/tools/image-compressor">in-browser image compression</a>.</p>
+
+    <p>The list grows slowly and on purpose. A tool gets added when it is something we actually needed and could not find a clean version of, or when enough people ask for it. Half-finished tools and features nobody requested are not worth the maintenance.</p>
+
+    <h2>Why there are ads</h2>
+
+    <p>Hosting is cheap but not free, and there is no paid tier to subsidise it. If advertising appears on the site, it is there to cover that cost and nothing more &mdash; no interstitials, no pop-unders, no &ldquo;continue reading&rdquo; gates between you and the tool you clicked on. The <a href="/privacy">privacy policy</a> explains what ad providers can and cannot do with cookies.</p>
+
+    <h2>Found a bug?</h2>
+
+    <p>Some of these tools handle edge cases that are genuinely unpleasant &mdash; malformed JSON with a BOM, a timestamp far outside the range JavaScript dates handle well, a 30&nbsp;MB photo on a phone with limited memory. If something produces a wrong answer or throws an error, that is worth fixing. The <a href="/contact">contact page</a> explains how to report it, including what details make a report actionable.</p>
+
+    <h2>Who runs this</h2>
+
+    <p>GetToolkit is an independent project, maintained by a software developer who spent years building line-of-business systems and got tired of watching colleagues paste credentials into random websites to decode them. It is not a company, it has no investors, and it does not collect profiles of its visitors. Just a set of tools, kept working.</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <nav class="footer-nav">
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/contact">Contact</a>
+    <a href="/sitemap">Sitemap</a>
+  </nav>
+  <p>&copy; 2026 GetToolkit. All processing happens in your browser.</p>
+</footer>
+
+</body>
+</html>

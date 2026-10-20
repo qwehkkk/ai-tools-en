@@ -15,6 +15,9 @@
 ```
 ai-tools-en/
 ├── index.html                     # 首页（12 个工具卡片）
+├── about.html                     # 关于页
+├── privacy.html                   # 隐私政策（含广告 Cookie 披露，AdSense 必需）
+├── contact.html                   # 联系页（mailto，无表单/无后端）
 ├── 404.html                       # 真 404（noindex）
 ├── sitemap.html                   # 生成物：全工具列表页
 ├── sitemap.xml                    # 生成物：给搜索引擎
@@ -87,6 +90,20 @@ node generate-sitemap.js          # 重新生成站点地图
 - OG + Twitter 卡片元数据，统一使用 `og-image.png`
 - `404.html` 返回真正的 404 状态（此前未知路径会返回 200 + 首页，属软 404）
 - sitemap.xml 由脚本生成，自动带当天 `lastmod`
+- `generate-sitemap.js` 同时扫描根目录页面（about / privacy / contact 等），
+  自动排除 `index`、`404`、`sitemap`、`google*.html`（GSC 验证文件）
+- 列表标题优先取页面 `<h1>`，描述超过 110 字符按词边界截断
+
+## 法务页与 AdSense 合规
+
+AdSense 审核要求站点具备可访问的「关于 / 隐私政策 / 联系方式」三页，缺任一项容易被拒。
+
+- `privacy.html` 覆盖：本地处理声明、服务器日志（Cloudflare）、无 Cookie 统计、
+  第三方广告 Cookie（Google / DoubleClick）与退出链接、GDPR/CCPA 权利、未成年人条款
+- `contact.html` 使用 `mailto:hello@getoolkit.com`，站内不留任何表单与收集字段
+- 三页均带 canonical、OG、JSON-LD，并在全站 footer 导航中互相链接
+- **需自行确认**：`hello@getoolkit.com` 要真实可达。DNS 托管在 Cloudflare 时，
+  用 Cloudflare Email Routing 免费把该地址转发到常用邮箱即可
 
 ## 待加工具
 

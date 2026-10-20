@@ -541,6 +541,14 @@ input[type="file"]::file-selector-button:hover {
   color: var(--text-muted);
 }
 
+.sitemap-heading {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 36px 0 4px;
+}
+
 /* ---------- Footer ---------- */
 .footer {
   border-top: 1px solid var(--border);
@@ -675,6 +683,101 @@ input[type="file"]::file-selector-button:hover {
   .result-row .label {
     flex: 0 0 100%;
   }
+}
+
+/* ---------- Footer navigation ---------- */
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin-bottom: 10px;
+}
+
+.footer-nav a {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ---------- Prose pages (About / Privacy / Contact) ---------- */
+.prose {
+  max-width: 720px;
+}
+
+.prose p,
+.prose ul,
+.prose ol {
+  margin-bottom: 16px;
+}
+
+.prose p {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+.prose h2 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 34px 0 10px;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 22px;
+}
+
+.prose li {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.prose li::marker {
+  color: var(--text-soft);
+}
+
+.prose strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.prose .lead {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border-soft);
+  color: var(--text);
+}
+
+/* "Last updated" line under a page title */
+.tool-header .updated {
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+/* Big mailto link on the contact page
+   (needs .prose prefix to beat the .prose p margin rule) */
+.prose .contact-email {
+  margin: 4px 0 22px;
+}
+
+.contact-email a {
+  font-family: var(--font-mono);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 /* Summary stat cards (word counter style, reused) */
