@@ -47,6 +47,64 @@
   }
   </script>
   <!-- BREADCRUMB-LD:END -->
+<!-- FAQ-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Which regex flavour is this?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JavaScript (RegExp, ES2018 and later), because the test runs in your browser with the same engine your code will use. Lookbehind, named groups and Unicode property escapes all work. Patterns written for PCRE, Python or .NET sometimes differ — most commonly around lookbehind and \\d matching only ASCII digits here unless you enable the unicode flag."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What do the flags mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "g finds every match instead of stopping at the first. i ignores case. m makes ^ and $ match at line breaks. s lets . match newlines. u turns on full Unicode handling, which is required for property escapes such as \\p{L} and for correct behaviour with emoji."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does it stop at 10,000 matches?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "To keep the page usable. A pattern like .* over a large file can produce an enormous number of matches, and rendering them all would freeze the tab. When the cap is reached you are told, and the highlighting shows the first portion."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "My pattern seems to hang. What happened?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Almost certainly catastrophic backtracking — nested quantifiers such as (a+)+$ against a long non-matching string take exponential time. The browser tab has to be force-closed in that case; there is no way to interrupt a running regular expression from JavaScript. Flatten nested quantifiers or use a possessive-style rewrite before testing again."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do the replacement references work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "$1, $2 and so on insert numbered capture groups, $<name> inserts a named group, $& inserts the whole match, and $$ is a literal dollar sign. The replacement preview uses exactly the same semantics as String.replace() in JavaScript."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my text uploaded anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The pattern and the test string are both handled by JavaScript in your browser. There is no server involved and nothing leaves your device."
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- FAQ-LD:END -->
 </head>
 <body>
 

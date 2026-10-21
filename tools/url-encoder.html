@@ -43,6 +43,48 @@
   }
   </script>
   <!-- BREADCRUMB-LD:END -->
+<!-- FAQ-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is URL encoding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "URL encoding (percent-encoding) converts special characters into a format that can be safely transmitted in a URL. For example, spaces become %20 and & becomes %26."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I use URL encoding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use it whenever you need to include special characters, spaces, or non-ASCII text in a URL query string, form data, or API request."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool support Unicode?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. It uses encodeURIComponent which properly handles UTF-8 characters, including emoji and non-Latin scripts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the difference between encodeURI and encodeURIComponent?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "encodeURI keeps URL-reserved characters like :/?#&= intact (for full URLs). encodeURIComponent encodes everything (for query parameter values). This tool uses the latter for stricter encoding."
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- FAQ-LD:END -->
 </head>
 <body>
 

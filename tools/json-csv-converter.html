@@ -43,6 +43,56 @@
   }
   </script>
   <!-- BREADCRUMB-LD:END -->
+<!-- FAQ-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What input format does this tool expect?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For JSON to CSV, paste a JSON array of objects (e.g. [{\"name\":\"John\"},{\"name\":\"Jane\"}]). For CSV to JSON, paste comma-separated values with a header row."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it handle nested objects?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nested objects are flattened using dot notation (e.g. \"address.city\" becomes a column header)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I download the result?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Click Download to save the output as a file."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens to arrays inside my JSON objects?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An array is kept as JSON text in a single CSV cell, so [\"red\",\"blue\"] stays on one line instead of becoming extra columns. Only nested objects are flattened with dot notation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are commas and quotes in my data handled safely?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Any field containing a comma, a double quote or a line break is wrapped in double quotes, and a quote inside the field is doubled. That is the standard escaping, so the file opens correctly in any spreadsheet app."
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- FAQ-LD:END -->
 </head>
 <body>
 
@@ -96,6 +146,14 @@
     <div class="faq-item">
       <h3>Can I download the result?</h3>
       <p>Yes. Click Download to save the output as a file.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What happens to arrays inside my JSON objects?</h3>
+      <p>An array is kept as JSON text in a single CSV cell, so ["red","blue"] stays on one line instead of becoming extra columns. Only nested objects are flattened with dot notation.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Are commas and quotes in my data handled safely?</h3>
+      <p>Yes. Any field containing a comma, a double quote or a line break is wrapped in double quotes, and a quote inside the field is doubled. That is the standard escaping, so the file opens correctly in any spreadsheet app.</p>
     </div>
   </section>
 <!-- RELATED:START -->

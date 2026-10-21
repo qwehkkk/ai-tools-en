@@ -47,6 +47,56 @@
   }
   </script>
   <!-- BREADCRUMB-LD:END -->
+<!-- FAQ-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Which formats are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard Unix with five fields (minute hour day-of-month month day-of-week), and the six or seven field form used by Quartz and Spring where a seconds field comes first and an optional year comes last. The tool tells you which one it read, because the same expression means different things in the two formats."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What syntax can I use in a field?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "* for every value, */5 for a step, 1-5 for a range, 1,15 for a list, and 1-10/2 to combine them. Month and weekday names work too, so 0 9 * JAN-DEC MON-FRI is valid. Day-of-month also accepts L for the last day, L-3 for the third-to-last, and 15W for the weekday nearest the 15th. Day-of-week accepts 5L for the last Friday and 2#3 for the third Tuesday of the month."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do both day fields matter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When both day-of-month and day-of-week are restricted, most cron implementations treat them as an OR: the job runs if either one matches. When only one is restricted, they act as an AND against an unrestricted other field. This tool follows that rule and says so in the description."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which time zone are the run times in?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your device's local time. Servers usually run on UTC, so if you are scheduling a production job remember to convert. The description is generated from the same clock, which is why an expression can look correct locally but fire at a different hour on the server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my expression uploaded anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Parsing and scheduling happen in JavaScript in your browser. There is no server component and nothing is sent anywhere, so it is safe to paste in a schedule from a private system."
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- FAQ-LD:END -->
 </head>
 <body>
 

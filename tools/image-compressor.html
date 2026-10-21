@@ -43,6 +43,48 @@
   }
   </script>
   <!-- BREADCRUMB-LD:END -->
+<!-- FAQ-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is my image uploaded to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All compression happens in your browser using Canvas API. Your images never leave your device."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What formats are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can upload JPG, PNG, WebP, and GIF. Output can be saved as JPG, PNG, or WebP."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does quality affect the result?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lower quality means smaller file size but more compression artifacts. 80% is a good balance for most use cases."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does this compressor output WebP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "WebP produces smaller files than JPG at similar quality, and is supported by all modern browsers."
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- FAQ-LD:END -->
 </head>
 <body>
 
@@ -116,7 +158,7 @@
       <p>Lower quality means smaller file size but more compression artifacts. 80% is a good balance for most use cases.</p>
     </div>
     <div class="faq-item">
-      <h3>Why WebP?</h3>
+      <h3>Why does this compressor output WebP?</h3>
       <p>WebP produces smaller files than JPG at similar quality, and is supported by all modern browsers.</p>
     </div>
   </section>

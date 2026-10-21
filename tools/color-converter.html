@@ -47,6 +47,56 @@
   }
   </script>
   <!-- BREADCRUMB-LD:END -->
+<!-- FAQ-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between HEX, RGB and HSL?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "They describe the same color in different coordinate systems. HEX and RGB are the same thing — red, green and blue channels from 0–255 (HEX is just those numbers in base 16). HSL restates the color as hue (0–360°), saturation and lightness, which is far easier to reason about when you need \"the same blue, but darker\"."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does my HEX turn into a different RGB value?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If you paste a three-digit shorthand like #09d, it expands to #0099dd. If you paste an eight-digit value, the last two characters are alpha and are ignored here."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is HSL calculated from RGB?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lightness is the average of the highest and lowest channel. Saturation describes how far the channels spread apart. Hue is derived from which channel dominates — red at 0°, green at 120°, blue at 240°. Rounding means converting RGB → HSL → RGB can shift a channel by one point."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I paste a named color like \"tomato\"?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, as long as your browser recognises the name. The tool asks the browser to compute the color, then reads the resulting RGB channels back."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is anything uploaded?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All conversion happens in your browser."
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- FAQ-LD:END -->
 </head>
 <body>
 

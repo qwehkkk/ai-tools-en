@@ -47,6 +47,56 @@
   }
   </script>
   <!-- BREADCRUMB-LD:END -->
+<!-- FAQ-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Which convention should I use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends on the language and the file. JavaScript and Java use camelCase for variables and PascalCase for classes; Python and Ruby prefer snake_case; CSS classes, URLs and npm package names conventionally use kebab-case; constants are usually CONSTANT_CASE. Follow the style guide of the codebase you are in before anything else."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is the text split into words?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "First on separators such as spaces, underscores and hyphens, then on case boundaries: getToolkit becomes get and Toolkit, and XMLHttpRequest becomes XML, Http and Request. Numbers stay attached to the word they touch, so sha256Hash splits into sha256 and Hash rather than falling apart."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why did my acronym change shape?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Each output applies its own capitalisation rules, so an acronym like ID comes out as Id in PascalCase and id in camelCase. That matches how most converters behave and how identifiers are usually written, but if you need the original casing preserved in a specific spot, edit the pasted result."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What about non-English text?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The word splitter works on ASCII letters and digits. Text in other scripts is passed through mostly unchanged into the spaced variants, but the camel and snake forms will not be meaningful — those conventions assume Latin script."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my text uploaded anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The conversion runs entirely in your browser with JavaScript. Nothing leaves your device."
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- FAQ-LD:END -->
 </head>
 <body>
 

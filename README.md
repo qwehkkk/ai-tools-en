@@ -27,6 +27,7 @@ ai-tools-en/
 ├── site.json                      # 站点 URL 的唯一配置源
 ├── generate-sitemap.js            # 扫描 tools/ + 根目录页面生成两个站点地图
 ├── generate-related.js            # 给每个工具页注入面包屑 + 相关工具内链
+├── generate-faq.js                # 把页面已有的 FAQ 转成 FAQPage 结构化数据
 ├── indexnow.js                     # 把 sitemap 里的 URL 推给 Bing / Yandex（IndexNow）
 ├── set-domain.js                  # 一条命令全站换域名
 ├── css/style.css                  # 全站样式（含暗色模式变量）
@@ -125,16 +126,21 @@ URL 场景也用不上，不值得。
 2. 在 `index.html` 的 `.tool-grid` 里加一张卡片（`href="tools/<slug>"`）
 3. 在 `generate-related.js` 的 `GROUPS` 里给它配 4 个邻居（同时保证别人也链到它，
    跑一次 `node tests/check-ld.js` 看「inbound internal links」分布是否均衡）
-4. 跑生成脚本，站点地图 + 面包屑 + 相关工具全部自动更新：
+4. 在页面里写 4–6 条 FAQ（`<div class="faq-item"><h3>问题</h3><p>答案</p></div>`，
+   放在「About …」那个 section 里），问题写成用户会搜的问法
+5. 跑生成脚本，站点地图 + 面包屑 + 相关工具 + FAQ 结构化数据全部自动更新：
    ```bash
    node generate-related.js
+   node generate-faq.js
    node generate-sitemap.js
    ```
-5. 提交并推送，Cloudflare 自动部署：
+   FAQ 的 JSON-LD 是**从页面正文解析出来的**，所以永远不会和可见文案不一致；
+   改了文案只要重跑 `generate-faq.js` 就行，不用手改 JSON-LD。
+6. 提交并推送，Cloudflare 自动部署：
    ```bash
    git add -A && git commit -m "Add <tool> tool" && git push
    ```
-6. 新页面不需要去 GSC 手动提交——Google 会从 sitemap 发现。想加速再用「网址检查 → 请求编入索引」。
+7. 新页面不需要去 GSC 手动提交——Google 会从 sitemap 发现。想加速再用「网址检查 → 请求编入索引」。
 
 ## 换域名
 

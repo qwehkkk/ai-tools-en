@@ -103,7 +103,8 @@ for (const slug of Object.keys(meta)) {
 
 function replaceBetween(html, start, end, block, insertBefore) {
   const re = new RegExp(start + '[\\s\\S]*?' + end);
-  if (re.test(html)) return html.replace(re, block);
+  // 函数形式，避免替换串里的 $& / $1 被当成特殊模式展开（generate-faq 踩过）
+  if (re.test(html)) return html.replace(re, () => block);
   if (!insertBefore) throw new Error('insertion point not found');
   const idx = html.indexOf(insertBefore);
   if (idx === -1) throw new Error('insertion point not found: ' + insertBefore);

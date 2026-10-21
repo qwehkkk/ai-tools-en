@@ -47,6 +47,56 @@
   }
   </script>
   <!-- BREADCRUMB-LD:END -->
+<!-- FAQ-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is MD5 still safe to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not for passwords or signatures. MD5 has practical collision attacks, so an attacker can craft two different inputs with the same digest. It is still fine for non-security uses like cache keys, ETags or quick file-change detection. For anything security-related use SHA-256 or better."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use SHA-1?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, for the same reason — SHA-1 collisions have been demonstrated. It remains useful only for matching legacy checksums that were already published as SHA-1."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is a hash different from encryption?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hashing is one-way: there is no key and no way to recover the input from the digest. Encryption is reversible with the right key. A hash is used to verify that data has not changed, not to hide it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the output depend on encoding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The text is hashed as UTF-8 bytes. Hashing \"é\" in UTF-8 (two bytes) gives a different digest than a tool that used Latin-1 (one byte). This tool always uses UTF-8, which is what APIs and modern systems expect."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my inputs sent to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. MD5 is implemented in this page's JavaScript, and the SHA family uses the browser's built-in Web Crypto API. Nothing leaves your device."
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- FAQ-LD:END -->
 </head>
 <body>
 

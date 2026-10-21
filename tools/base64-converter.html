@@ -43,6 +43,56 @@
   }
   </script>
   <!-- BREADCRUMB-LD:END -->
+<!-- FAQ-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Base64 encoding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Base64 is an encoding scheme that converts binary data into ASCII text. It is commonly used to embed data in URLs, emails, and JSON."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Base64 encryption?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Base64 is encoding, not encryption. It does not provide security. Anyone can decode it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this support Unicode/UTF-8?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. This tool properly handles UTF-8 characters, including emoji and non-Latin scripts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does my encoded string end with an equals sign?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "That is padding, not an error. Base64 encodes bytes in groups of three, so when your text does not divide evenly the final group is padded with = (or == if two bytes were left over). Decoders ignore it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I encode an image or other file here?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not directly. This page works with text: paste the text you want to encode, or a Base64 string you want to decode. Turning a file into Base64 means reading it as bytes first, which a text box cannot do."
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- FAQ-LD:END -->
 </head>
 <body>
 
@@ -95,6 +145,14 @@
     <div class="faq-item">
       <h3>Does this support Unicode/UTF-8?</h3>
       <p>Yes. This tool properly handles UTF-8 characters, including emoji and non-Latin scripts.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Why does my encoded string end with an equals sign?</h3>
+      <p>That is padding, not an error. Base64 encodes bytes in groups of three, so when your text does not divide evenly the final group is padded with = (or == if two bytes were left over). Decoders ignore it.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I encode an image or other file here?</h3>
+      <p>Not directly. This page works with text: paste the text you want to encode, or a Base64 string you want to decode. Turning a file into Base64 means reading it as bytes first, which a text box cannot do.</p>
     </div>
   </section>
 <!-- RELATED:START -->

@@ -43,6 +43,48 @@
   }
   </script>
   <!-- BREADCRUMB-LD:END -->
+<!-- FAQ-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a UUID?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A UUID (Universally Unique Identifier) is a 128-bit number used to uniquely identify information in computer systems. It is typically shown as 32 hexadecimal digits separated by hyphens, e.g. 550e8400-e29b-41d4-a716-446655440000."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is UUID version 4?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Version 4 UUIDs are randomly generated. The randomness makes collisions extremely unlikely — about 1 in 2.71 × 10^36 even after generating 103 trillion UUIDs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this generator cryptographically secure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. It uses the browser's crypto.getRandomValues() API when available, falling back to crypto.randomUUID() on modern browsers. The output is suitable for session tokens, IDs, and other security-sensitive uses."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many UUIDs can I generate at once?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Up to 1000 at a time. Each generation is independent and the chance of any duplicates is effectively zero."
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- FAQ-LD:END -->
 </head>
 <body>
 

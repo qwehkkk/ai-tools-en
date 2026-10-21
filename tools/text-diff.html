@@ -47,6 +47,56 @@
   }
   </script>
   <!-- BREADCRUMB-LD:END -->
+<!-- FAQ-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What kind of diff is this?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A line-by-line diff computed with a longest-common-subsequence algorithm, the same approach behind classic diff. Lines that exist on one side only are marked as added or removed; a removed line followed by an added one is treated as a single changed line and paired up, so you see it once instead of twice."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does it highlight words inside a line?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When a line is marked as changed, the words inside it are diffed separately, so you can see which part of the line moved. Turning the option off shows the whole line as removed and added instead. Word highlighting is skipped on very long lines to keep the page responsive."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much text can it handle?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Comfortably a few thousand lines per side. The comparison table is capped: past that the tool falls back to a simpler comparison, trims the shared beginning and end of both texts, and marks the rest as changed. You will be told when that happens instead of waiting for the tab to freeze."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use it for config files and code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. It is the everyday use case: compare two versions of a config file, a log excerpt, a JSON response, or a function before and after a refactor. Line endings in CRLF, CR and LF files are normalised first, so a Windows file compared against a Unix one will not show every line as changed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my text uploaded anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Both texts stay in your browser and the comparison is done in JavaScript. There is no server component, and nothing to upload to. You can disconnect from the network after the page loads and it will still work."
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- FAQ-LD:END -->
 </head>
 <body>
 

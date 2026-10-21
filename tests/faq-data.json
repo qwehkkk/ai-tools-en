@@ -1,0 +1,494 @@
+[
+  {
+    "name": "base64-converter :: What is Base64 encoding?",
+    "keywords": [],
+    "desc": "Base64 is an encoding scheme that converts binary data into ASCII text. It is commonly used to embed data in URLs, emails, and JSON.",
+    "page": "tools/base64-converter.html"
+  },
+  {
+    "name": "base64-converter :: Is Base64 encryption?",
+    "keywords": [],
+    "desc": "No. Base64 is encoding, not encryption. It does not provide security. Anyone can decode it.",
+    "page": "tools/base64-converter.html"
+  },
+  {
+    "name": "base64-converter :: Does this support Unicode/UTF-8?",
+    "keywords": [],
+    "desc": "Yes. This tool properly handles UTF-8 characters, including emoji and non-Latin scripts.",
+    "page": "tools/base64-converter.html"
+  },
+  {
+    "name": "base64-converter :: Why does my encoded string end with an equals sign?",
+    "keywords": [],
+    "desc": "That is padding, not an error. Base64 encodes bytes in groups of three, so when your text does not divide evenly the final group is padded with = (or == if two bytes were left over). Decoders ignore it.",
+    "page": "tools/base64-converter.html"
+  },
+  {
+    "name": "base64-converter :: Can I encode an image or other file here?",
+    "keywords": [],
+    "desc": "Not directly. This page works with text: paste the text you want to encode, or a Base64 string you want to decode. Turning a file into Base64 means reading it as bytes first, which a text box cannot do.",
+    "page": "tools/base64-converter.html"
+  },
+  {
+    "name": "case-converter :: Which convention should I use?",
+    "keywords": [],
+    "desc": "It depends on the language and the file. JavaScript and Java use camelCase for variables and PascalCase for classes; Python and Ruby prefer snake_case; CSS classes, URLs and npm package names conventionally use kebab-case; constants are usually CONSTANT_CASE. Follow the style guide of the codebase you are in before anything else.",
+    "page": "tools/case-converter.html"
+  },
+  {
+    "name": "case-converter :: How is the text split into words?",
+    "keywords": [],
+    "desc": "First on separators such as spaces, underscores and hyphens, then on case boundaries: getToolkit becomes get and Toolkit, and XMLHttpRequest becomes XML, Http and Request. Numbers stay attached to the word they touch, so sha256Hash splits into sha256 and Hash rather than falling apart.",
+    "page": "tools/case-converter.html"
+  },
+  {
+    "name": "case-converter :: Why did my acronym change shape?",
+    "keywords": [],
+    "desc": "Each output applies its own capitalisation rules, so an acronym like ID comes out as Id in PascalCase and id in camelCase. That matches how most converters behave and how identifiers are usually written, but if you need the original casing preserved in a specific spot, edit the pasted result.",
+    "page": "tools/case-converter.html"
+  },
+  {
+    "name": "case-converter :: What about non-English text?",
+    "keywords": [],
+    "desc": "The word splitter works on ASCII letters and digits. Text in other scripts is passed through mostly unchanged into the spaced variants, but the camel and snake forms will not be meaningful — those conventions assume Latin script.",
+    "page": "tools/case-converter.html"
+  },
+  {
+    "name": "case-converter :: Is my text uploaded anywhere?",
+    "keywords": [],
+    "desc": "No. The conversion runs entirely in your browser with JavaScript. Nothing leaves your device.",
+    "page": "tools/case-converter.html"
+  },
+  {
+    "name": "color-converter :: What is the difference between HEX, RGB and HSL?",
+    "keywords": [],
+    "desc": "They describe the same color in different coordinate systems. HEX and RGB are the same thing — red, green and blue channels from 0–255 (HEX is just those numbers in base 16). HSL restates the color as hue (0–360°), saturation and lightness, which is far easier to reason about when you need \"the same blue, but darker\".",
+    "page": "tools/color-converter.html"
+  },
+  {
+    "name": "color-converter :: Why does my HEX turn into a different RGB value?",
+    "keywords": [],
+    "desc": "If you paste a three-digit shorthand like #09d, it expands to #0099dd. If you paste an eight-digit value, the last two characters are alpha and are ignored here.",
+    "page": "tools/color-converter.html"
+  },
+  {
+    "name": "color-converter :: How is HSL calculated from RGB?",
+    "keywords": [],
+    "desc": "Lightness is the average of the highest and lowest channel. Saturation describes how far the channels spread apart. Hue is derived from which channel dominates — red at 0°, green at 120°, blue at 240°. Rounding means converting RGB → HSL → RGB can shift a channel by one point.",
+    "page": "tools/color-converter.html"
+  },
+  {
+    "name": "color-converter :: Can I paste a named color like \"tomato\"?",
+    "keywords": [],
+    "desc": "Yes, as long as your browser recognises the name. The tool asks the browser to compute the color, then reads the resulting RGB channels back.",
+    "page": "tools/color-converter.html"
+  },
+  {
+    "name": "color-converter :: Is anything uploaded?",
+    "keywords": [],
+    "desc": "No. All conversion happens in your browser.",
+    "page": "tools/color-converter.html"
+  },
+  {
+    "name": "cron-explainer :: Which formats are supported?",
+    "keywords": [],
+    "desc": "Standard Unix with five fields (minute hour day-of-month month day-of-week), and the six or seven field form used by Quartz and Spring where a seconds field comes first and an optional year comes last. The tool tells you which one it read, because the same expression means different things in the two formats.",
+    "page": "tools/cron-explainer.html"
+  },
+  {
+    "name": "cron-explainer :: What syntax can I use in a field?",
+    "keywords": [],
+    "desc": "* for every value, */5 for a step, 1-5 for a range, 1,15 for a list, and 1-10/2 to combine them. Month and weekday names work too, so 0 9 * JAN-DEC MON-FRI is valid. Day-of-month also accepts L for the last day, L-3 for the third-to-last, and 15W for the weekday nearest the 15th. Day-of-week accepts 5L for the last Friday and 2#3 for the third Tuesday of the month.",
+    "page": "tools/cron-explainer.html"
+  },
+  {
+    "name": "cron-explainer :: Why do both day fields matter?",
+    "keywords": [],
+    "desc": "When both day-of-month and day-of-week are restricted, most cron implementations treat them as an OR: the job runs if either one matches. When only one is restricted, they act as an AND against an unrestricted other field. This tool follows that rule and says so in the description.",
+    "page": "tools/cron-explainer.html"
+  },
+  {
+    "name": "cron-explainer :: Which time zone are the run times in?",
+    "keywords": [],
+    "desc": "Your device's local time. Servers usually run on UTC, so if you are scheduling a production job remember to convert. The description is generated from the same clock, which is why an expression can look correct locally but fire at a different hour on the server.",
+    "page": "tools/cron-explainer.html"
+  },
+  {
+    "name": "cron-explainer :: Is my expression uploaded anywhere?",
+    "keywords": [],
+    "desc": "No. Parsing and scheduling happen in JavaScript in your browser. There is no server component and nothing is sent anywhere, so it is safe to paste in a schedule from a private system.",
+    "page": "tools/cron-explainer.html"
+  },
+  {
+    "name": "hash-calculator :: Is MD5 still safe to use?",
+    "keywords": [],
+    "desc": "Not for passwords or signatures. MD5 has practical collision attacks, so an attacker can craft two different inputs with the same digest. It is still fine for non-security uses like cache keys, ETags or quick file-change detection. For anything security-related use SHA-256 or better.",
+    "page": "tools/hash-calculator.html"
+  },
+  {
+    "name": "hash-calculator :: Should I use SHA-1?",
+    "keywords": [],
+    "desc": "No, for the same reason — SHA-1 collisions have been demonstrated. It remains useful only for matching legacy checksums that were already published as SHA-1.",
+    "page": "tools/hash-calculator.html"
+  },
+  {
+    "name": "hash-calculator :: Why is a hash different from encryption?",
+    "keywords": [],
+    "desc": "Hashing is one-way: there is no key and no way to recover the input from the digest. Encryption is reversible with the right key. A hash is used to verify that data has not changed, not to hide it.",
+    "page": "tools/hash-calculator.html"
+  },
+  {
+    "name": "hash-calculator :: Does the output depend on encoding?",
+    "keywords": [],
+    "desc": "Yes. The text is hashed as UTF-8 bytes. Hashing \"é\" in UTF-8 (two bytes) gives a different digest than a tool that used Latin-1 (one byte). This tool always uses UTF-8, which is what APIs and modern systems expect.",
+    "page": "tools/hash-calculator.html"
+  },
+  {
+    "name": "hash-calculator :: Are my inputs sent to a server?",
+    "keywords": [],
+    "desc": "No. MD5 is implemented in this page's JavaScript, and the SHA family uses the browser's built-in Web Crypto API. Nothing leaves your device.",
+    "page": "tools/hash-calculator.html"
+  },
+  {
+    "name": "html-entities :: What are HTML entities?",
+    "keywords": [],
+    "desc": "HTML entities are text codes that represent characters which would otherwise be interpreted as markup. For example &lt; renders as a literal < character, and &amp; renders as &.",
+    "page": "tools/html-entities.html"
+  },
+  {
+    "name": "html-entities :: When do I need to encode HTML?",
+    "keywords": [],
+    "desc": "Whenever user-supplied text is inserted into HTML — comments, form output, templates, CMS fields — the characters &, <, >, \" and ' must be escaped, otherwise they can break the page or open an XSS hole.",
+    "page": "tools/html-entities.html"
+  },
+  {
+    "name": "html-entities :: Does it decode numeric entities too?",
+    "keywords": [],
+    "desc": "Yes. Both decimal (&#38;) and hexadecimal (&#x26;) entities are decoded, as well as the full set of named entities such as &nbsp;, &copy; or &hellip;.",
+    "page": "tools/html-entities.html"
+  },
+  {
+    "name": "html-entities :: What does \"Encode non-ASCII\" do?",
+    "keywords": [],
+    "desc": "It converts every character outside the ASCII range into a numeric entity, so text with accents, emoji or CJK characters survives any transport that only supports 7-bit ASCII.",
+    "page": "tools/html-entities.html"
+  },
+  {
+    "name": "html-entities :: Is my text sent anywhere?",
+    "keywords": [],
+    "desc": "No. Encoding and decoding happen entirely in your browser with JavaScript. Nothing is uploaded.",
+    "page": "tools/html-entities.html"
+  },
+  {
+    "name": "image-compressor :: Is my image uploaded to a server?",
+    "keywords": [],
+    "desc": "No. All compression happens in your browser using Canvas API. Your images never leave your device.",
+    "page": "tools/image-compressor.html"
+  },
+  {
+    "name": "image-compressor :: What formats are supported?",
+    "keywords": [],
+    "desc": "You can upload JPG, PNG, WebP, and GIF. Output can be saved as JPG, PNG, or WebP.",
+    "page": "tools/image-compressor.html"
+  },
+  {
+    "name": "image-compressor :: How does quality affect the result?",
+    "keywords": [],
+    "desc": "Lower quality means smaller file size but more compression artifacts. 80% is a good balance for most use cases.",
+    "page": "tools/image-compressor.html"
+  },
+  {
+    "name": "image-compressor :: Why does this compressor output WebP?",
+    "keywords": [],
+    "desc": "WebP produces smaller files than JPG at similar quality, and is supported by all modern browsers.",
+    "page": "tools/image-compressor.html"
+  },
+  {
+    "name": "json-csv-converter :: What input format does this tool expect?",
+    "keywords": [],
+    "desc": "For JSON to CSV, paste a JSON array of objects (e.g. [{\"name\":\"John\"},{\"name\":\"Jane\"}]). For CSV to JSON, paste comma-separated values with a header row.",
+    "page": "tools/json-csv-converter.html"
+  },
+  {
+    "name": "json-csv-converter :: Does it handle nested objects?",
+    "keywords": [],
+    "desc": "Nested objects are flattened using dot notation (e.g. \"address.city\" becomes a column header).",
+    "page": "tools/json-csv-converter.html"
+  },
+  {
+    "name": "json-csv-converter :: Can I download the result?",
+    "keywords": [],
+    "desc": "Yes. Click Download to save the output as a file.",
+    "page": "tools/json-csv-converter.html"
+  },
+  {
+    "name": "json-csv-converter :: What happens to arrays inside my JSON objects?",
+    "keywords": [],
+    "desc": "An array is kept as JSON text in a single CSV cell, so [\"red\",\"blue\"] stays on one line instead of becoming extra columns. Only nested objects are flattened with dot notation.",
+    "page": "tools/json-csv-converter.html"
+  },
+  {
+    "name": "json-csv-converter :: Are commas and quotes in my data handled safely?",
+    "keywords": [],
+    "desc": "Yes. Any field containing a comma, a double quote or a line break is wrapped in double quotes, and a quote inside the field is doubled. That is the standard escaping, so the file opens correctly in any spreadsheet app.",
+    "page": "tools/json-csv-converter.html"
+  },
+  {
+    "name": "json-formatter :: What is JSON formatting?",
+    "keywords": [],
+    "desc": "JSON formatting (also called beautifying or pretty-printing) adds proper indentation and line breaks to JSON data, making it easier to read and debug.",
+    "page": "tools/json-formatter.html"
+  },
+  {
+    "name": "json-formatter :: Is this tool free?",
+    "keywords": [],
+    "desc": "Yes, completely free. No signup, no limits. All processing happens in your browser.",
+    "page": "tools/json-formatter.html"
+  },
+  {
+    "name": "json-formatter :: Is my data sent to a server?",
+    "keywords": [],
+    "desc": "No. Your JSON is processed entirely in your browser. Nothing is uploaded.",
+    "page": "tools/json-formatter.html"
+  },
+  {
+    "name": "json-formatter :: What is JSON minification?",
+    "keywords": [],
+    "desc": "Minification removes all unnecessary whitespace from JSON, reducing its size for faster transmission.",
+    "page": "tools/json-formatter.html"
+  },
+  {
+    "name": "lorem-ipsum-generator :: What is lorem ipsum?",
+    "keywords": [],
+    "desc": "Lorem ipsum is scrambled Latin text derived from Cicero's De finibus bonorum et malorum (45 BC). Designers and developers have used it as placeholder copy since the 1960s because readers ignore it instead of reading it, so they focus on the layout.",
+    "page": "tools/lorem-ipsum-generator.html"
+  },
+  {
+    "name": "lorem-ipsum-generator :: How many paragraphs should I generate?",
+    "keywords": [],
+    "desc": "For a landing page mockup, 2–3 paragraphs per section is usually enough. For testing long-form layout or overflow behaviour, generate 10 or more. You can generate up to 100 units at once.",
+    "page": "tools/lorem-ipsum-generator.html"
+  },
+  {
+    "name": "lorem-ipsum-generator :: Why does the first sentence always repeat?",
+    "keywords": [],
+    "desc": "Because the classic opening (\"Lorem ipsum dolor sit amet, consectetur adipiscing elit\") is what makes filler text immediately recognisable as placeholder. Uncheck the box if you want random text from the start.",
+    "page": "tools/lorem-ipsum-generator.html"
+  },
+  {
+    "name": "lorem-ipsum-generator :: Is the text copyrighted?",
+    "keywords": [],
+    "desc": "No. Lorem ipsum is public domain and has been used freely for over fifty years.",
+    "page": "tools/lorem-ipsum-generator.html"
+  },
+  {
+    "name": "lorem-ipsum-generator :: Does it work offline?",
+    "keywords": [],
+    "desc": "Yes. The generator is plain JavaScript running in your browser — nothing is sent to a server.",
+    "page": "tools/lorem-ipsum-generator.html"
+  },
+  {
+    "name": "qr-code-generator :: Do these codes expire or stop working?",
+    "keywords": [],
+    "desc": "No. This is a plain QR code that stores your text directly, not a short link pointing at someone else's redirect. There is no account, no counter and no server that could be switched off, so the code keeps working for as long as the thing it points at exists.",
+    "page": "tools/qr-code-generator.html"
+  },
+  {
+    "name": "qr-code-generator :: Which error correction level should I pick?",
+    "keywords": [],
+    "desc": "M is the sensible default and what most scanners expect. Raise it to Q or H if the code will be printed small, placed behind glass, or is likely to get scuffed — the trade-off is that a higher level stores more redundancy, so the code becomes denser for the same amount of text. Drop to L only when you are close to the length limit.",
+    "page": "tools/qr-code-generator.html"
+  },
+  {
+    "name": "qr-code-generator :: Should I download the QR code as PNG or SVG?",
+    "keywords": [],
+    "desc": "Use SVG for anything printed — business cards, stickers, posters. It is vector, so it stays sharp at any size and the file is usually smaller. Use PNG for screens: slides, websites, chat messages. Both are generated at full quality here, with no watermark.",
+    "page": "tools/qr-code-generator.html"
+  },
+  {
+    "name": "qr-code-generator :: Why did my coloured code stop scanning?",
+    "keywords": [],
+    "desc": "Scanners need luminance contrast, not colour contrast. A dark blue on light red can look obviously different to you and still fail. Keep the foreground clearly darker than the background, and never invert them: a light code on a dark background is rejected by many phone cameras. If a scan fails, set both colours back to black and white and try again.",
+    "page": "tools/qr-code-generator.html"
+  },
+  {
+    "name": "qr-code-generator :: How much text fits?",
+    "keywords": [],
+    "desc": "Up to about 2,950 bytes at level L, which is roughly 2,950 Latin characters or 980 Chinese characters, since this generator uses UTF-8. Practical codes for a URL are far shorter. Note that every character you add makes the modules smaller at a fixed print size, so shorter text scans more reliably.",
+    "page": "tools/qr-code-generator.html"
+  },
+  {
+    "name": "qr-code-generator :: Is my text sent anywhere?",
+    "keywords": [],
+    "desc": "No. The encoder is a few hundred lines of JavaScript running on this page. Nothing is transmitted, which is why it also works offline once loaded.",
+    "page": "tools/qr-code-generator.html"
+  },
+  {
+    "name": "regex-tester :: Which regex flavour is this?",
+    "keywords": [],
+    "desc": "JavaScript (RegExp, ES2018 and later), because the test runs in your browser with the same engine your code will use. Lookbehind, named groups and Unicode property escapes all work. Patterns written for PCRE, Python or .NET sometimes differ — most commonly around lookbehind and \\d matching only ASCII digits here unless you enable the unicode flag.",
+    "page": "tools/regex-tester.html"
+  },
+  {
+    "name": "regex-tester :: What do the flags mean?",
+    "keywords": [],
+    "desc": "g finds every match instead of stopping at the first. i ignores case. m makes ^ and $ match at line breaks. s lets . match newlines. u turns on full Unicode handling, which is required for property escapes such as \\p{L} and for correct behaviour with emoji.",
+    "page": "tools/regex-tester.html"
+  },
+  {
+    "name": "regex-tester :: Why does it stop at 10,000 matches?",
+    "keywords": [],
+    "desc": "To keep the page usable. A pattern like .* over a large file can produce an enormous number of matches, and rendering them all would freeze the tab. When the cap is reached you are told, and the highlighting shows the first portion.",
+    "page": "tools/regex-tester.html"
+  },
+  {
+    "name": "regex-tester :: My pattern seems to hang. What happened?",
+    "keywords": [],
+    "desc": "Almost certainly catastrophic backtracking — nested quantifiers such as (a+)+$ against a long non-matching string take exponential time. The browser tab has to be force-closed in that case; there is no way to interrupt a running regular expression from JavaScript. Flatten nested quantifiers or use a possessive-style rewrite before testing again.",
+    "page": "tools/regex-tester.html"
+  },
+  {
+    "name": "regex-tester :: How do the replacement references work?",
+    "keywords": [],
+    "desc": "$1, $2 and so on insert numbered capture groups, $<name> inserts a named group, $& inserts the whole match, and $$ is a literal dollar sign. The replacement preview uses exactly the same semantics as String.replace() in JavaScript.",
+    "page": "tools/regex-tester.html"
+  },
+  {
+    "name": "regex-tester :: Is my text uploaded anywhere?",
+    "keywords": [],
+    "desc": "No. The pattern and the test string are both handled by JavaScript in your browser. There is no server involved and nothing leaves your device.",
+    "page": "tools/regex-tester.html"
+  },
+  {
+    "name": "text-diff :: What kind of diff is this?",
+    "keywords": [],
+    "desc": "A line-by-line diff computed with a longest-common-subsequence algorithm, the same approach behind classic diff. Lines that exist on one side only are marked as added or removed; a removed line followed by an added one is treated as a single changed line and paired up, so you see it once instead of twice.",
+    "page": "tools/text-diff.html"
+  },
+  {
+    "name": "text-diff :: Why does it highlight words inside a line?",
+    "keywords": [],
+    "desc": "When a line is marked as changed, the words inside it are diffed separately, so you can see which part of the line moved. Turning the option off shows the whole line as removed and added instead. Word highlighting is skipped on very long lines to keep the page responsive.",
+    "page": "tools/text-diff.html"
+  },
+  {
+    "name": "text-diff :: How much text can it handle?",
+    "keywords": [],
+    "desc": "Comfortably a few thousand lines per side. The comparison table is capped: past that the tool falls back to a simpler comparison, trims the shared beginning and end of both texts, and marks the rest as changed. You will be told when that happens instead of waiting for the tab to freeze.",
+    "page": "tools/text-diff.html"
+  },
+  {
+    "name": "text-diff :: Can I use it for config files and code?",
+    "keywords": [],
+    "desc": "Yes. It is the everyday use case: compare two versions of a config file, a log excerpt, a JSON response, or a function before and after a refactor. Line endings in CRLF, CR and LF files are normalised first, so a Windows file compared against a Unix one will not show every line as changed.",
+    "page": "tools/text-diff.html"
+  },
+  {
+    "name": "text-diff :: Is my text uploaded anywhere?",
+    "keywords": [],
+    "desc": "No. Both texts stay in your browser and the comparison is done in JavaScript. There is no server component, and nothing to upload to. You can disconnect from the network after the page loads and it will still work.",
+    "page": "tools/text-diff.html"
+  },
+  {
+    "name": "timestamp-converter :: What is a Unix timestamp?",
+    "keywords": [],
+    "desc": "A Unix timestamp (also called epoch time) is the number of seconds that have elapsed since 00:00:00 UTC on 1 January 1970, not counting leap seconds. It is timezone-independent, which is why APIs and databases use it.",
+    "page": "tools/timestamp-converter.html"
+  },
+  {
+    "name": "timestamp-converter :: How do I tell seconds from milliseconds?",
+    "keywords": [],
+    "desc": "By length. A 10-digit number is almost always seconds (good until the year 2286), while a 13-digit number is milliseconds — what JavaScript's Date.now() returns. This tool detects the format from the digit count, so you can paste either.",
+    "page": "tools/timestamp-converter.html"
+  },
+  {
+    "name": "timestamp-converter :: Why is my converted time off by hours?",
+    "keywords": [],
+    "desc": "A timestamp has no timezone — it is an absolute instant. The \"UTC\" row is the canonical value; the \"Your local time\" row is that same instant rendered in your browser's timezone. If you expected UTC but read the local row (or the other way round), it looks shifted.",
+    "page": "tools/timestamp-converter.html"
+  },
+  {
+    "name": "timestamp-converter :: What is the 2038 problem?",
+    "keywords": [],
+    "desc": "Systems that store Unix time in a signed 32-bit integer overflow on 19 January 2038 at 03:14:07 UTC. This tool uses JavaScript numbers (64-bit floats), so dates far beyond 2038 convert fine.",
+    "page": "tools/timestamp-converter.html"
+  },
+  {
+    "name": "timestamp-converter :: Which date formats can I paste?",
+    "keywords": [],
+    "desc": "Anything your browser's Date parser accepts: 2026-10-20, 2026-10-20T10:00:00Z, Oct 20, 2026 10:00, 10/20/2026. Ambiguous numeric formats are read in US order (month first).",
+    "page": "tools/timestamp-converter.html"
+  },
+  {
+    "name": "url-encoder :: What is URL encoding?",
+    "keywords": [],
+    "desc": "URL encoding (percent-encoding) converts special characters into a format that can be safely transmitted in a URL. For example, spaces become %20 and & becomes %26.",
+    "page": "tools/url-encoder.html"
+  },
+  {
+    "name": "url-encoder :: When should I use URL encoding?",
+    "keywords": [],
+    "desc": "Use it whenever you need to include special characters, spaces, or non-ASCII text in a URL query string, form data, or API request.",
+    "page": "tools/url-encoder.html"
+  },
+  {
+    "name": "url-encoder :: Does this tool support Unicode?",
+    "keywords": [],
+    "desc": "Yes. It uses encodeURIComponent which properly handles UTF-8 characters, including emoji and non-Latin scripts.",
+    "page": "tools/url-encoder.html"
+  },
+  {
+    "name": "url-encoder :: What's the difference between encodeURI and encodeURIComponent?",
+    "keywords": [],
+    "desc": "encodeURI keeps URL-reserved characters like :/?#&= intact (for full URLs). encodeURIComponent encodes everything (for query parameter values). This tool uses the latter for stricter encoding.",
+    "page": "tools/url-encoder.html"
+  },
+  {
+    "name": "uuid-generator :: What is a UUID?",
+    "keywords": [],
+    "desc": "A UUID (Universally Unique Identifier) is a 128-bit number used to uniquely identify information in computer systems. It is typically shown as 32 hexadecimal digits separated by hyphens, e.g. 550e8400-e29b-41d4-a716-446655440000.",
+    "page": "tools/uuid-generator.html"
+  },
+  {
+    "name": "uuid-generator :: What is UUID version 4?",
+    "keywords": [],
+    "desc": "Version 4 UUIDs are randomly generated. The randomness makes collisions extremely unlikely — about 1 in 2.71 × 10^36 even after generating 103 trillion UUIDs.",
+    "page": "tools/uuid-generator.html"
+  },
+  {
+    "name": "uuid-generator :: Is this generator cryptographically secure?",
+    "keywords": [],
+    "desc": "Yes. It uses the browser's crypto.getRandomValues() API when available, falling back to crypto.randomUUID() on modern browsers. The output is suitable for session tokens, IDs, and other security-sensitive uses.",
+    "page": "tools/uuid-generator.html"
+  },
+  {
+    "name": "uuid-generator :: How many UUIDs can I generate at once?",
+    "keywords": [],
+    "desc": "Up to 1000 at a time. Each generation is independent and the chance of any duplicates is effectively zero.",
+    "page": "tools/uuid-generator.html"
+  },
+  {
+    "name": "word-counter :: How are words counted?",
+    "keywords": [],
+    "desc": "Words are counted by splitting on whitespace. A \"word\" is any sequence of non-whitespace characters. Punctuation attached to a word is counted as part of that word.",
+    "page": "tools/word-counter.html"
+  },
+  {
+    "name": "word-counter :: How are sentences counted?",
+    "keywords": [],
+    "desc": "Sentences are split on ., !, and ? followed by whitespace or end of text. Empty segments are ignored.",
+    "page": "tools/word-counter.html"
+  },
+  {
+    "name": "word-counter :: How is reading time calculated?",
+    "keywords": [],
+    "desc": "At 200 words per minute (the average adult reading speed). For 100 words you'll see about 30 seconds. Useful for blog posts and presentation pacing.",
+    "page": "tools/word-counter.html"
+  },
+  {
+    "name": "word-counter :: Is my text sent anywhere?",
+    "keywords": [],
+    "desc": "No. All counting happens in your browser. The text never leaves your device.",
+    "page": "tools/word-counter.html"
+  }
+]

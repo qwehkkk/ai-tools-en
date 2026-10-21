@@ -47,6 +47,56 @@
   }
   </script>
   <!-- BREADCRUMB-LD:END -->
+<!-- FAQ-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a Unix timestamp?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A Unix timestamp (also called epoch time) is the number of seconds that have elapsed since 00:00:00 UTC on 1 January 1970, not counting leap seconds. It is timezone-independent, which is why APIs and databases use it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I tell seconds from milliseconds?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "By length. A 10-digit number is almost always seconds (good until the year 2286), while a 13-digit number is milliseconds — what JavaScript's Date.now() returns. This tool detects the format from the digit count, so you can paste either."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is my converted time off by hours?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A timestamp has no timezone — it is an absolute instant. The \"UTC\" row is the canonical value; the \"Your local time\" row is that same instant rendered in your browser's timezone. If you expected UTC but read the local row (or the other way round), it looks shifted."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the 2038 problem?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Systems that store Unix time in a signed 32-bit integer overflow on 19 January 2038 at 03:14:07 UTC. This tool uses JavaScript numbers (64-bit floats), so dates far beyond 2038 convert fine."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which date formats can I paste?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Anything your browser's Date parser accepts: 2026-10-20, 2026-10-20T10:00:00Z, Oct 20, 2026 10:00, 10/20/2026. Ambiguous numeric formats are read in US order (month first)."
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- FAQ-LD:END -->
 </head>
 <body>
 

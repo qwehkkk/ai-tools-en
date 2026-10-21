@@ -10,7 +10,7 @@
 
 | 项 | 值 |
 |---|---|
-| 地址 | https://gettoolkit.com |
+| 地址 | https://getoolkit.com |
 | 部署 | GitHub `qwehkkk/ai-tools-en` → Cloudflare Pages（推送即部署，约 10 秒） |
 | 工具数 | **17** |
 | sitemap URL | **22 条**（17 工具 + 首页 + about/privacy/contact + sitemap 页） |

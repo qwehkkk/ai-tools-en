@@ -43,6 +43,48 @@
   }
   </script>
   <!-- BREADCRUMB-LD:END -->
+<!-- FAQ-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How are words counted?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Words are counted by splitting on whitespace. A \"word\" is any sequence of non-whitespace characters. Punctuation attached to a word is counted as part of that word."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How are sentences counted?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sentences are split on ., !, and ? followed by whitespace or end of text. Empty segments are ignored."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is reading time calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "At 200 words per minute (the average adult reading speed). For 100 words you'll see about 30 seconds. Useful for blog posts and presentation pacing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my text sent anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All counting happens in your browser. The text never leaves your device."
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- FAQ-LD:END -->
 </head>
 <body>
 

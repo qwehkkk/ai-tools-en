@@ -47,6 +47,64 @@
   }
   </script>
   <!-- BREADCRUMB-LD:END -->
+<!-- FAQ-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do these codes expire or stop working?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This is a plain QR code that stores your text directly, not a short link pointing at someone else's redirect. There is no account, no counter and no server that could be switched off, so the code keeps working for as long as the thing it points at exists."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which error correction level should I pick?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "M is the sensible default and what most scanners expect. Raise it to Q or H if the code will be printed small, placed behind glass, or is likely to get scuffed — the trade-off is that a higher level stores more redundancy, so the code becomes denser for the same amount of text. Drop to L only when you are close to the length limit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I download the QR code as PNG or SVG?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use SVG for anything printed — business cards, stickers, posters. It is vector, so it stays sharp at any size and the file is usually smaller. Use PNG for screens: slides, websites, chat messages. Both are generated at full quality here, with no watermark."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why did my coloured code stop scanning?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Scanners need luminance contrast, not colour contrast. A dark blue on light red can look obviously different to you and still fail. Keep the foreground clearly darker than the background, and never invert them: a light code on a dark background is rejected by many phone cameras. If a scan fails, set both colours back to black and white and try again."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much text fits?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Up to about 2,950 bytes at level L, which is roughly 2,950 Latin characters or 980 Chinese characters, since this generator uses UTF-8. Practical codes for a URL are far shorter. Note that every character you add makes the modules smaller at a fixed print size, so shorter text scans more reliably."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my text sent anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The encoder is a few hundred lines of JavaScript running on this page. Nothing is transmitted, which is why it also works offline once loaded."
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- FAQ-LD:END -->
 </head>
 <body>
 
@@ -132,7 +190,7 @@
       <p><strong>M</strong> is the sensible default and what most scanners expect. Raise it to <strong>Q</strong> or <strong>H</strong> if the code will be printed small, placed behind glass, or is likely to get scuffed — the trade-off is that a higher level stores more redundancy, so the code becomes denser for the same amount of text. Drop to <strong>L</strong> only when you are close to the length limit.</p>
     </div>
     <div class="faq-item">
-      <h3>PNG or SVG?</h3>
+      <h3>Should I download the QR code as PNG or SVG?</h3>
       <p>Use <strong>SVG</strong> for anything printed — business cards, stickers, posters. It is vector, so it stays sharp at any size and the file is usually smaller. Use <strong>PNG</strong> for screens: slides, websites, chat messages. Both are generated at full quality here, with no watermark.</p>
     </div>
     <div class="faq-item">

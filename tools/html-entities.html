@@ -47,6 +47,56 @@
   }
   </script>
   <!-- BREADCRUMB-LD:END -->
+<!-- FAQ-LD:START -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are HTML entities?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "HTML entities are text codes that represent characters which would otherwise be interpreted as markup. For example &lt; renders as a literal < character, and &amp; renders as &."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When do I need to encode HTML?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Whenever user-supplied text is inserted into HTML — comments, form output, templates, CMS fields — the characters &, <, >, \" and ' must be escaped, otherwise they can break the page or open an XSS hole."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it decode numeric entities too?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Both decimal (&#38;) and hexadecimal (&#x26;) entities are decoded, as well as the full set of named entities such as &nbsp;, &copy; or &hellip;."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does \"Encode non-ASCII\" do?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It converts every character outside the ASCII range into a numeric entity, so text with accents, emoji or CJK characters survives any transport that only supports 7-bit ASCII."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my text sent anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Encoding and decoding happen entirely in your browser with JavaScript. Nothing is uploaded."
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- FAQ-LD:END -->
 </head>
 <body>
 
