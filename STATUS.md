@@ -1,6 +1,6 @@
-# 项目状态 · 2026-10-20
+# 项目状态 · 2026-10-22
 
-一句话：**站点已完整上线并保持零问题，当前停在「等内容被收录」这一步，不在继续加工具。**
+一句话：**站点已完整上线并保持零问题，当前停在「等内容被收录」这一步，不再加工具；2026-10-22 新增了 Agent Skills 目录页（内容页，非工具）。**
 
 技术细节在 `README.md`；这份文件只记状态、待办和下一步的判断依据。
 
@@ -13,10 +13,15 @@
 | 地址 | https://getoolkit.com |
 | 部署 | GitHub `qwehkkk/ai-tools-en` → Cloudflare Pages（推送即部署，约 10 秒） |
 | 工具数 | **17** |
-| sitemap URL | **22 条**（17 工具 + 首页 + about/privacy/contact + sitemap 页） |
+| sitemap URL | **23 条**（17 工具 + 首页 + about/privacy/contact + agent-skills 目录页 + sitemap 页） |
 | 全站体检 | 23 页、0 死链、0 元数据问题（`python tests/audit.py`） |
 | ads.txt | `google.com, pub-4065367396215160, DIRECT, f08c47fec0942fa0` |
-| IndexNow | 22 条已推送，key `ef8e4253e417291bba6c439eea3947d1` |
+| IndexNow | 23 条已推送，key `ef8e4253e417291bba6c439eea3947d1` |
+
+**2026-10-22 新增：`/agent-skills`（Agent Skills & Plugins 目录页）**
+- 背景：GitHub agent skill 生态爆发但缺「发现层」，此页是首个试水内容页（18 个条目、5 分类、星数快照、兼容性标注），数据取自当日 GitHub Trending
+- 页面完全复用站点模板（css/style.css + theme.js），8 组测试全过，`.html` 308 规范跳转正常
+- 后续打算：观察 GSC 数据，若表现好可扩展为周期性更新（配合 WorkBuddy 每周一的 GitHub trending 自动分析）；中文版可考虑放 toolona.com（easytool）
 
 工具清单：JSON Formatter、Base64、JSON↔CSV、Image Compressor、URL Encoder、
 UUID、Word Counter、HTML Entities、Timestamp、Hash、Color、Lorem Ipsum、
