@@ -18,6 +18,11 @@
 | ads.txt | `google.com, pub-4065367396215160, DIRECT, f08c47fec0942fa0` |
 | IndexNow | 23 条已推送，key `ef8e4253e417291bba6c439eea3947d1` |
 
+**2026-10-23：目录页已数据模型化**
+- 条目抽成 `skills-data.json`（单一数据源），`node generate-skills-page.js` 渲染；周更流程 = 改 JSON → 生成 → sitemap → 测试 → 推送
+- 新增 `llms.txt`（`generate-sitemap.js` 自动输出，23 页带描述，供 AI agent/LLM 爬虫发现站点）
+- 后续计划与分工见 WorkBuddy 工作区 `reports/行动计划-三线并行.md`（周更页 10-26 启动；MCP servers 板块等 11-13 GSC 判读后定）
+
 **2026-10-22 新增：`/agent-skills`（Agent Skills & Plugins 目录页）**
 - 背景：GitHub agent skill 生态爆发但缺「发现层」，此页是首个试水内容页（18 个条目、5 分类、星数快照、兼容性标注），数据取自当日 GitHub Trending
 - 页面完全复用站点模板（css/style.css + theme.js），8 组测试全过，`.html` 308 规范跳转正常
