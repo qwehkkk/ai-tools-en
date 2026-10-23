@@ -23,7 +23,7 @@
 - [UUID Generator](https://getoolkit.com/tools/uuid-generator) — Free online UUID generator. Generate one or many RFC 4122 version 4 UUIDs instantly. Cryptographically secure. No signup, runs in your browser.
 - [Word & Character Counter](https://getoolkit.com/tools/word-counter) — Free online word and character counter. Count words, characters, sentences, paragraphs, and reading time in real time. No signup, runs in your browser.
 - [About GetToolkit](https://getoolkit.com/about) — GetToolkit is a small set of free utilities that run entirely in your browser. Why it exists, how it works, and why nothing you paste ever leaves your device.
-- [Agent Skills & Plugins Directory](https://getoolkit.com/agent-skills) — A hand-picked directory of the best agent skills and plugins for Claude Code, Cursor, Codex and Gemini CLI &mdash; categorized, with star counts and compatibility notes.
+- [Agent Skills & Plugins Directory](https://getoolkit.com/agent-skills) — A hand-picked directory of the best agent skills and plugins for Claude Code, Cursor, Codex and Gemini CLI — categorized, with star counts and compatibility notes.
 - [Contact](https://getoolkit.com/contact) — Report a bug, request a tool, or ask a question about GetToolkit. One email address, no contact forms, no support tickets.
 - [Privacy Policy](https://getoolkit.com/privacy) — How GetToolkit handles data: everything you type or upload stays in your browser. What little is collected, and how to opt out of advertising cookies.
 - [Sitemap](https://getoolkit.com/sitemap): Complete list of all pages.

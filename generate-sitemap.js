@@ -55,6 +55,8 @@ function decodeEntities(s) {
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
     .replace(/&apos;/g, "'")
+    .replace(/&(mdash|ndash|middot|rsquo|lsquo|rdquo|ldquo|hellip|nbsp);/g,
+      (all, name) => ({mdash:'—',ndash:'–',middot:'·',rsquo:'’',lsquo:'‘',rdquo:'”',ldquo:'“',hellip:'…',nbsp:' '}[name] || all))
     .replace(/&amp;/g, '&'); // must be last
 }
 
