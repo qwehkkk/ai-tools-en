@@ -229,4 +229,17 @@ ${pageItems}
 
 fs.writeFileSync(path.join(ROOT, 'sitemap.html'), html, 'utf8');
 console.log(`✅ sitemap.html —  ${tools.length} tools listed`);
+
+// ---- 3. Generate llms.txt (for AI agents / LLM crawlers discovering the site) ----
+// Markdown-formatted site map: what the site is, plus every page with a one-line
+// description. Same page list as the sitemap, so it never drifts out of sync.
+const meta = t => t.description ? ` — ${t.description}` : '';
+let llms = `# GetToolkit\n\n> Free online developer tools that run entirely in the browser. No signup, no installation, no data uploaded. Also home of a curated Agent Skills & Plugins directory for AI coding agents.\n\n`;
+llms += `## Pages\n\n`;
+llms += `- [Home](${SITE_URL}/): Browse all ${tools.length} free tools.\n`;
+for (const t of tools) llms += `- [${t.title}](${t.url})${meta(t)}\n`;
+for (const p of pages) llms += `- [${p.title}](${p.url})${meta(p)}\n`;
+llms += `- [Sitemap](${SITE_URL}/sitemap): Complete list of all pages.\n`;
+fs.writeFileSync(path.join(ROOT, 'llms.txt'), llms, 'utf8');
+console.log(`✅ llms.txt — ${tools.length + pages.length + 2} pages listed`);
 console.log(`\nNext: git add . && git commit -m "..." && git push`);

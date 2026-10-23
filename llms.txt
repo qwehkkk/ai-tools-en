@@ -1,0 +1,29 @@
+# GetToolkit
+
+> Free online developer tools that run entirely in the browser. No signup, no installation, no data uploaded. Also home of a curated Agent Skills & Plugins directory for AI coding agents.
+
+## Pages
+
+- [Home](https://getoolkit.com/): Browse all 17 free tools.
+- [Base64 Converter](https://getoolkit.com/tools/base64-converter) — Free online Base64 converter. Encode text to Base64 or decode Base64 to text. Supports UTF-8. No signup, runs in your browser.
+- [Case Converter](https://getoolkit.com/tools/case-converter) — Free online case converter. Turn text into camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title or Sentence case at once.
+- [Color Converter](https://getoolkit.com/tools/color-converter) — Convert colors between HEX, RGB and HSL instantly. Paste any CSS color value and get every format with a live preview. Free, no signup.
+- [Cron Expression Explainer](https://getoolkit.com/tools/cron-explainer) — Free cron expression explainer. Translate any cron expression into plain English, see the next 5 run times and a field-by-field breakdown. Runs in your browser.
+- [Hash Generator](https://getoolkit.com/tools/hash-calculator) — Generate MD5, SHA-1, SHA-256, SHA-384 and SHA-512 hashes of any text in your browser. Compare checksums, verify integrity. Nothing is uploaded.
+- [HTML Entity Encoder & Decoder](https://getoolkit.com/tools/html-entities) — Free online HTML entity encoder and decoder. Escape <, >, & and quotes, or decode entities like &lt; and &#38; back to plain text. Runs in your browser.
+- [Image Compressor](https://getoolkit.com/tools/image-compressor) — Free online image compressor. Compress JPG, PNG, and WebP images in your browser. Resize and reduce file size without uploading. No signup, fully private.
+- [JSON to CSV Converter](https://getoolkit.com/tools/json-csv-converter) — Free online JSON to CSV converter. Paste JSON array, get CSV output instantly. Also convert CSV back to JSON. No signup, runs in browser.
+- [JSON Formatter](https://getoolkit.com/tools/json-formatter) — Free online JSON formatter. Beautify, minify, and validate JSON instantly. Paste your JSON, get formatted output. No signup, runs in browser.
+- [Lorem Ipsum Generator](https://getoolkit.com/tools/lorem-ipsum-generator) — Generate lorem ipsum placeholder text instantly. Choose paragraphs, sentences or words, copy with one click. Free, no signup, works in your browser.
+- [QR Code Generator](https://getoolkit.com/tools/qr-code-generator) — Free QR code generator: turn a link or text into a QR code, choose colours and size, download as PNG or SVG. Nothing uploaded, codes never expire.
+- [Regex Tester](https://getoolkit.com/tools/regex-tester) — Free online regex tester for JavaScript. Test a pattern with live match highlighting, capture groups and a replace preview. Nothing is uploaded.
+- [Text Diff](https://getoolkit.com/tools/text-diff) — Free online text diff. Compare two blocks of text or code line by line and see added, removed and changed lines highlighted. Nothing is uploaded.
+- [Unix Timestamp Converter](https://getoolkit.com/tools/timestamp-converter) — Convert Unix timestamps to readable dates and back. Supports seconds and milliseconds, UTC and local time, ISO 8601. Live epoch clock. Free, no signup.
+- [URL Encoder & Decoder](https://getoolkit.com/tools/url-encoder) — Free online URL encoder and decoder. Turn spaces into %20 and & into %26 with percent-encoding, or decode query strings back to readable text. Supports UTF-8.
+- [UUID Generator](https://getoolkit.com/tools/uuid-generator) — Free online UUID generator. Generate one or many RFC 4122 version 4 UUIDs instantly. Cryptographically secure. No signup, runs in your browser.
+- [Word & Character Counter](https://getoolkit.com/tools/word-counter) — Free online word and character counter. Count words, characters, sentences, paragraphs, and reading time in real time. No signup, runs in your browser.
+- [About GetToolkit](https://getoolkit.com/about) — GetToolkit is a small set of free utilities that run entirely in your browser. Why it exists, how it works, and why nothing you paste ever leaves your device.
+- [Agent Skills & Plugins Directory](https://getoolkit.com/agent-skills) — A hand-picked directory of the best agent skills and plugins for Claude Code, Cursor, Codex and Gemini CLI &mdash; categorized, with star counts and compatibility notes.
+- [Contact](https://getoolkit.com/contact) — Report a bug, request a tool, or ask a question about GetToolkit. One email address, no contact forms, no support tickets.
+- [Privacy Policy](https://getoolkit.com/privacy) — How GetToolkit handles data: everything you type or upload stays in your browser. What little is collected, and how to opt out of advertising cookies.
+- [Sitemap](https://getoolkit.com/sitemap): Complete list of all pages.
