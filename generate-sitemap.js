@@ -233,7 +233,7 @@ console.log(`✅ sitemap.html —  ${tools.length} tools listed`);
 // ---- 3. Generate llms.txt (for AI agents / LLM crawlers discovering the site) ----
 // Markdown-formatted site map: what the site is, plus every page with a one-line
 // description. Same page list as the sitemap, so it never drifts out of sync.
-const meta = t => t.description ? ` — ${t.description}` : '';
+const meta = t => t.description ? ` — ${decodeEntities(t.description)}` : '';
 let llms = `# GetToolkit\n\n> Free online developer tools that run entirely in the browser. No signup, no installation, no data uploaded. Also home of a curated Agent Skills & Plugins directory for AI coding agents.\n\n`;
 llms += `## Pages\n\n`;
 llms += `- [Home](${SITE_URL}/): Browse all ${tools.length} free tools.\n`;

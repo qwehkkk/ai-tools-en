@@ -10,7 +10,7 @@
 - [Color Converter](https://getoolkit.com/tools/color-converter) — Convert colors between HEX, RGB and HSL instantly. Paste any CSS color value and get every format with a live preview. Free, no signup.
 - [Cron Expression Explainer](https://getoolkit.com/tools/cron-explainer) — Free cron expression explainer. Translate any cron expression into plain English, see the next 5 run times and a field-by-field breakdown. Runs in your browser.
 - [Hash Generator](https://getoolkit.com/tools/hash-calculator) — Generate MD5, SHA-1, SHA-256, SHA-384 and SHA-512 hashes of any text in your browser. Compare checksums, verify integrity. Nothing is uploaded.
-- [HTML Entity Encoder & Decoder](https://getoolkit.com/tools/html-entities) — Free online HTML entity encoder and decoder. Escape <, >, & and quotes, or decode entities like &lt; and &#38; back to plain text. Runs in your browser.
+- [HTML Entity Encoder & Decoder](https://getoolkit.com/tools/html-entities) — Free online HTML entity encoder and decoder. Escape <, >, & and quotes, or decode entities like < and &#38; back to plain text. Runs in your browser.
 - [Image Compressor](https://getoolkit.com/tools/image-compressor) — Free online image compressor. Compress JPG, PNG, and WebP images in your browser. Resize and reduce file size without uploading. No signup, fully private.
 - [JSON to CSV Converter](https://getoolkit.com/tools/json-csv-converter) — Free online JSON to CSV converter. Paste JSON array, get CSV output instantly. Also convert CSV back to JSON. No signup, runs in browser.
 - [JSON Formatter](https://getoolkit.com/tools/json-formatter) — Free online JSON formatter. Beautify, minify, and validate JSON instantly. Paste your JSON, get formatted output. No signup, runs in browser.
