@@ -113,6 +113,74 @@
       color: var(--text);
     }
     .install-box li strong { color: var(--text); }
+
+    /* Biggest Movers — compact leaderboard above the directory */
+    .movers {
+      margin-top: 32px;
+      padding: 20px 22px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+    }
+    .movers-title { font-size: 17px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
+    .movers-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+    .movers-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
+    .mover {
+      display: grid;
+      grid-template-columns: 20px 1fr auto auto;
+      align-items: baseline;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border-soft);
+      font-size: 13.5px;
+    }
+    .mover:last-child { border-bottom: none; padding-bottom: 0; }
+    .mover-rank {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-align: right;
+    }
+    .mover-repo {
+      font-family: var(--font-mono);
+      color: var(--text);
+      word-break: break-all;
+    }
+    .mover-repo:hover { color: var(--primary); }
+    .mover-gain {
+      color: var(--primary);
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .mover-hot {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background: var(--primary-soft);
+      border-radius: 3px;
+      padding: 1px 5px;
+      margin-left: 4px;
+      vertical-align: 1px;
+      font-weight: 500;
+    }
+    .mover-total {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    @media (max-width: 700px) {
+      .mover { grid-template-columns: 18px 1fr auto; row-gap: 1px; }
+      .mover-total { grid-column: 2 / -1; font-size: 12px; }
+    }
   </style>
   <script type="application/ld+json">
   {
@@ -143,6 +211,43 @@
     <p>Every coding agent now loads reusable "skills" &mdash; but they are scattered across thousands of repos. This is a hand-picked shortlist of the ones actually worth installing, for <strong>Claude Code, Cursor, Codex and Gemini CLI</strong>.</p>
     <p class="updated">Last updated 2026-10-26 &middot; star counts are a snapshot from that date</p>
   </div>
+
+  <section class="movers" aria-labelledby="movers-title">
+    <h2 class="movers-title" id="movers-title">Biggest Movers</h2>
+    <p class="movers-desc">Fastest-growing projects since the Oct 23 snapshot, ranked by absolute star gain. Refreshed every Monday &mdash; if a repo shows up here twice, it is genuinely trending, not a one-week spike.</p>
+    <ol class="movers-list">
+      <li class="mover">
+        <span class="mover-rank">1</span>
+        <a class="mover-repo" href="https://github.com/mattpocock/skills">mattpocock/skills</a>
+        <span class="mover-gain">+23.8K</span>
+        <span class="mover-total">303.5K</span>
+      </li>
+      <li class="mover">
+        <span class="mover-rank">2</span>
+        <a class="mover-repo" href="https://github.com/cathrynlavery/diagram-design">cathrynlavery/diagram-design</a>
+        <span class="mover-gain">+10.7K <span class="mover-hot">hot</span></span>
+        <span class="mover-total">61.2K</span>
+      </li>
+      <li class="mover">
+        <span class="mover-rank">3</span>
+        <a class="mover-repo" href="https://github.com/cloudflare/security-audit-skill">cloudflare/security-audit-skill</a>
+        <span class="mover-gain">+9.5K <span class="mover-hot">hot</span></span>
+        <span class="mover-total">47.5K</span>
+      </li>
+      <li class="mover">
+        <span class="mover-rank">4</span>
+        <a class="mover-repo" href="https://github.com/addyosmani/agent-skills">addyosmani/agent-skills</a>
+        <span class="mover-gain">+7.7K</span>
+        <span class="mover-total">110.6K</span>
+      </li>
+      <li class="mover">
+        <span class="mover-rank">5</span>
+        <a class="mover-repo" href="https://github.com/thedotmack/claude-mem">thedotmack/claude-mem</a>
+        <span class="mover-gain">+5.4K</span>
+        <span class="mover-total">103.2K</span>
+      </li>
+    </ol>
+  </section>
 
   <h2 class="skill-cat">1. Official Catalogs &mdash; start here</h2>
   <p class="skill-cat-desc">Maintained by the platform vendors themselves. The safest first installs.</p>

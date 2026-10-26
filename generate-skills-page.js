@@ -15,6 +15,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const ROOT = __dirname;
 const DATA = path.join(ROOT, 'skills-data.json');
@@ -25,6 +26,110 @@ const data = JSON.parse(fs.readFileSync(DATA, 'utf8'));
 
 function esc(s) {
   return String(s).replace(/&(?!(?:amp|lt|gt|quot|apos|#\d+);)/g, '&amp;');
+}
+
+// ---- Biggest movers -------------------------------------------------------
+// Derived from git history: compare the committed snapshot (HEAD) with the
+// working-tree one. No extra data file, no manual bookkeeping — each weekly
+// refresh automatically produces a "who grew fastest" ranking, which is what
+// gives this page a reason to be revisited and re-crawled.
+function parseStars(s) {
+  const m = String(s).trim().match(/^([\d.]+)\s*([KMB]?)$/i);
+  if (!m) return null;
+  const mult = { K: 1e3, M: 1e6, B: 1e9 }[(m[2] || '').toUpperCase()] || 1;
+  return Math.round(parseFloat(m[1]) * mult);
+}
+
+function fmtStars(n) {
+  if (n >= 1e6) return `${(n / 1e6).toFixed(1).replace(/\.0$/, '')}M`;
+  if (n >= 1e3) return `${(n / 1e3).toFixed(1).replace(/\.0$/, '')}K`;
+  return String(n);
+}
+
+// Walk back through the file's git history and use the most recent version
+// whose content actually differs from the working tree. This handles both
+// cases: stars edited but not yet committed (HEAD differs) and stars already
+// committed (HEAD is identical, so we take the commit before it).
+function prevSnapshot() {
+  const squash = s => s.replace(/\s+/g, '');
+  try {
+    const current = squash(fs.readFileSync(DATA, 'utf8'));
+    const shas = execSync('git log --format=%H -- skills-data.json', {
+      cwd: ROOT,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    })
+      .trim()
+      .split('\n')
+      .filter(Boolean);
+
+    for (const sha of shas) {
+      const raw = execSync(`git show ${sha}:skills-data.json`, {
+        cwd: ROOT,
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'ignore'],
+      });
+      if (squash(raw) !== current) return JSON.parse(raw);
+    }
+    return null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function monthDay(iso) {
+  const d = new Date(`${iso}T00:00:00Z`);
+  if (isNaN(d)) return iso;
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+}
+
+function computeMovers() {
+  const prev = prevSnapshot();
+  if (!prev) return { list: [], since: '' };
+
+  const before = new Map();
+  for (const c of prev.categories) for (const e of c.entries) before.set(e.repo, parseStars(e.stars));
+
+  const list = [];
+  for (const c of data.categories) {
+    for (const e of c.entries) {
+      const now = parseStars(e.stars);
+      const was = before.get(e.repo);
+      if (now == null || was == null || was <= 0) continue;
+      const gain = now - was;
+      if (gain <= 0) continue;
+      list.push({ repo: e.repo, now, was, gain, pct: gain / was });
+    }
+  }
+
+  list.sort((a, b) => b.gain - a.gain);
+  return { list: list.slice(0, 5), since: prev.updated ? monthDay(prev.updated) : '' };
+}
+
+const { list: movers, since: moversSince } = computeMovers();
+
+function moversBlock() {
+  if (!movers.length) return '';
+
+  const rows = movers
+    .map((m, i) => {
+      const hot = m.pct >= 0.2 ? ' <span class="mover-hot">hot</span>' : '';
+      return `      <li class="mover">
+        <span class="mover-rank">${i + 1}</span>
+        <a class="mover-repo" href="https://github.com/${m.repo}">${esc(m.repo)}</a>
+        <span class="mover-gain">+${fmtStars(m.gain)}${hot}</span>
+        <span class="mover-total">${fmtStars(m.now)}</span>
+      </li>`;
+    })
+    .join('\n');
+
+  return `  <section class="movers" aria-labelledby="movers-title">
+    <h2 class="movers-title" id="movers-title">Biggest Movers</h2>
+    <p class="movers-desc">Fastest-growing projects since the ${moversSince} snapshot, ranked by absolute star gain. Refreshed every Monday &mdash; if a repo shows up here twice, it is genuinely trending, not a one-week spike.</p>
+    <ol class="movers-list">
+${rows}
+    </ol>
+  </section>`;
 }
 
 function card(e) {
@@ -163,6 +268,74 @@ const html = `<!DOCTYPE html>
       color: var(--text);
     }
     .install-box li strong { color: var(--text); }
+
+    /* Biggest Movers — compact leaderboard above the directory */
+    .movers {
+      margin-top: 32px;
+      padding: 20px 22px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+    }
+    .movers-title { font-size: 17px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
+    .movers-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+    .movers-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
+    .mover {
+      display: grid;
+      grid-template-columns: 20px 1fr auto auto;
+      align-items: baseline;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border-soft);
+      font-size: 13.5px;
+    }
+    .mover:last-child { border-bottom: none; padding-bottom: 0; }
+    .mover-rank {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-align: right;
+    }
+    .mover-repo {
+      font-family: var(--font-mono);
+      color: var(--text);
+      word-break: break-all;
+    }
+    .mover-repo:hover { color: var(--primary); }
+    .mover-gain {
+      color: var(--primary);
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .mover-hot {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background: var(--primary-soft);
+      border-radius: 3px;
+      padding: 1px 5px;
+      margin-left: 4px;
+      vertical-align: 1px;
+      font-weight: 500;
+    }
+    .mover-total {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    @media (max-width: 700px) {
+      .mover { grid-template-columns: 18px 1fr auto; row-gap: 1px; }
+      .mover-total { grid-column: 2 / -1; font-size: 12px; }
+    }
   </style>
   <script type="application/ld+json">
   {
@@ -194,6 +367,8 @@ const html = `<!DOCTYPE html>
     <p class="updated">Last updated ${data.updated} &middot; star counts are a snapshot from that date</p>
   </div>
 
+${moversBlock()}
+
 ${sections}
 
   <div class="install-box">
@@ -223,4 +398,10 @@ ${sections}
 
 fs.writeFileSync(OUT, html, 'utf8');
 console.log(`✅ agent-skills.html — ${entryCount} entries across ${data.categories.length} categories (updated ${data.updated})`);
+if (movers.length) {
+  console.log(`📈 Biggest movers (since ${moversSince}):`);
+  for (const m of movers) console.log(`   +${fmtStars(m.gain).padEnd(6)} ${m.repo}  → ${fmtStars(m.now)}`);
+} else {
+  console.log('📈 No movers block: no star changes vs the committed snapshot (or no git history).');
+}
 console.log('Next: node generate-sitemap.js && node tests/run-all.js');
