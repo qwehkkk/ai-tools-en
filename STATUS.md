@@ -18,11 +18,20 @@
 | ads.txt | `google.com, pub-4065367396215160, DIRECT, f08c47fec0942fa0` |
 | IndexNow | 23 条已推送，key `ef8e4253e417291bba6c439eea3947d1` |
 
-**2026-10-26：首次周更 + sitemap lastmod 修复**
+> ⚠️ **域名拼写防呆（2026-10-26 加）**：本站域名是 **`getoolkit.com`（一个 t，get+oolkit）**，唯一真源是 `site.json` 的 `url`，任何场合都从这里复制，**不要手打**。
+> `gettoolkit.com`（两个 t）**不是本站**，它属于 HugeDomains，公网是 $5,995 域名出售页。
+> 2026-10-26 曾把它打成两个 t 去查注册局，误报过一次「域名失联 P0 事故」——查 RDAP / DoH / 线上异常之前，先核对拼写。
+>
+> **健康检查：`node check-live.js`** —— 域名从 `site.json` 读取并逐字符打印，同时查权威 NS、A 记录和 5 个关键页面的状态码/特征串。任何「站点是不是挂了」的判断先跑它，不要手打 URL 去 curl。
+
+**2026-10-26：首次周更 + Movers 区块 + sitemap lastmod 修复**
 - `skills-data.json` 17 条星数全部刷新（`a3b27b0`），页面「Last updated 2026-10-26」，线上已验证（200 / 17KB / `303.5K` 到位），IndexNow 23 条已推
 - 条目数仍 17（无新增：`andrej-karpathy-skills` 仅 1 周在榜，按「连续 2 周」规则观察）
 - **修复 `lastmod` 假信号**（`e1d81a1`）：`generate-sitemap.js` 原本给所有 URL 打当天日期，23 条全被刷成生成日 → 搜索引擎会判定 lastmod 不可信而忽略。现改为取该页 git 最后一次提交日期（回退 mtime），线上分布已恢复真实：21 条 10-21 / 1 条 10-22 / agent-skills 10-26
 - robots.txt 由站主另行提交 `607d794`（屏蔽 `/cdn-cgi/l/` 的 Cloudflare 生成 404）
+- **新增「Biggest Movers」区块**（`20a7e02`）：在目录页顶部列出本周星数涨幅 TOP5，数据由 `generate-skills-page.js` 从 `skills-data.json` 的 git 历史 diff 自动算出（向前找第一个内容不同的版本，避免 HEAD==工作区时算出零涨幅），涨幅 ≥20% 自动加 `hot` 标。**替代原计划的独立周更页**——新页面会与目录页内容高度重叠，有重复内容风险且稀释权重。线上已验证：Movers 区块与 17 张卡片同在
+
+**已知小问题**：`ai-tools-en.pages.dev` 自 2026-10-26 起返回 **522**。自定义域 `getoolkit.com` 不受影响（服务端抓取确认全站正常），属可选排查项，不阻塞任何工作。
 
 **2026-10-23：目录页已数据模型化**
 - 条目抽成 `skills-data.json`（单一数据源），`node generate-skills-page.js` 渲染；周更流程 = 改 JSON → 生成 → sitemap → 测试 → 推送
