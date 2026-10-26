@@ -21,11 +21,13 @@ const HOST = new URL(SITE_URL).hostname;
 const EXPECT_NS = ['asa.ns.cloudflare.com', 'tadeo.ns.cloudflare.com'];
 
 const CHECKS = [
-  { path: '/', must: ['GetToolkit'], label: 'home' },
+  { path: '/', must: ['GetToolkit', 'Agent Skills'], label: 'home' },
   { path: '/agent-skills', must: ['Biggest Movers', 'mattpocock/skills'], label: 'agent-skills' },
   { path: '/sitemap.xml', must: ['<urlset'], label: 'sitemap.xml' },
   { path: '/llms.txt', must: ['agent-skills'], label: 'llms.txt' },
   { path: '/robots.txt', must: ['Sitemap'], label: 'robots.txt' },
+  // 工具页检查「Agent Skills」内链，防止目录页再次变成孤岛页面
+  { path: '/tools/json-formatter', must: ['Agent Skills'], label: 'tool page +内链' },
 ];
 
 function req(url, { timeout = 25000, headers = {}, redirects = 3 } = {}) {
