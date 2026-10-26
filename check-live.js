@@ -26,6 +26,8 @@ const CHECKS = [
   { path: '/sitemap.xml', must: ['<urlset'], label: 'sitemap.xml' },
   { path: '/llms.txt', must: ['agent-skills'], label: 'llms.txt' },
   { path: '/robots.txt', must: ['Sitemap'], label: 'robots.txt' },
+  // IndexNow 的 key 文件必须可访问且内容与 site.json 一致，否则所有推送都会被判无效
+  { path: `/${site.indexNowKey}.txt`, must: [site.indexNowKey], label: 'IndexNow key' },
   // 工具页检查「Agent Skills」内链，防止目录页再次变成孤岛页面
   { path: '/tools/json-formatter', must: ['Agent Skills'], label: 'tool page +内链' },
 ];
