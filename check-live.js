@@ -27,7 +27,7 @@ const CHECKS = [
   { path: '/llms.txt', must: ['agent-skills'], label: 'llms.txt' },
   { path: '/robots.txt', must: ['Sitemap'], label: 'robots.txt' },
   // IndexNow 的 key 文件必须可访问且内容与 site.json 一致，否则所有推送都会被判无效
-  { path: `/${site.indexNowKey}.txt`, must: [site.indexNowKey], label: 'IndexNow key' },
+  { path: `/${site.indexNowKey}.txt`, must: [site.indexNowKey], label: 'IndexNow key', minSize: 10 },
   // 工具页检查「Agent Skills」内链，防止目录页再次变成孤岛页面
   { path: '/tools/json-formatter', must: ['Agent Skills'], label: 'tool page +内链' },
 ];
@@ -107,7 +107,8 @@ async function doh(name, type) {
     const size = Buffer.byteLength(r.body, 'utf8');
     const hit = c.must.filter((m) => r.body.includes(m));
     const miss = c.must.filter((m) => !r.body.includes(m));
-    const ok = r.statusCode === 200 && miss.length === 0 && size > 500;
+    const minSize = c.minSize === undefined ? 500 : c.minSize;
+    const ok = r.statusCode === 200 && miss.length === 0 && size >= minSize;
     console.log(
       `  ${ok ? '✅' : '❌'} ${c.label.padEnd(14)} ${r.statusCode} ${r.headers['content-type'] || '-'} ${size}B  ` +
         `命中 ${hit.length}/${c.must.length}${miss.length ? ` 缺: ${miss.join(',')}` : ''}`
