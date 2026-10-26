@@ -18,6 +18,12 @@
 | ads.txt | `google.com, pub-4065367396215160, DIRECT, f08c47fec0942fa0` |
 | IndexNow | 23 条已推送，key `ef8e4253e417291bba6c439eea3947d1` |
 
+**2026-10-26：首次周更 + sitemap lastmod 修复**
+- `skills-data.json` 17 条星数全部刷新（`a3b27b0`），页面「Last updated 2026-10-26」，线上已验证（200 / 17KB / `303.5K` 到位），IndexNow 23 条已推
+- 条目数仍 17（无新增：`andrej-karpathy-skills` 仅 1 周在榜，按「连续 2 周」规则观察）
+- **修复 `lastmod` 假信号**（`e1d81a1`）：`generate-sitemap.js` 原本给所有 URL 打当天日期，23 条全被刷成生成日 → 搜索引擎会判定 lastmod 不可信而忽略。现改为取该页 git 最后一次提交日期（回退 mtime），线上分布已恢复真实：21 条 10-21 / 1 条 10-22 / agent-skills 10-26
+- robots.txt 由站主另行提交 `607d794`（屏蔽 `/cdn-cgi/l/` 的 Cloudflare 生成 404）
+
 **2026-10-23：目录页已数据模型化**
 - 条目抽成 `skills-data.json`（单一数据源），`node generate-skills-page.js` 渲染；周更流程 = 改 JSON → 生成 → sitemap → 测试 → 推送
 - 新增 `llms.txt`（`generate-sitemap.js` 自动输出，23 页带描述，供 AI agent/LLM 爬虫发现站点）
