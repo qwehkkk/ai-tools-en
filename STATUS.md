@@ -30,6 +30,7 @@
 - **修复 `lastmod` 假信号**（`e1d81a1`）：`generate-sitemap.js` 原本给所有 URL 打当天日期，23 条全被刷成生成日 → 搜索引擎会判定 lastmod 不可信而忽略。现改为取该页 git 最后一次提交日期（回退 mtime），线上分布已恢复真实：21 条 10-21 / 1 条 10-22 / agent-skills 10-26
 - robots.txt 由站主另行提交 `607d794`（屏蔽 `/cdn-cgi/l/` 的 Cloudflare 生成 404）
 - **新增「Biggest Movers」区块**（`20a7e02`）：在目录页顶部列出本周星数涨幅 TOP5，数据由 `generate-skills-page.js` 从 `skills-data.json` 的 git 历史 diff 自动算出（向前找第一个内容不同的版本，避免 HEAD==工作区时算出零涨幅），涨幅 ≥20% 自动加 `hot` 标。**替代原计划的独立周更页**——新页面会与目录页内容高度重叠，有重复内容风险且稀释权重。线上已验证：Movers 区块与 17 张卡片同在
+- **修复内链孤岛**（`dd6062f`）：`/agent-skills` 此前**只被 `sitemap.html` 链接**，首页与 17 个工具页都没有入口，爬虫只能靠 sitemap 发现。已在全部 24 个页面的 footer-nav 加 `<a href="/agent-skills">Agent Skills</a>`，内链权重与可发现性同时解决。`check-live.js` 增加「工具页含 Agent Skills 内链」检查项，防止复发
 
 **已知小问题**：`ai-tools-en.pages.dev` 自 2026-10-26 起返回 **522**。自定义域 `getoolkit.com` 不受影响（服务端抓取确认全站正常），属可选排查项，不阻塞任何工作。
 
