@@ -129,17 +129,51 @@ const pages = fs
 // ---- 1. Generate sitemap.xml ----
 const today = new Date().toISOString().split('T')[0];
 
+// lastmod must reflect when a page ACTUALLY changed, not "today".
+// Stamping every URL with today's date on every run teaches crawlers that
+// lastmod is meaningless, and they start ignoring it entirely.
+// Prefer the git commit date (stable across clones); fall back to file mtime.
+const { execSync } = require('child_process');
+const _lastModCache = new Map();
+
+function lastModOf(relPath) {
+  if (_lastModCache.has(relPath)) return _lastModCache.get(relPath);
+
+  let date = '';
+  try {
+    date = execSync(`git log -1 --format=%cs -- "${relPath}"`, {
+      cwd: ROOT,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim();
+  } catch (e) {
+    // git missing or not a repo — fall through to mtime
+  }
+
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    try {
+      date = fs.statSync(path.join(ROOT, relPath)).mtime.toISOString().split('T')[0];
+    } catch (e) {
+      date = today;
+    }
+  }
+
+  _lastModCache.set(relPath, date);
+  return date;
+}
+
 let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
 xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 
-function addUrl(loc, changefreq, priority) {
-  xml += `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>\n`;
+function addUrl(loc, changefreq, priority, relPath) {
+  const lastmod = relPath ? lastModOf(relPath) : today;
+  xml += `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>\n`;
 }
 
-addUrl(`${SITE_URL}/`, 'weekly', '1.0');
-for (const t of tools) addUrl(t.url, 'monthly', '0.8');
-for (const p of pages) addUrl(p.url, 'yearly', '0.4');
-addUrl(`${SITE_URL}/sitemap`, 'monthly', '0.3');
+addUrl(`${SITE_URL}/`, 'weekly', '1.0', 'index.html');
+for (const t of tools) addUrl(t.url, 'monthly', '0.8', `tools/${t.file}`);
+for (const p of pages) addUrl(p.url, 'yearly', '0.4', p.file);
+addUrl(`${SITE_URL}/sitemap`, 'monthly', '0.3', 'sitemap.html');
 xml += '</urlset>\n';
 
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml, 'utf8');
