@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "snapshotNote": "Star counts are a snapshot; refresh weekly from GitHub trending before regenerating.",
   "categories": [
     {
@@ -8,28 +8,28 @@
       "entries": [
         {
           "repo": "anthropics/claude-plugins-official",
-          "stars": "43.8K",
+          "stars": "44.6K",
           "desc": "Anthropic's official catalog of high-quality Claude Code plugins.",
           "verdict": "The canonical starting point &mdash; curated, versioned, and growing weekly.",
           "tags": ["Claude Code", "Official"]
         },
         {
           "repo": "anthropics/knowledge-work-plugins",
-          "stars": "31.3K",
+          "stars": "33.1K",
           "desc": "Open-source plugins for knowledge workers (docs, research, planning) in Claude Cowork.",
           "verdict": "Best pick if your agent work is writing and analysis, not just code.",
           "tags": ["Claude", "Official"]
         },
         {
           "repo": "cursor/plugins",
-          "stars": "13.5K",
+          "stars": "14.1K",
           "desc": "Cursor's plugin specification plus the official plugin set.",
           "verdict": "Defines where the Cursor ecosystem is heading &mdash; worth watching even if you don't use Cursor.",
           "tags": ["Cursor", "Official"]
         },
         {
           "repo": "android/skills",
-          "stars": "9.2K",
+          "stars": "9.8K",
           "desc": "Google's official Android engineering skills for coding agents.",
           "verdict": "Signals that platform teams now ship agent skills as first-class developer tooling.",
           "tags": ["Android", "Official"]
@@ -42,42 +42,42 @@
       "entries": [
         {
           "repo": "mattpocock/skills",
-          "stars": "279.7K",
+          "stars": "303.5K",
           "desc": "\"Skills for Real Engineers\" &mdash; composable engineering skills straight from a working expert's agent setup.",
           "verdict": "The most-starred skills collection on GitHub. Battle-tested and pragmatic.",
           "tags": ["Multi-agent", "Shell"]
         },
         {
           "repo": "addyosmani/agent-skills",
-          "stars": "102.9K",
+          "stars": "110.6K",
           "desc": "Production-grade engineering skills and workflows for AI coding agents.",
           "verdict": "Strong on quality gates and review discipline; pairs well with any coding agent.",
           "tags": ["Multi-agent", "Workflow"]
         },
         {
           "repo": "DietrichGebert/ponytail",
-          "stars": "172.5K",
+          "stars": "176.5K",
           "desc": "\"Makes your AI agent think like the laziest senior dev in the room\" &mdash; biases the agent toward less code.",
           "verdict": "One idea, executed well. Genuinely reduces over-engineering in agent output.",
           "tags": ["Mindset", "Code quality"]
         },
         {
           "repo": "cloudflare/security-audit-skill",
-          "stars": "38.0K",
+          "stars": "47.5K",
           "desc": "Multi-phase security audits producing independently verified, machine-readable findings.",
           "verdict": "Vendor-backed and rigorous; the serious option for pre-release security passes.",
           "tags": ["Security", "Audit"]
         },
         {
           "repo": "cathrynlavery/diagram-design",
-          "stars": "50.5K",
+          "stars": "61.2K",
           "desc": "Editorial-quality diagram generation: 44 diagram types as self-contained HTML + SVG.",
           "verdict": "Fixes the \"Mermaid slop\" problem. Great for architecture docs and blog figures.",
           "tags": ["Diagrams", "Docs"]
         },
         {
           "repo": "ayghri/i-have-adhd",
-          "stars": "55.2K",
+          "stars": "58.8K",
           "desc": "Formats agent output to be action-first and readable &mdash; stops agents burying the answer.",
           "verdict": "Silly name, real payoff. One of the highest signal-to-noise improvements you can install.",
           "tags": ["UX", "Output"]
@@ -90,21 +90,21 @@
       "entries": [
         {
           "repo": "Graphify-Labs/graphify",
-          "stars": "132.2K",
+          "stars": "135.5K",
           "desc": "Turns codebases, docs, SQL schemas and PDFs into a queryable knowledge graph &mdash; local AST parsing, no vector store.",
           "verdict": "A different bet on codebase context: deterministic graph instead of embeddings. Works with Claude Code, Cursor, Codex and Gemini CLI.",
           "tags": ["Codebase", "Knowledge graph"]
         },
         {
           "repo": "K-Dense-AI/scientific-agent-skills",
-          "stars": "53.8K",
+          "stars": "54.7K",
           "desc": "177 validated skills plus 100+ scientific databases &mdash; \"turn any agent into an AI scientist\".",
           "verdict": "Proof that deep vertical skill packs work. The template for other domains to copy.",
           "tags": ["Science", "Vertical"]
         },
         {
           "repo": "HKUDS/CLI-Anything",
-          "stars": "56.1K",
+          "stars": "57.2K",
           "desc": "\"Make all software agent-native\" &mdash; exposes arbitrary CLI tools through an agent hub.",
           "verdict": "Broad reach; ideal once your agent routine goes beyond coding tasks.",
           "tags": ["CLI", "Hub"]
@@ -117,21 +117,21 @@
       "entries": [
         {
           "repo": "thedotmack/claude-mem",
-          "stars": "97.8K",
+          "stars": "103.2K",
           "desc": "Persistent context across sessions &mdash; captures, compresses and re-injects what your agent did.",
           "verdict": "The most compatible memory layer: Claude Code, Codex, Gemini, Copilot, OpenCode and more.",
           "tags": ["Memory", "Multi-agent"]
         },
         {
           "repo": "akitaonrails/ai-memory",
-          "stars": "12.6K",
+          "stars": "13.6K",
           "desc": "Long-term memory for coding agent CLIs, with handoff between different vendors' agents.",
           "verdict": "The cross-vendor handoff angle is unique &mdash; useful if you switch agents mid-project.",
           "tags": ["Memory", "Handoff", "Rust"]
         },
         {
           "repo": "mksglu/context-mode",
-          "stars": "31.7K",
+          "stars": "32.3K",
           "desc": "Context-window optimization: sandboxes tool outputs, cutting context consumption by up to 98%.",
           "verdict": "Directly attacks the token bill. High impact on long agent sessions.",
           "tags": ["Context", "Cost"]
@@ -144,7 +144,7 @@
       "entries": [
         {
           "repo": "luongnv89/claude-howto",
-          "stars": "42.6K",
+          "stars": "45.2K",
           "desc": "Visual, example-driven guide to Claude Code &mdash; from basics to advanced agents, with copy-paste templates.",
           "verdict": "Best structured on-ramp if the skills ecosystem feels overwhelming.",
           "tags": ["Guide", "Claude Code"]
