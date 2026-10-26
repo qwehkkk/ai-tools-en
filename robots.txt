@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
 
+# Cloudflare 内部端点，不是真页面。
+# Email Obfuscation 把 mailto 改写成 /cdn-cgi/l/email-protection#xxx，
+# 爬虫照着请求会得到 404，在 GSC 里占一个 404 名额（报错的就是这条路径）。
+#
+# 只挡 /cdn-cgi/l/，不挡整个 /cdn-cgi/：
+# contact 页还加载了 /cdn-cgi/scripts/ 的邮箱解码脚本，
+# 一并挡掉会让 Google 渲染时报"资源被 robots.txt 阻止"，得不偿失。
+Disallow: /cdn-cgi/l/
+
 Sitemap: https://getoolkit.com/sitemap.xml
