@@ -24,6 +24,13 @@
 >
 > **健康检查：`node check-live.js`** —— 域名从 `site.json` 读取并逐字符打印，同时查权威 NS、A 记录和 5 个关键页面的状态码/特征串。任何「站点是不是挂了」的判断先跑它，不要手打 URL 去 curl。
 
+**2026-11-02：第 2 次周更（自动化第 3 期）+ lastmod 滞后修复**
+- 17 条星数全部刷新 + **新增 `multica-ai/andrej-karpathy-skills`（228.0K，连续 2 周在榜，符合收录规则）**，现 18 条 5 类（`05841b5`）。Movers TOP3：security-audit-skill +8.9K / claude-mem +6.1K / mattpocock/skills +5.8K
+- 线上验证通过（check-live 7 项 + 服务端抓取确认 `228.0K`/Movers/`2026-11-02`），IndexNow 23 条已推
+- **修复 lastmod 滞后**（`13e981b`）：sitemap 在提交前生成，agent-skills.html 的 git 日期永远滞后一个周更周期 → 改为该页直接读 `skills-data.json` 的 `updated` 字段
+- 下期（11-09）决策点：设计类（hallmark/impeccable/taste-skill）再有 ≥2 条在榜 → 加「Design & Output Quality」分类；claude-seo 连续 2 周在榜 → 收录
+- **收录状态（11-03 核实）**：Bing `site:getoolkit.com` 仍无结果（与 URL Inspection 的 "Discovered but not crawled" 一致，站侧 bingbot UA 实测可正常抓取，属 Bing 排队/权重问题）；等 10-26 Request indexing 生效，3-7 天后复查
+
 **2026-10-26：首次周更 + Movers 区块 + sitemap lastmod 修复**
 - `skills-data.json` 17 条星数全部刷新（`a3b27b0`），页面「Last updated 2026-10-26」，线上已验证（200 / 17KB / `303.5K` 到位），IndexNow 23 条已推
 - 条目数仍 17（无新增：`andrej-karpathy-skills` 仅 1 周在榜，按「连续 2 周」规则观察）
