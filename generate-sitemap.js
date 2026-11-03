@@ -139,6 +139,20 @@ const _lastModCache = new Map();
 function lastModOf(relPath) {
   if (_lastModCache.has(relPath)) return _lastModCache.get(relPath);
 
+  // agent-skills.html is regenerated every week BEFORE its commit, so its git
+  // date at generation time always lags one cycle. The authoritative change
+  // date lives in skills-data.json (`updated`), which is committed together
+  // with the page — use it.
+  if (relPath === 'agent-skills.html') {
+    try {
+      const updated = JSON.parse(fs.readFileSync(path.join(ROOT, 'skills-data.json'), 'utf8')).updated;
+      if (/^\d{4}-\d{2}-\d{2}$/.test(updated)) {
+        _lastModCache.set(relPath, updated);
+        return updated;
+      }
+    } catch (e) { /* fall through to git date */ }
+  }
+
   let date = '';
   try {
     date = execSync(`git log -1 --format=%cs -- "${relPath}"`, {
