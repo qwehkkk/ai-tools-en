@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MD5, SHA-1 or SHA-256? Choosing a Hash Algorithm | GetToolkit</title>
+  <meta name="description" content="MD5 and SHA-1 are broken. A plain-language guide to choosing a hash: what that means, when SHA-256 is right, and what to use for passwords.">
+  <link rel="canonical" href="https://getoolkit.com/guides/choosing-a-hash-algorithm">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="GetToolkit">
+  <meta property="og:title" content="MD5, SHA-1 or SHA-256? Choosing a Hash Algorithm | GetToolkit">
+  <meta property="og:description" content="MD5 and SHA-1 are broken. A plain-language guide to choosing a hash: what that means, when SHA-256 is right, and what to use for passwords.">
+  <meta property="og:url" content="https://getoolkit.com/guides/choosing-a-hash-algorithm">
+  <meta property="og:image" content="https://getoolkit.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://getoolkit.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://getoolkit.com/#guides" },
+      { "@type": "ListItem", "position": 3, "name": "Choosing a Hash Algorithm", "item": "https://getoolkit.com/guides/choosing-a-hash-algorithm" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "MD5, SHA-1 or SHA-256? Choosing a Hash Algorithm",
+    "description": "What 'broken' means for a hash function, and which algorithm to reach for.",
+    "datePublished": "2026-11-09",
+    "author": { "@type": "Organization", "name": "GetToolkit" },
+    "publisher": { "@type": "Organization", "name": "GetToolkit" },
+    "mainEntityOfPage": "https://getoolkit.com/guides/choosing-a-hash-algorithm"
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">GetToolkit</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>MD5, SHA-1 or SHA-256? Choosing a Hash Algorithm</h1>
+    <p>"MD5 and SHA-1 are broken" gets repeated everywhere, often without explanation. Here is what it actually means, and what it means for whatever you're building.</p>
+  </div>
+
+  <div class="prose">
+    <h2>What a hash function promises</h2>
+    <p>A cryptographic hash takes any input and produces a fixed-length fingerprint. Three properties matter:</p>
+    <ul>
+      <li><strong>Deterministic</strong> — same input, same fingerprint, every time.</li>
+      <li><strong>One-way</strong> — you cannot reconstruct the input from the fingerprint.</li>
+      <li><strong>Collision-resistant</strong> — you cannot find two different inputs with the same fingerprint.</li>
+    </ul>
+    <p>When someone says an algorithm is "broken", they almost always mean the third property — and <em>how</em> it broke determines what the algorithm is still safe for.</p>
+
+    <h2>What "broken" actually means</h2>
+    <p>Collisions are found by academics with serious compute. Nobody can reverse your SHA-256 hash. But a practical collision attack means an attacker can craft <em>two files with the same fingerprint</em> — show you the innocent one, then swap in the malicious one.</p>
+    <p>For MD5, that stopped being theoretical in 2004, when a team led by Xiaoyun Wang demonstrated practical collisions; since then, researchers have generated colliding certificates and files on demand. For SHA-1, Google's 2017 SHAttered attack produced two different PDFs with identical SHA-1 hashes. Both algorithms remain perfectly good <em>checksums against accidental corruption</em> — a flipped bit or a truncated download still changes the hash completely. What they can no longer guarantee is integrity <em>against a motivated attacker</em>.</p>
+
+    <h2>So which one do you use?</h2>
+    <table>
+      <thead>
+        <tr><th>You are hashing…</th><th>Use</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Anything security-relevant (signatures, certs, dedup of untrusted input)</td><td>SHA-256 or better</td><td>No practical collision attack exists; it's the industry default.</td></tr>
+        <tr><td>Quick checksums of your own files, download corruption, cache keys</td><td>SHA-256 still, or MD5 for legacy compatibility</td><td>Accidental corruption changes any hash. MD5 is only risky when the input can be attacker-crafted.</td></tr>
+        <tr><td>Passwords</td><td><strong>None of these.</strong> Use bcrypt, scrypt or Argon2</td><td>Fast hashes are the problem — see below.</td></tr>
+        <tr><td>Git-style content addressing at scale</td><td>SHA-256</td><td>Git itself is migrating off SHA-1 for exactly these reasons.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>The counterintuitive part: passwords want slow hashes</h2>
+    <p>Every hash in this article is designed to be <em>fast</em>. A modern GPU computes billions of SHA-256 hashes per second, which is exactly what you don't want when the input is a password — an attacker who steals your database just tries billions of guesses.</p>
+    <p>Password storage needs the opposite trade-off: a deliberately slow, memory-hungry construction. That's what bcrypt, scrypt and Argon2 are. Hashing a password with SHA-256 — even salted — is a well-known anti-pattern, because it turns a leaked database into a high-speed guessing machine.</p>
+
+    <h2>What about SHA-512?</h2>
+    <p>SHA-256 and SHA-512 are both in the SHA-2 family and both stand unbroken. The surprising detail: on 64-bit CPUs, SHA-512 (and its truncated variant SHA-384) can actually be <em>faster</em> than SHA-256 per byte, because it processes 1024-bit blocks in the same number of rounds. The practical reason SHA-256 dominates is compatibility — everything speaks it. If you control both ends, either is a fine choice.</p>
+
+    <h2>The 30-second summary</h2>
+    <ul>
+      <li>Default to SHA-256. You will never be wrong reaching for it.</li>
+      <li>MD5 and SHA-1 are acceptable only where the input can't be crafted by an attacker — and even then, they buy you nothing over SHA-256.</li>
+      <li>Passwords: bcrypt, scrypt or Argon2. Never SHA-anything.</li>
+    </ul>
+  </div>
+
+  <section class="related">
+    <h2>Try it with real data</h2>
+    <div class="tool-grid compact">
+      <a href="/tools/hash-calculator" class="tool-card">
+        <h3>Hash Generator</h3>
+        <p>Compute MD5, SHA-1, SHA-256, SHA-384 and SHA-512 of any text, side by side, entirely in your browser.</p>
+      </a>
+      <a href="/tools/base64-converter" class="tool-card">
+        <h3>Base64 Converter</h3>
+        <p>Encode or decode Base64 — the other thing people reach for when "hash" is what they actually don't mean.</p>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <nav class="footer-nav">
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/contact">Contact</a>
+    <a href="/sitemap">Sitemap</a>
+  </nav>
+  <p>&copy; 2026 GetToolkit. All processing happens in your browser.</p>
+</footer>
+
+</body>
+</html>

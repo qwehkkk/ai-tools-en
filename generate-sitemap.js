@@ -14,6 +14,7 @@ const path = require('path');
 
 const ROOT = __dirname;
 const TOOLS_DIR = path.join(ROOT, 'tools');
+const GUIDES_DIR = path.join(ROOT, 'guides');
 
 // Single source of truth for the site domain — see set-domain.js to change it.
 const SITE_CONFIG = path.join(ROOT, 'site.json');
@@ -108,6 +109,17 @@ if (tools.length === 0) {
   process.exit(1);
 }
 
+// ---- Guide pages (long-form articles under guides/) ----
+// Optional directory: if it exists, every .html in it becomes a guide entry.
+const guideFiles = fs.existsSync(GUIDES_DIR)
+  ? fs.readdirSync(GUIDES_DIR).filter(f => f.endsWith('.html')).sort()
+  : [];
+
+const guides = guideFiles.map(f => {
+  const meta = readMeta(path.join(GUIDES_DIR, f));
+  return { file: f, slug: cleanUrl(f), url: `${SITE_URL}/guides/${cleanUrl(f)}`, ...meta };
+});
+
 // ---- Collect root-level pages (About, Privacy, Contact, ...) ----
 // Anything ending in .html at the project root is included automatically,
 // except the ones that must never appear in a sitemap:
@@ -186,12 +198,13 @@ function addUrl(loc, changefreq, priority, relPath) {
 
 addUrl(`${SITE_URL}/`, 'weekly', '1.0', 'index.html');
 for (const t of tools) addUrl(t.url, 'monthly', '0.8', `tools/${t.file}`);
+for (const g of guides) addUrl(g.url, 'monthly', '0.7', `guides/${g.file}`);
 for (const p of pages) addUrl(p.url, 'yearly', '0.4', p.file);
 addUrl(`${SITE_URL}/sitemap`, 'monthly', '0.3', 'sitemap.html');
 xml += '</urlset>\n';
 
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml, 'utf8');
-console.log(`✅ sitemap.xml  —  ${tools.length + pages.length + 2} URLs`);
+console.log(`✅ sitemap.xml  —  ${tools.length + guides.length + pages.length + 2} URLs`);
 
 // ---- 2. Generate sitemap.html (human-readable, good for internal linking) ----
 const listItems = tools
@@ -202,6 +215,24 @@ const listItems = tools
       }</li>`
   )
   .join('\n');
+
+const guideItems = guides
+  .map(
+    g =>
+      `    <li><a href="guides/${g.slug}">${escapeHtml(g.title)}</a>${
+        g.description ? ` <span class="desc">— ${escapeHtml(truncate(g.description))}</span>` : ''
+      }</li>`
+  )
+  .join('\n');
+
+const guideSection = guides.length
+  ? `
+  <h2 class="sitemap-heading">Guides</h2>
+  <ul class="sitemap-list">
+${guideItems}
+  </ul>
+`
+  : '';
 
 const pageItems = pages
   .map(
@@ -255,7 +286,7 @@ const html = `<!DOCTYPE html>
     <li><a href="/">Home</a> <span class="desc">— Browse all tools</span></li>
 ${listItems}
   </ul>
-
+${guideSection}
   <h2 class="sitemap-heading">Site pages</h2>
   <ul class="sitemap-list">
 ${pageItems}
@@ -288,8 +319,9 @@ let llms = `# GetToolkit\n\n> Free online developer tools that run entirely in t
 llms += `## Pages\n\n`;
 llms += `- [Home](${SITE_URL}/): Browse all ${tools.length} free tools.\n`;
 for (const t of tools) llms += `- [${t.title}](${t.url})${meta(t)}\n`;
+for (const g of guides) llms += `- [Guide: ${g.title}](${g.url})${meta(g)}\n`;
 for (const p of pages) llms += `- [${p.title}](${p.url})${meta(p)}\n`;
 llms += `- [Sitemap](${SITE_URL}/sitemap): Complete list of all pages.\n`;
 fs.writeFileSync(path.join(ROOT, 'llms.txt'), llms, 'utf8');
-console.log(`✅ llms.txt — ${tools.length + pages.length + 2} pages listed`);
+console.log(`✅ llms.txt — ${tools.length + guides.length + pages.length + 2} pages listed`);
 console.log(`\nNext: git add . && git commit -m "..." && git push`);

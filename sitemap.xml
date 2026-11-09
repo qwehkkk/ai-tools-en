@@ -109,6 +109,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://getoolkit.com/guides/base64-vs-url-encoding</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://getoolkit.com/guides/choosing-a-hash-algorithm</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://getoolkit.com/guides/how-to-read-cron-expressions</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://getoolkit.com/about</loc>
     <lastmod>2026-10-26</lastmod>
     <changefreq>yearly</changefreq>

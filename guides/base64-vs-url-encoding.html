@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base64 vs URL Encoding vs HTML Entities | GetToolkit</title>
+  <meta name="description" content="Base64, URL encoding and HTML entities solve three different problems. A practical guide to picking the right encoder, with examples and common mistakes.">
+  <link rel="canonical" href="https://getoolkit.com/guides/base64-vs-url-encoding">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="GetToolkit">
+  <meta property="og:title" content="Base64 vs URL Encoding vs HTML Entities | GetToolkit">
+  <meta property="og:description" content="Base64, URL encoding and HTML entities solve three different problems. A practical guide to picking the right encoder, with examples and common mistakes.">
+  <meta property="og:url" content="https://getoolkit.com/guides/base64-vs-url-encoding">
+  <meta property="og:image" content="https://getoolkit.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://getoolkit.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://getoolkit.com/#guides" },
+      { "@type": "ListItem", "position": 3, "name": "Base64 vs URL Encoding vs HTML Entities", "item": "https://getoolkit.com/guides/base64-vs-url-encoding" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Base64 vs URL Encoding vs HTML Entities: Which One Do You Need?",
+    "description": "A practical guide to picking the right encoder for the job.",
+    "datePublished": "2026-11-09",
+    "author": { "@type": "Organization", "name": "GetToolkit" },
+    "publisher": { "@type": "Organization", "name": "GetToolkit" },
+    "mainEntityOfPage": "https://getoolkit.com/guides/base64-vs-url-encoding"
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">GetToolkit</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>Base64 vs URL Encoding vs HTML Entities: Which One Do You Need?</h1>
+    <p>All three are called "encoding", and all three turn awkward characters into safe ones. They solve three completely different problems — and picking the wrong one is one of the most common beginner mistakes in web development.</p>
+  </div>
+
+  <div class="prose">
+    <h2>The one-line answer</h2>
+    <ul>
+      <li><strong>Base64</strong> — you need to shove <em>binary or arbitrary data</em> through a channel that only understands plain ASCII text (email, JSON, a data URI).</li>
+      <li><strong>URL encoding</strong> (percent-encoding) — you need to put <em>a value inside a URL</em> without breaking the URL's structure.</li>
+      <li><strong>HTML entities</strong> — you need to put <em>user input into an HTML page</em> without the browser reading it as markup.</li>
+    </ul>
+    <p>Everything else in this article is detail. But the detail is where the bugs live, so read on.</p>
+
+    <h2>Base64: binary data in an ASCII world</h2>
+    <p>Base64 takes any bytes — an image, a gzip stream, a UTF-8 string — and rewrites them using just 64 characters: <code>A–Z</code>, <code>a–z</code>, <code>0–9</code>, <code>+</code> and <code>/</code>, with <code>=</code> as padding at the end.</p>
+    <p>The <code>=</code> padding is the classic "is my output broken?" moment: a Base64 string ending in one or two equals signs is not a bug. Three bytes of input become four characters of output, and the padding fills the gap when the input length isn't a multiple of three.</p>
+    <p>Where you run into it in practice:</p>
+    <ul>
+      <li><strong>Email attachments</strong> — SMTP was designed for 7-bit ASCII, so attachments are Base64-encoded (that's why an emailed 1&nbsp;MB file becomes roughly 1.37&nbsp;MB in the raw message).</li>
+      <li><strong>JWTs</strong> — the header and payload of a JSON Web Token are Base64url-encoded (a URL-safe variant that swaps <code>+/</code> for <code>-_</code> and drops the padding).</li>
+      <li><strong>Data URIs</strong> — <code>data:image/png;base64,...</code> embeds an image directly in CSS or HTML.</li>
+    </ul>
+    <p>The cost to remember: Base64 output is about <strong>33% larger</strong> than the input. Fine for small payloads, wasteful for big ones. And it is <strong>not encryption</strong> — anyone can decode it. It's a shipping container, not a safe.</p>
+
+    <h2>URL encoding: values that must not break the URL</h2>
+    <p>A URL has structure: <code>?</code> starts the query, <code>&amp;</code> separates parameters, <code>=</code> assigns values, <code>#</code> starts the fragment. If your data contains any of those characters — or a space, or anything outside the ASCII printable range — it must be escaped.</p>
+    <p>That's what percent-encoding does: each problematic byte becomes a <code>%</code> followed by two hex digits. A space becomes <code>%20</code>, an ampersand becomes <code>%26</code>, and the euro sign — three bytes in UTF-8 — becomes <code>%E2%82%AC</code>.</p>
+    <p>The classic bug: you build a query string like <code>?next=/results&lang=en</code>, but the <em>value itself</em> contains an <code>&amp;</code>. If the value isn't encoded, the server reads it as a new parameter. The fix is encoding the <em>value</em> (<code>%26</code>), not the URL. Encoding the whole URL would escape the <code>?</code> and <code>&amp;</code> that are supposed to be there — that's the opposite bug, and it's just as common.</p>
+    <p>Rule of thumb: <strong>encode values, never the URL itself.</strong></p>
+
+    <h2>HTML entities: text that must not become markup</h2>
+    <p>When user input lands on an HTML page, five characters have special meaning to the browser: <code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code>, <code>"</code> and <code>'</code>. HTML entity encoding replaces them with <code>&amp;lt;</code>, <code>&amp;gt;</code>, <code>&amp;amp;</code>, <code>&amp;quot;</code> and <code>&amp;#39;</code>, so the browser displays them as text instead of interpreting them as tags or attribute boundaries.</p>
+    <p>Do this wrong and you don't just get ugly output — you get XSS. A comment containing <code>&lt;script&gt;</code> must be stored or rendered as those six visible characters, never executed.</p>
+    <p>The sneaky variant: <strong>double encoding</strong>. If your data is already entity-encoded and something encodes it again, <code>&amp;amp;</code> becomes <code>&amp;amp;amp;</code> and users see a literal <code>&amp;amp;</code> on the page. If you ever see that on a website, that's exactly what happened.</p>
+
+    <h2>Side by side</h2>
+    <table>
+      <thead>
+        <tr><th></th><th>Base64</th><th>URL encoding</th><th>HTML entities</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Problem it solves</td><td>Binary → ASCII text</td><td>Value → safe URL component</td><td>Text → safe HTML content</td></tr>
+        <tr><td>Output size</td><td>+33%</td><td>+200% per escaped char</td><td>+4 chars per escaped char</td></tr>
+        <tr><td>Reversible by</td><td>Anyone (not encryption)</td><td>Anyone</td><td>Anyone</td></tr>
+        <tr><td>Typical use</td><td>Email, JWT, data URIs</td><td>Query strings, path segments</td><td>Rendering user input</td></tr>
+        <tr><td>Classic bug</td><td>Padding <code>=</code> mistaken for corruption</td><td>Encoding the whole URL instead of the value</td><td>Double-encoding into <code>&amp;amp;amp;</code></td></tr>
+      </tbody>
+    </table>
+
+    <h2>What none of them do</h2>
+    <p>None of the three is encryption, and none is compression. If you need secrecy, you need actual encryption with a key. If you need smaller data, you need compression (and then, often, Base64 to ship the compressed bytes as text — which is why the two show up together).</p>
+  </div>
+
+  <section class="related">
+    <h2>Try it with real data</h2>
+    <div class="tool-grid compact">
+      <a href="/tools/base64-converter" class="tool-card">
+        <h3>Base64 Converter</h3>
+        <p>Encode or decode Base64 in your browser, with proper UTF-8 handling.</p>
+      </a>
+      <a href="/tools/url-encoder" class="tool-card">
+        <h3>URL Encoder &amp; Decoder</h3>
+        <p>Percent-encode values or decode query strings back to readable text.</p>
+      </a>
+      <a href="/tools/html-entities" class="tool-card">
+        <h3>HTML Entity Encoder &amp; Decoder</h3>
+        <p>Escape and unescape HTML entities, including named and numeric forms.</p>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <nav class="footer-nav">
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/contact">Contact</a>
+    <a href="/sitemap">Sitemap</a>
+  </nav>
+  <p>&copy; 2026 GetToolkit. All processing happens in your browser.</p>
+</footer>
+
+</body>
+</html>

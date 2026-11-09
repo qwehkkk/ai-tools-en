@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Read Cron Expressions in Five Minutes | GetToolkit</title>
+  <meta name="description" content="A field-by-field walkthrough of cron expressions: ranges, steps, lists, day-of-week quirks and the classic day/month OR trap, with worked examples.">
+  <link rel="canonical" href="https://getoolkit.com/guides/how-to-read-cron-expressions">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="GetToolkit">
+  <meta property="og:title" content="How to Read Cron Expressions in Five Minutes | GetToolkit">
+  <meta property="og:description" content="A field-by-field walkthrough of cron expressions: ranges, steps, lists, day-of-week quirks and the classic day/month OR trap, with worked examples.">
+  <meta property="og:url" content="https://getoolkit.com/guides/how-to-read-cron-expressions">
+  <meta property="og:image" content="https://getoolkit.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://getoolkit.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://getoolkit.com/#guides" },
+      { "@type": "ListItem", "position": 3, "name": "How to Read Cron Expressions", "item": "https://getoolkit.com/guides/how-to-read-cron-expressions" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Read Cron Expressions in Five Minutes",
+    "description": "A field-by-field walkthrough of cron syntax with worked examples.",
+    "datePublished": "2026-11-09",
+    "author": { "@type": "Organization", "name": "GetToolkit" },
+    "publisher": { "@type": "Organization", "name": "GetToolkit" },
+    "mainEntityOfPage": "https://getoolkit.com/guides/how-to-read-cron-expressions"
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">GetToolkit</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>How to Read Cron Expressions in Five Minutes</h1>
+    <p>Cron looks like line noise until you learn one thing: it is five (or six) small numbers read left to right. After that, every expression is just a sentence.</p>
+  </div>
+
+  <div class="prose">
+    <h2>The five fields</h2>
+    <p>A standard Unix cron expression is five space-separated fields:</p>
+    <pre><code>┌───────────── minute        (0–59)
+│ ┌───────────── hour       (0–23)
+│ │ ┌───────────── day of month (1–31)
+│ │ │ ┌───────────── month     (1–12, or JAN–DEC)
+│ │ │ │ ┌───────────── day of week  (0–7, or SUN–SAT; 0 and 7 are both Sunday)
+│ │ │ │ │
+* * * * *</code></pre>
+    <p>Read it as a sentence: <em>"when the minute is this, and the hour is that, and the day is..."</em> — a job runs when <strong>all five fields match the current time</strong>. An asterisk means "any value", i.e. "don't care".</p>
+
+    <h2>The four special characters</h2>
+    <ul>
+      <li><code>*</code> — every value. <code>*</code> in the minute field: every minute.</li>
+      <li><code>,</code> — a list. <code>0,30</code>: at 0 and 30.</li>
+      <li><code>-</code> — a range. <code>9-17</code>: from 9 through 17.</li>
+      <li><code>/</code> — a step within a range. <code>*/15</code>: every 15th value, starting at 0 (so 0, 15, 30, 45).</li>
+    </ul>
+    <p>They combine: <code>0-30/10</code> means "in the range 0–30, every 10th value" — that's 0, 10, 20, 30, and <em>not</em> 40 or 50. Steps always start from the beginning of the range, not from "wherever you'd like".</p>
+
+    <h2>Three real examples, decoded</h2>
+    <p><strong><code>0 9 * * 1-5</code></strong> — "at minute 0, hour 9, any day of the month, any month, Monday through Friday." Weekdays at 09:00. The most common cron in production, ever.</p>
+    <p><strong><code>*/15 * * * *</code></strong> — "every 15th minute of every hour." Note what this is <em>not</em>: it is not "every 15 minutes starting from whenever the job was deployed". Steps anchor to the top of the range — 0, 15, 30, 45 — no matter when the scheduler started.</p>
+    <p><strong><code>30 4 1 * *</code></strong> — "04:30 on the first day of every month." Month-end jobs can't be written this way (there is no "last day" in plain cron — day 31 simply doesn't match in shorter months), which is why "run on the 1st" is the standard workaround for monthly jobs.</p>
+
+    <h2>The trap that bites everyone once</h2>
+    <p>Suppose you want "the 15th of every month, but only if it's a Tuesday". You write:</p>
+    <pre><code>0 0 15 * 2</code></pre>
+    <p>And the job runs on <strong>every</strong> 15th <em>and</em> <strong>every</strong> Tuesday. In standard (Vixie) cron, when <em>both</em> the day-of-month and day-of-week fields are restricted, they are combined with <strong>OR, not AND</strong>. If either field is <code>*</code>, the other one works as expected — the trap only appears when both are restricted.</p>
+    <p>"Day 15 <em>and</em> Tuesday" cannot be expressed in plain cron. In practice you schedule for the 15th and check the weekday inside the job itself.</p>
+
+    <h2>Quirks worth knowing before they cost you an hour</h2>
+    <ul>
+      <li><strong>Sunday is both 0 and 7</strong> in day-of-week. Use names (<code>SUN</code>, <code>MON-FRI</code>) and the ambiguity disappears.</li>
+      <li><strong>Names work for months too</strong>: <code>JAN-DEC</code> is legal and easier to read than 1–12.</li>
+      <li><strong>Six-field cron exists.</strong> Quartz, Spring and some cloud schedulers insert a <em>seconds</em> field in front: <code>sec min hour dom mon dow</code>. <code>0 0 9 * * *</code> is Quartz for "09:00:00", not Unix for "09:00 on the 9th". Always check which dialect you're reading.</li>
+      <li><strong>Time zones and DST</strong>: a job at <code>0 2 * * *</code> runs once or twice (or not at all) on daylight-saving switchover nights, depending on the scheduler. Scheduling at hours that don't exist locally is a known footgun; most teams just avoid 02:00–03:00.</li>
+    </ul>
+
+    <h2>Reading checklist</h2>
+    <p>When you face an unfamiliar expression, work through it in this order: count the fields (5 or 6?), then read each field left to right and say the sentence out loud. Nine times out of ten, the field count is where the misunderstanding starts.</p>
+  </div>
+
+  <section class="related">
+    <h2>Try it with real data</h2>
+    <div class="tool-grid compact">
+      <a href="/tools/cron-explainer" class="tool-card">
+        <h3>Cron Expression Explainer</h3>
+        <p>Paste any 5, 6 or 7-field cron expression and get a plain-English reading plus the next run times.</p>
+      </a>
+      <a href="/tools/timestamp-converter" class="tool-card">
+        <h3>Unix Timestamp Converter</h3>
+        <p>Turn epoch timestamps into readable dates and back — useful when checking a scheduler's log output.</p>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <nav class="footer-nav">
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/contact">Contact</a>
+    <a href="/sitemap">Sitemap</a>
+  </nav>
+  <p>&copy; 2026 GetToolkit. All processing happens in your browser.</p>
+</footer>
+
+</body>
+</html>

@@ -113,7 +113,7 @@ def audit(rel):
     }
 
 
-pages = sorted(glob.glob('*.html') + glob.glob('tools/*.html'))
+pages = sorted(glob.glob('*.html') + glob.glob('tools/*.html') + glob.glob('guides/*.html'))
 pages = [p for p in pages if not os.path.basename(p).startswith('google')]
 pages = [p.replace(os.sep, '/') for p in pages]
 
