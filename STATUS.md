@@ -88,9 +88,9 @@ Text Diff、Regex Tester、Case Converter、Cron Explainer、QR Code Generator�
 | Cloudflare Web Analytics | 已添加 | 确认是否选了 Automatic（自动注入，不用改代码） |
 | Bing Webmaster | 未做 | GSC 一键导入，2 分钟 |
 
-`hello@` 已改成 `asdzcc@gmail.com`，但**这个地址没有真实邮箱在收信**。
-邮箱地址在 `contact.html` 里，真有人写会退信。想开通：Cloudflare → Email Routing
-免费转发到现有邮箱。
+联系邮箱已改为 `contact@getoolkit.com`（2026-11-09），由 Cloudflare Email Routing
+转发到个人邮箱。**前提是 Email Routing 里 destination 已验证**——发一封测试信确认，
+转发没通就等于页面上的地址是死的。`hello@` → `asdzcc@gmail.com` → `contact@` 换过两次。
 
 ---
 

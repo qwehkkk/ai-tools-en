@@ -184,7 +184,8 @@ AdSense 审核要求站点具备可访问的「关于 / 隐私政策 / 联系方
 
 - `privacy.html` 覆盖：本地处理声明、服务器日志（Cloudflare）、无 Cookie 统计、
   第三方广告 Cookie（Google / DoubleClick）与退出链接、GDPR/CCPA 权利、未成年人条款
-- `contact.html` 使用 `mailto:asdzcc@gmail.com`，站内不留任何表单与收集字段
+- `contact.html` 使用 `mailto:contact@getoolkit.com`（Cloudflare Email Routing 转发到个人邮箱），
+  站内不留任何表单与收集字段
 - 三页均带 canonical、OG、JSON-LD，并在全站 footer 导航中互相链接
 - `ads.txt` 位于站点根目录，用于 AdSense 的 ads.txt 站点验证：
   `google.com, pub-4065367396215160, DIRECT, f08c47fec0942fa0`
