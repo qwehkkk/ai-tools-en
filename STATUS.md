@@ -1,4 +1,4 @@
-# 项目状态 · 2026-10-22
+# 项目状态 · 2026-11-09
 
 一句话：**站点已完整上线并保持零问题，当前停在「等内容被收录」这一步，不再加工具；2026-10-22 新增了 Agent Skills 目录页（内容页，非工具）。**
 
@@ -23,6 +23,18 @@
 > 2026-10-26 曾把它打成两个 t 去查注册局，误报过一次「域名失联 P0 事故」——查 RDAP / DoH / 线上异常之前，先核对拼写。
 >
 > **健康检查：`node check-live.js`** —— 域名从 `site.json` 读取并逐字符打印，同时查权威 NS、A 记录和 5 个关键页面的状态码/特征串。任何「站点是不是挂了」的判断先跑它，不要手打 URL 去 curl。
+
+> ⚠️ **周更只在 `C:\Users\Administrator\WorkBuddy\2026-10-13-19-27-18\ai-tools-en` 做（2026-11-10 加）**
+> 本机有**两份**同名目录，`git remote` 都指向 `qwehkkk/ai-tools-en`，但**历史互不包含**：
+> `2026-10-22-20-13-32/ai-tools-en` 是独立历史（21 提交），远程没有它的任何提交，**在那边做的一切都推不上去**。
+> 判断哪份是真的：`git -C <dir> log -1 --format=%h` 必须等于 `git ls-remote origin main` 的短 SHA。
+> 2026-11-09 的周更就是做错在这份副本里，导致线上停在 11-02 整整一周。
+
+**2026-11-09：第 3 次周更 —— 曾一度没上线（事故记录）**
+- 数据：**20 条 5 类**（+2：`anthropics/skills` 189.7K 官方技能库、`jakubkrehel/skills` 11.7K UI 类），18 条星数全部刷新。Movers TOP3：security-audit-skill +10.5K / mattpocock/skills +9.3K / claude-mem +5.6K
+- **事故**：这一期的改动做在了 `2026-10-22-20-13-32/ai-tools-en`（提交 `3e8a995`）。那份是**独立历史**，与远程 main 互不包含，既推不上去也从未合并 → 线上「Last updated」一直停在 `2026-11-02`，一周无人发现
+- 修复：把该副本的 `skills-data.json` 并入真仓库并重新生成，20 条 / `2026-11-09` / Movers 重算 / sitemap lastmod 同步
+- **未执行的下期决策点**：设计类（hallmark/impeccable/taste-skill）是否 ≥2 条在榜未复核 → 延到 11-16 一起判断；`claude-seo` 连续 2 周判断同样延后
 
 **2026-11-02：第 2 次周更（自动化第 3 期）+ lastmod 滞后修复**
 - 17 条星数全部刷新 + **新增 `multica-ai/andrej-karpathy-skills`（228.0K，连续 2 周在榜，符合收录规则）**，现 18 条 5 类（`05841b5`）。Movers TOP3：security-audit-skill +8.9K / claude-mem +6.1K / mattpocock/skills +5.8K
