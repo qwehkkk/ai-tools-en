@@ -199,7 +199,12 @@ function addUrl(loc, changefreq, priority, relPath) {
 addUrl(`${SITE_URL}/`, 'weekly', '1.0', 'index.html');
 for (const t of tools) addUrl(t.url, 'monthly', '0.8', `tools/${t.file}`);
 for (const g of guides) addUrl(g.url, 'monthly', '0.7', `guides/${g.file}`);
-for (const p of pages) addUrl(p.url, 'yearly', '0.4', p.file);
+// agent-skills is refreshed every Monday — telling crawlers "yearly" is a lie
+// and Bing weighs changefreq more heavily than Google does. Mark it weekly.
+for (const p of pages) {
+  const isWeekly = p.file === 'agent-skills.html';
+  addUrl(p.url, isWeekly ? 'weekly' : 'yearly', isWeekly ? '0.9' : '0.4', p.file);
+}
 addUrl(`${SITE_URL}/sitemap`, 'monthly', '0.3', 'sitemap.html');
 xml += '</urlset>\n';
 
