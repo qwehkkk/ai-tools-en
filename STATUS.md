@@ -1,6 +1,6 @@
-# 项目状态 · 2026-11-09
+# 项目状态 · 2026-11-13
 
-一句话：**站点已完整上线并保持零问题，当前停在「等内容被收录」这一步，不再加工具；2026-10-22 新增了 Agent Skills 目录页（内容页，非工具）。**
+一句话：**站点 26 条 URL 全部健康、域名层（www 301 / 域名邮箱 / GitHub About）全部收口；当前停在「等 3 篇指南被收录 → 重申 AdSense」这一步，不加工具。**
 
 技术细节在 `README.md`；这份文件只记状态、待办和下一步的判断依据。
 
@@ -12,11 +12,14 @@
 |---|---|
 | 地址 | https://getoolkit.com |
 | 部署 | GitHub `qwehkkk/ai-tools-en` → Cloudflare Pages（推送即部署，约 10 秒） |
-| 工具数 | **17** |
-| sitemap URL | **23 条**（17 工具 + 首页 + about/privacy/contact + agent-skills 目录页 + sitemap 页） |
-| 全站体检 | 23 页、0 死链、0 元数据问题（`python tests/audit.py`） |
+| 工具数 | **17** + **3 篇长文指南**（`/guides/`，2026-11-09 上线） |
+| sitemap URL | **26 条**（17 工具 + 3 指南 + 首页 + about/privacy/contact + agent-skills + sitemap 页） |
+| 全站体检 | 27 页、0 死链、0 元数据问题（`python tests/audit.py`），26 条 sitemap URL 全量 200 |
 | ads.txt | `google.com, pub-4065367396215160, DIRECT, f08c47fec0942fa0` |
-| IndexNow | 23 条已推送，key `ef8e4253e417291bba6c439eea3947d1` |
+| IndexNow | 26 条已推送（2026-11-09），key `ef8e4253e417291bba6c439eea3947d1` |
+| www | **301 → 主域**（Cloudflare Redirect Rule，Dynamic 表达式保留路径与查询串，2026-11-09） |
+| 联系邮箱 | `contact@getoolkit.com`（Email Routing → 个人邮箱，测试信已收，页面无明文/Cloudflare 混淆） |
+| GitHub 仓库 | description + website + topics 已填（2026-11-09） |
 
 > ⚠️ **域名拼写防呆（2026-10-26 加）**：本站域名是 **`getoolkit.com`（一个 t，get+oolkit）**，唯一真源是 `site.json` 的 `url`，任何场合都从这里复制，**不要手打**。
 > `gettoolkit.com`（两个 t）**不是本站**，它属于 HugeDomains，公网是 $5,995 域名出售页。
@@ -93,16 +96,21 @@ Text Diff、Regex Tester、Case Converter、Cron Explainer、QR Code Generator�
 
 ## 现在卡在外部，不在代码
 
-| 事项 | 状态 | 你能做的 |
+| 事项 | 状态 | 下一步 |
 |---|---|---|
-| GSC 收录 | 尚未出数据，站点才提交一天 | 等 2–3 天；有数据后看下面决策树 |
-| AdSense | 两个站都是「正在准备」 | 初始审核通常 1–2 周，中途无反馈，只能等 |
-| Cloudflare Web Analytics | 已添加 | 确认是否选了 Automatic（自动注入，不用改代码） |
-| Bing Webmaster | 未做 | GSC 一键导入，2 分钟 |
+| GSC 收录 | **24/26 已索引**（2026-11-09 截图）；21 条「备用网页」是 www 副本，301 生效后等重抓自动消失 | 等 `/guides/` 三条被收录。**收录了 → 立即重申 AdSense** |
+| AdSense | **11-09 拒审「低价值内容」**（新站第一次申请的正常判罚） | **不要反复点申请**。等指南收录后再重申一次 |
+| Bing | `site:getoolkit.com` 仍无结果（11-03 核实），站侧抓取正常，纯排队 | Bing Webmaster 若还没从 GSC 导入，值得做（2 分钟） |
 
-联系邮箱已改为 `contact@getoolkit.com`（2026-11-09），由 Cloudflare Email Routing
-转发到个人邮箱。**前提是 Email Routing 里 destination 已验证**——发一封测试信确认，
-转发没通就等于页面上的地址是死的。`hello@` → `asdzcc@gmail.com` → `contact@` 换过两次。
+**2026-11-09 拒审后的整改（已完成，重申前别再动）**：
+1. 3 篇长文指南上线（编码对比 / cron / 哈希选择），全部基于工具真实行为写，eval_seo 1.0
+2. 域名邮箱 `contact@getoolkit.com` 替换无人收信的 Gmail
+3. www 301 统一到主域（消除 21 条重复页）
+4. GitHub 仓库 About 外链位填上
+5. privacy 页新增浏览器扩展声明（`486b08e`，另一条线做的）
+
+**重申时机的唯一标准**：GSC 网址检查输入 `https://getoolkit.com/guides/base64-vs-url-encoding`，
+显示「已编入索引」→ 重申。指南 11-09 上线，预期 11-13 至 11-16 收录。
 
 ---
 
@@ -110,17 +118,17 @@ Text Diff、Regex Tester、Case Converter、Cron Explainer、QR Code Generator�
 
 看 GSC「网页」报告，只要两个数字：
 
-**① 已编入索引的页面数**
+**① 已编入索引的页面数**（现在 26 条 URL，基线 24）
 
-- **明显少于 22**（比如个位数）→ 站点信任度问题。下一步不是加工具，是**做外链**：
+- **明显少于 26**（比如个位数）→ 站点信任度问题。下一步不是加工具，是**做外链**：
   把 QR、Text Diff、Cron 这几个提交到 AlternativeTo、Product Hunt、相关 Reddit
   板块。新域名没有外链时，Google 就是会给很少的配额。
-- **接近或等于 22** → 收录正常，进入第 ② 步。
+- **接近或等于 26** → 收录正常，进入第 ② 步。
 
 **② 有没有「已抓取，目前未编入索引」**
 
-- **有，且数量多** → 内容质量/重复度问题。这时该做的是**把已有工具页写厚**
-  （每个工具加使用说明、常见问题、实际例子），而不是继续加第 18 个工具。
+- **有，且数量多** → 内容质量/重复度问题。这时该做的是**把已有页面写厚**
+  （指南就是这一步的产物），而不是继续加第 18 个工具。
 - **没有** → 健康，等排名即可。
 
 **③ 如果收录正常但点击为 0**
