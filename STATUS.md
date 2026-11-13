@@ -33,6 +33,14 @@
 > 判断哪份是真的：`git -C <dir> log -1 --format=%h` 必须等于 `git ls-remote origin main` 的短 SHA。
 > 2026-11-09 的周更就是做错在这份副本里，导致线上停在 11-02 整整一周。
 
+**2026-11-13：第 4 次周更 —— 零增删，纯星数刷新**
+- 数据：**20 条 5 类**（与上期一致，0 新增 / 0 删除），20 条星数逐个走 GitHub API 核实刷新
+- Movers TOP3：`mattpocock/skills` +4.9K（323.5K）/ `cloudflare/security-audit-skill` +4.7K（71.6K）/ `anthropics/skills` +4.3K（194.0K）
+- 分类决策：设计/视觉产出类本周**无一条上 trending** → 不新建 `Design & Output Quality`，维持 5 类；`AgriciDaniel/claude-seo`（28.9K）本周未在榜，"连续两周"条件不成立 → 仍不收录
+- 本周 trending 复核：周榜 14 个仓库中 agent-skills/plugins 主题的仅 `anthropics/skills`、`addyosmani/agent-skills`、`mattpocock/skills`、`cloudflare/security-audit-skill`（全已在榜）；`anthropics/claude-quickstarts`、`vercel-labs/agent-browser` 属工具/示例非技能目录，按"不确定就不加"跳过
+- 测试：`node tests/run-all.js` 全过（27 页 / sitemap 26 条 / 死链 0）；sitemap 中 agent-skills `lastmod` 已同步 `2026-11-13`
+- 线上验证：`Last updated 2026-11-13` 到位，新增星数与 Movers 数字均可见
+
 **2026-11-09：第 3 次周更 —— 曾一度没上线（事故记录）**
 - 数据：**20 条 5 类**（+2：`anthropics/skills` 189.7K 官方技能库、`jakubkrehel/skills` 11.7K UI 类），18 条星数全部刷新。Movers TOP3：security-audit-skill +10.5K / mattpocock/skills +9.3K / claude-mem +5.6K
 - **事故**：这一期的改动做在了 `2026-10-22-20-13-32/ai-tools-en`（提交 `3e8a995`）。那份是**独立历史**，与远程 main 互不包含，既推不上去也从未合并 → 线上「Last updated」一直停在 `2026-11-02`，一周无人发现
