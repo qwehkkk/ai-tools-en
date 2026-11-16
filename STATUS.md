@@ -33,6 +33,13 @@
 > 判断哪份是真的：`git -C <dir> log -1 --format=%h` 必须等于 `git ls-remote origin main` 的短 SHA。
 > 2026-11-09 的周更就是做错在这份副本里，导致线上停在 11-02 整整一周。
 
+**2026-11-16：第 5 次周更 —— 新增 1 条（Google 官方 plugin）**
+- 数据：**21 条 5 类**（+1 新增 `google/elephant-goldfish-model` 19.8K，Google 官方 agent plugin、本周 trending 在榜且主题匹配；0 删除），21 条星数逐个核实刷新
+- Movers TOP3：`mattpocock/skills` +1.7K（325.2K）/ `cloudflare/security-audit-skill` +1.7K（73.3K）/ `Graphify-Labs/graphify` +1.5K（148.5K）
+- 分类决策：设计/视觉类本周仅 `meta/astryx`（设计系统）1 条沾边，不足 2 条 → 不新建 `Design & Output Quality`，维持 5 类；`claude-seo` 未在榜 → 仍不收录
+- 本周 trending 复核：周榜仅 11 个仓库，agent-skills/plugins 主题的为 `anthropics/skills`、`addyosmani/agent-skills`（已在榜）+ `google/elephant-goldfish-model`（本次收录）；`vercel-labs/agent-browser`、`backnotprop/plannotator` 属工具/工作台非技能目录，按"不确定就不加"跳过
+- 验证：线上 `Last updated 2026-11-16`、新条目与 Movers 数字到位、sitemap lastmod 同步、IndexNow 已推送
+
 **2026-11-13：第 4 次周更 —— 零增删，纯星数刷新**
 - 数据：**20 条 5 类**（与上期一致，0 新增 / 0 删除），20 条星数逐个走 GitHub API 核实刷新
 - Movers TOP3：`mattpocock/skills` +4.9K（323.5K）/ `cloudflare/security-audit-skill` +4.7K（71.6K）/ `anthropics/skills` +4.3K（194.0K）

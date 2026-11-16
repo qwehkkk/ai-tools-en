@@ -48,6 +48,17 @@
           ]
         },
         {
+          "repo": "google/elephant-goldfish-model",
+          "stars": "19.8K",
+          "desc": "Google's open-source plugin for designing and reviewing software with agents.",
+          "verdict": "New to trending this week. Google shipping agent plugins across teams signals the pattern is going platform-wide.",
+          "tags": [
+            "Google",
+            "Official",
+            "Plugin"
+          ]
+        },
+        {
           "repo": "android/skills",
           "stars": "10.5K",
           "desc": "Google's official Android engineering skills for coding agents.",
@@ -105,7 +116,7 @@
         },
         {
           "repo": "cloudflare/security-audit-skill",
-          "stars": "73.2K",
+          "stars": "73.3K",
           "desc": "Multi-phase security audits producing independently verified, machine-readable findings.",
           "verdict": "Vendor-backed and rigorous; the serious option for pre-release security passes.",
           "tags": [
@@ -152,7 +163,7 @@
         },
         {
           "repo": "Graphify-Labs/graphify",
-          "stars": "148.4K",
+          "stars": "148.5K",
           "desc": "Turns codebases, docs, SQL schemas and PDFs into a queryable knowledge graph &mdash; local AST parsing, no vector store.",
           "verdict": "A different bet on codebase context: deterministic graph instead of embeddings. Works with Claude Code, Cursor, Codex and Gemini CLI.",
           "tags": [
