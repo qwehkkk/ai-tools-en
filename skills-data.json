@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-13",
+  "updated": "2026-11-16",
   "snapshotNote": "Star counts are a snapshot; refresh weekly from GitHub trending before regenerating.",
   "categories": [
     {
@@ -8,38 +8,54 @@
       "entries": [
         {
           "repo": "anthropics/skills",
-          "stars": "194.0K",
+          "stars": "195.4K",
           "desc": "Anthropic's official public repository of Agent Skills &mdash; the source of truth for the skill format and reference implementations.",
           "verdict": "Two straight weeks on trending and near 190K stars: agent skills are now a first-class, platform-blessed ecosystem.",
-          "tags": ["Claude", "Official", "Source of truth"]
+          "tags": [
+            "Claude",
+            "Official",
+            "Source of truth"
+          ]
         },
         {
           "repo": "anthropics/claude-plugins-official",
-          "stars": "47.1K",
+          "stars": "47.4K",
           "desc": "Anthropic's official catalog of high-quality Claude Code plugins.",
           "verdict": "The canonical starting point &mdash; curated, versioned, and growing weekly.",
-          "tags": ["Claude Code", "Official"]
+          "tags": [
+            "Claude Code",
+            "Official"
+          ]
         },
         {
           "repo": "anthropics/knowledge-work-plugins",
-          "stars": "35.6K",
+          "stars": "36.2K",
           "desc": "Open-source plugins for knowledge workers (docs, research, planning) in Claude Cowork.",
           "verdict": "Best pick if your agent work is writing and analysis, not just code.",
-          "tags": ["Claude", "Official"]
+          "tags": [
+            "Claude",
+            "Official"
+          ]
         },
         {
           "repo": "cursor/plugins",
-          "stars": "16.2K",
+          "stars": "16.4K",
           "desc": "Cursor's plugin specification plus the official plugin set.",
           "verdict": "Defines where the Cursor ecosystem is heading &mdash; worth watching even if you don't use Cursor.",
-          "tags": ["Cursor", "Official"]
+          "tags": [
+            "Cursor",
+            "Official"
+          ]
         },
         {
           "repo": "android/skills",
           "stars": "10.5K",
           "desc": "Google's official Android engineering skills for coding agents.",
           "verdict": "Signals that platform teams now ship agent skills as first-class developer tooling.",
-          "tags": ["Android", "Official"]
+          "tags": [
+            "Android",
+            "Official"
+          ]
         }
       ]
     },
@@ -49,52 +65,73 @@
       "entries": [
         {
           "repo": "mattpocock/skills",
-          "stars": "323.5K",
+          "stars": "325.2K",
           "desc": "\"Skills for Real Engineers\" &mdash; composable engineering skills straight from a working expert's agent setup.",
           "verdict": "The most-starred skills collection on GitHub. Battle-tested and pragmatic.",
-          "tags": ["Multi-agent", "Shell"]
+          "tags": [
+            "Multi-agent",
+            "Shell"
+          ]
         },
         {
           "repo": "addyosmani/agent-skills",
-          "stars": "117.0K",
+          "stars": "118.0K",
           "desc": "Production-grade engineering skills and workflows for AI coding agents.",
           "verdict": "Strong on quality gates and review discipline; pairs well with any coding agent.",
-          "tags": ["Multi-agent", "Workflow"]
+          "tags": [
+            "Multi-agent",
+            "Workflow"
+          ]
         },
         {
           "repo": "DietrichGebert/ponytail",
-          "stars": "190.1K",
+          "stars": "191.5K",
           "desc": "\"Makes your AI agent think like the laziest senior dev in the room\" &mdash; biases the agent toward less code.",
           "verdict": "One idea, executed well. Genuinely reduces over-engineering in agent output.",
-          "tags": ["Mindset", "Code quality"]
+          "tags": [
+            "Mindset",
+            "Code quality"
+          ]
         },
         {
           "repo": "multica-ai/andrej-karpathy-skills",
-          "stars": "232.7K",
+          "stars": "233.5K",
           "desc": "A single CLAUDE.md distilled from Andrej Karpathy's notes on LLM coding pitfalls &mdash; drops straight into Claude Code, Cursor and Codex.",
           "verdict": "Two straight weeks on trending. One file, one idea, a quarter-million stars &mdash; the purest proof that prompt-as-product works.",
-          "tags": ["CLAUDE.md", "Mindset"]
+          "tags": [
+            "CLAUDE.md",
+            "Mindset"
+          ]
         },
         {
           "repo": "cloudflare/security-audit-skill",
-          "stars": "71.6K",
+          "stars": "73.2K",
           "desc": "Multi-phase security audits producing independently verified, machine-readable findings.",
           "verdict": "Vendor-backed and rigorous; the serious option for pre-release security passes.",
-          "tags": ["Security", "Audit"]
+          "tags": [
+            "Security",
+            "Audit"
+          ]
         },
         {
           "repo": "cathrynlavery/diagram-design",
-          "stars": "66.8K",
+          "stars": "67.4K",
           "desc": "Editorial-quality diagram generation: 44 diagram types as self-contained HTML + SVG.",
           "verdict": "Fixes the \"Mermaid slop\" problem. Great for architecture docs and blog figures.",
-          "tags": ["Diagrams", "Docs"]
+          "tags": [
+            "Diagrams",
+            "Docs"
+          ]
         },
         {
           "repo": "ayghri/i-have-adhd",
-          "stars": "61.1K",
+          "stars": "61.3K",
           "desc": "Formats agent output to be action-first and readable &mdash; stops agents burying the answer.",
           "verdict": "Silly name, real payoff. One of the highest signal-to-noise improvements you can install.",
-          "tags": ["UX", "Output"]
+          "tags": [
+            "UX",
+            "Output"
+          ]
         }
       ]
     },
@@ -104,31 +141,44 @@
       "entries": [
         {
           "repo": "jakubkrehel/skills",
-          "stars": "12.1K",
+          "stars": "12.2K",
           "desc": "A collection of agent skills focused on building great interfaces &mdash; UI craft, layout and interaction quality.",
           "verdict": "Two straight weeks on trending. Small but sharp &mdash; the go-to pack when your agent's frontend output looks generic.",
-          "tags": ["UI", "Skills collection", "Frontend"]
+          "tags": [
+            "UI",
+            "Skills collection",
+            "Frontend"
+          ]
         },
         {
           "repo": "Graphify-Labs/graphify",
-          "stars": "147.0K",
+          "stars": "148.4K",
           "desc": "Turns codebases, docs, SQL schemas and PDFs into a queryable knowledge graph &mdash; local AST parsing, no vector store.",
           "verdict": "A different bet on codebase context: deterministic graph instead of embeddings. Works with Claude Code, Cursor, Codex and Gemini CLI.",
-          "tags": ["Codebase", "Knowledge graph"]
+          "tags": [
+            "Codebase",
+            "Knowledge graph"
+          ]
         },
         {
           "repo": "K-Dense-AI/scientific-agent-skills",
-          "stars": "57.0K",
+          "stars": "57.3K",
           "desc": "177 validated skills plus 100+ scientific databases &mdash; \"turn any agent into an AI scientist\".",
           "verdict": "Proof that deep vertical skill packs work. The template for other domains to copy.",
-          "tags": ["Science", "Vertical"]
+          "tags": [
+            "Science",
+            "Vertical"
+          ]
         },
         {
           "repo": "HKUDS/CLI-Anything",
-          "stars": "58.7K",
+          "stars": "58.8K",
           "desc": "\"Make all software agent-native\" &mdash; exposes arbitrary CLI tools through an agent hub.",
           "verdict": "Broad reach; ideal once your agent routine goes beyond coding tasks.",
-          "tags": ["CLI", "Hub"]
+          "tags": [
+            "CLI",
+            "Hub"
+          ]
         }
       ]
     },
@@ -138,24 +188,34 @@
       "entries": [
         {
           "repo": "thedotmack/claude-mem",
-          "stars": "116.7K",
+          "stars": "117.4K",
           "desc": "Persistent context across sessions &mdash; captures, compresses and re-injects what your agent did.",
           "verdict": "The most compatible memory layer: Claude Code, Codex, Gemini, Copilot, OpenCode and more.",
-          "tags": ["Memory", "Multi-agent"]
+          "tags": [
+            "Memory",
+            "Multi-agent"
+          ]
         },
         {
           "repo": "akitaonrails/ai-memory",
-          "stars": "15.8K",
+          "stars": "16.0K",
           "desc": "Long-term memory for coding agent CLIs, with handoff between different vendors' agents.",
           "verdict": "The cross-vendor handoff angle is unique &mdash; useful if you switch agents mid-project.",
-          "tags": ["Memory", "Handoff", "Rust"]
+          "tags": [
+            "Memory",
+            "Handoff",
+            "Rust"
+          ]
         },
         {
           "repo": "mksglu/context-mode",
-          "stars": "34.0K",
+          "stars": "34.1K",
           "desc": "Context-window optimization: sandboxes tool outputs, cutting context consumption by up to 98%.",
           "verdict": "Directly attacks the token bill. High impact on long agent sessions.",
-          "tags": ["Context", "Cost"]
+          "tags": [
+            "Context",
+            "Cost"
+          ]
         }
       ]
     },
@@ -165,10 +225,13 @@
       "entries": [
         {
           "repo": "luongnv89/claude-howto",
-          "stars": "47.1K",
+          "stars": "47.3K",
           "desc": "Visual, example-driven guide to Claude Code &mdash; from basics to advanced agents, with copy-paste templates.",
           "verdict": "Best structured on-ramp if the skills ecosystem feels overwhelming.",
-          "tags": ["Guide", "Claude Code"]
+          "tags": [
+            "Guide",
+            "Claude Code"
+          ]
         }
       ]
     }
