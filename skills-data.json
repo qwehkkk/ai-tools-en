@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-16",
+  "updated": "2026-11-23",
   "snapshotNote": "Star counts are a snapshot; refresh weekly from GitHub trending before regenerating.",
   "categories": [
     {
@@ -8,9 +8,9 @@
       "entries": [
         {
           "repo": "anthropics/skills",
-          "stars": "195.4K",
+          "stars": "199.0K",
           "desc": "Anthropic's official public repository of Agent Skills &mdash; the source of truth for the skill format and reference implementations.",
-          "verdict": "Two straight weeks on trending and near 190K stars: agent skills are now a first-class, platform-blessed ecosystem.",
+          "verdict": "Four straight weeks on trending and just under 200K stars: agent skills are now a first-class, platform-blessed ecosystem.",
           "tags": [
             "Claude",
             "Official",
@@ -19,7 +19,7 @@
         },
         {
           "repo": "anthropics/claude-plugins-official",
-          "stars": "47.4K",
+          "stars": "48.0K",
           "desc": "Anthropic's official catalog of high-quality Claude Code plugins.",
           "verdict": "The canonical starting point &mdash; curated, versioned, and growing weekly.",
           "tags": [
@@ -29,7 +29,7 @@
         },
         {
           "repo": "anthropics/knowledge-work-plugins",
-          "stars": "36.2K",
+          "stars": "36.7K",
           "desc": "Open-source plugins for knowledge workers (docs, research, planning) in Claude Cowork.",
           "verdict": "Best pick if your agent work is writing and analysis, not just code.",
           "tags": [
@@ -39,7 +39,7 @@
         },
         {
           "repo": "cursor/plugins",
-          "stars": "16.4K",
+          "stars": "18.5K",
           "desc": "Cursor's plugin specification plus the official plugin set.",
           "verdict": "Defines where the Cursor ecosystem is heading &mdash; worth watching even if you don't use Cursor.",
           "tags": [
@@ -49,7 +49,7 @@
         },
         {
           "repo": "google/elephant-goldfish-model",
-          "stars": "19.8K",
+          "stars": "22.2K",
           "desc": "Google's open-source plugin for designing and reviewing software with agents.",
           "verdict": "New to trending this week. Google shipping agent plugins across teams signals the pattern is going platform-wide.",
           "tags": [
@@ -60,12 +60,34 @@
         },
         {
           "repo": "android/skills",
-          "stars": "10.5K",
+          "stars": "10.7K",
           "desc": "Google's official Android engineering skills for coding agents.",
           "verdict": "Signals that platform teams now ship agent skills as first-class developer tooling.",
           "tags": [
             "Android",
             "Official"
+          ]
+        },
+        {
+          "repo": "google-labs-code/stitch-skills",
+          "stars": "11.9K",
+          "desc": "Google Labs' official Agent Skills library for the Stitch MCP server &mdash; builds to the open Agent Skills standard for Antigravity, Gemini CLI, Claude Code and Cursor.",
+          "verdict": "Two straight weeks on trending. The clearest sign yet that Google treats skills as a distribution channel, not a side project &mdash; and it is cross-agent by design.",
+          "tags": [
+            "Google",
+            "Official",
+            "Skills collection"
+          ]
+        },
+        {
+          "repo": "GoogleChrome/modern-web-guidance-src",
+          "stars": "10.2K",
+          "desc": "Chrome team's source of current web platform best practices, packaged so coding agents stop writing dated frontend code.",
+          "verdict": "Two straight weeks on trending. Small star count, unusually specific payoff &mdash; install it if your agent still ships pre-2024 CSS and API patterns.",
+          "tags": [
+            "Google Chrome",
+            "Official",
+            "Frontend"
           ]
         }
       ]
@@ -76,7 +98,7 @@
       "entries": [
         {
           "repo": "mattpocock/skills",
-          "stars": "325.2K",
+          "stars": "330.5K",
           "desc": "\"Skills for Real Engineers\" &mdash; composable engineering skills straight from a working expert's agent setup.",
           "verdict": "The most-starred skills collection on GitHub. Battle-tested and pragmatic.",
           "tags": [
@@ -86,7 +108,7 @@
         },
         {
           "repo": "addyosmani/agent-skills",
-          "stars": "118.0K",
+          "stars": "119.8K",
           "desc": "Production-grade engineering skills and workflows for AI coding agents.",
           "verdict": "Strong on quality gates and review discipline; pairs well with any coding agent.",
           "tags": [
@@ -96,7 +118,7 @@
         },
         {
           "repo": "DietrichGebert/ponytail",
-          "stars": "191.5K",
+          "stars": "196.9K",
           "desc": "\"Makes your AI agent think like the laziest senior dev in the room\" &mdash; biases the agent toward less code.",
           "verdict": "One idea, executed well. Genuinely reduces over-engineering in agent output.",
           "tags": [
@@ -106,7 +128,7 @@
         },
         {
           "repo": "multica-ai/andrej-karpathy-skills",
-          "stars": "233.5K",
+          "stars": "235.1K",
           "desc": "A single CLAUDE.md distilled from Andrej Karpathy's notes on LLM coding pitfalls &mdash; drops straight into Claude Code, Cursor and Codex.",
           "verdict": "Two straight weeks on trending. One file, one idea, a quarter-million stars &mdash; the purest proof that prompt-as-product works.",
           "tags": [
@@ -116,7 +138,7 @@
         },
         {
           "repo": "cloudflare/security-audit-skill",
-          "stars": "73.3K",
+          "stars": "77.1K",
           "desc": "Multi-phase security audits producing independently verified, machine-readable findings.",
           "verdict": "Vendor-backed and rigorous; the serious option for pre-release security passes.",
           "tags": [
@@ -126,7 +148,7 @@
         },
         {
           "repo": "cathrynlavery/diagram-design",
-          "stars": "67.4K",
+          "stars": "70.3K",
           "desc": "Editorial-quality diagram generation: 44 diagram types as self-contained HTML + SVG.",
           "verdict": "Fixes the \"Mermaid slop\" problem. Great for architecture docs and blog figures.",
           "tags": [
@@ -136,7 +158,7 @@
         },
         {
           "repo": "ayghri/i-have-adhd",
-          "stars": "61.3K",
+          "stars": "62.0K",
           "desc": "Formats agent output to be action-first and readable &mdash; stops agents burying the answer.",
           "verdict": "Silly name, real payoff. One of the highest signal-to-noise improvements you can install.",
           "tags": [
@@ -152,7 +174,7 @@
       "entries": [
         {
           "repo": "jakubkrehel/skills",
-          "stars": "12.2K",
+          "stars": "12.6K",
           "desc": "A collection of agent skills focused on building great interfaces &mdash; UI craft, layout and interaction quality.",
           "verdict": "Two straight weeks on trending. Small but sharp &mdash; the go-to pack when your agent's frontend output looks generic.",
           "tags": [
@@ -163,7 +185,7 @@
         },
         {
           "repo": "Graphify-Labs/graphify",
-          "stars": "148.5K",
+          "stars": "152.1K",
           "desc": "Turns codebases, docs, SQL schemas and PDFs into a queryable knowledge graph &mdash; local AST parsing, no vector store.",
           "verdict": "A different bet on codebase context: deterministic graph instead of embeddings. Works with Claude Code, Cursor, Codex and Gemini CLI.",
           "tags": [
@@ -173,7 +195,7 @@
         },
         {
           "repo": "K-Dense-AI/scientific-agent-skills",
-          "stars": "57.3K",
+          "stars": "58.1K",
           "desc": "177 validated skills plus 100+ scientific databases &mdash; \"turn any agent into an AI scientist\".",
           "verdict": "Proof that deep vertical skill packs work. The template for other domains to copy.",
           "tags": [
@@ -183,7 +205,7 @@
         },
         {
           "repo": "HKUDS/CLI-Anything",
-          "stars": "58.8K",
+          "stars": "62.8K",
           "desc": "\"Make all software agent-native\" &mdash; exposes arbitrary CLI tools through an agent hub.",
           "verdict": "Broad reach; ideal once your agent routine goes beyond coding tasks.",
           "tags": [
@@ -199,7 +221,7 @@
       "entries": [
         {
           "repo": "thedotmack/claude-mem",
-          "stars": "117.4K",
+          "stars": "119.1K",
           "desc": "Persistent context across sessions &mdash; captures, compresses and re-injects what your agent did.",
           "verdict": "The most compatible memory layer: Claude Code, Codex, Gemini, Copilot, OpenCode and more.",
           "tags": [
@@ -209,7 +231,7 @@
         },
         {
           "repo": "akitaonrails/ai-memory",
-          "stars": "16.0K",
+          "stars": "16.3K",
           "desc": "Long-term memory for coding agent CLIs, with handoff between different vendors' agents.",
           "verdict": "The cross-vendor handoff angle is unique &mdash; useful if you switch agents mid-project.",
           "tags": [
@@ -220,7 +242,7 @@
         },
         {
           "repo": "mksglu/context-mode",
-          "stars": "34.1K",
+          "stars": "34.4K",
           "desc": "Context-window optimization: sandboxes tool outputs, cutting context consumption by up to 98%.",
           "verdict": "Directly attacks the token bill. High impact on long agent sessions.",
           "tags": [
@@ -236,7 +258,7 @@
       "entries": [
         {
           "repo": "luongnv89/claude-howto",
-          "stars": "47.3K",
+          "stars": "47.5K",
           "desc": "Visual, example-driven guide to Claude Code &mdash; from basics to advanced agents, with copy-paste templates.",
           "verdict": "Best structured on-ramp if the skills ecosystem feels overwhelming.",
           "tags": [
