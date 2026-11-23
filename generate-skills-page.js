@@ -47,13 +47,25 @@ function fmtStars(n) {
 }
 
 // Walk back through the file's git history and use the most recent version
-// whose content actually differs from the working tree. This handles both
-// cases: stars edited but not yet committed (HEAD differs) and stars already
-// committed (HEAD is identical, so we take the commit before it).
+// whose STAR VALUES actually differ from the working tree. Comparing only the
+// star map (not the raw text) matters: a commit that merely fixes a verdict
+// string would otherwise be picked as "previous", produce an all-zero diff,
+// and silently drop the movers block from the page.
+function starMapOf(obj) {
+  const m = new Map();
+  for (const c of obj.categories) for (const e of c.entries) m.set(e.repo, String(e.stars));
+  return m;
+}
+
+function sameStars(a, b) {
+  if (a.size !== b.size) return false;
+  for (const [k, v] of a) if (b.get(k) !== v) return false;
+  return true;
+}
+
 function prevSnapshot() {
-  const squash = s => s.replace(/\s+/g, '');
   try {
-    const current = squash(fs.readFileSync(DATA, 'utf8'));
+    const current = starMapOf(data);
     const shas = execSync('git log --format=%H -- skills-data.json', {
       cwd: ROOT,
       encoding: 'utf8',
@@ -69,7 +81,13 @@ function prevSnapshot() {
         encoding: 'utf8',
         stdio: ['ignore', 'pipe', 'ignore'],
       });
-      if (squash(raw) !== current) return JSON.parse(raw);
+      let obj;
+      try {
+        obj = JSON.parse(raw);
+      } catch {
+        continue;
+      }
+      if (!sameStars(starMapOf(obj), current)) return obj;
     }
     return null;
   } catch (e) {
