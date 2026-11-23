@@ -57,9 +57,18 @@ function starMapOf(obj) {
   return m;
 }
 
+// Entries added or removed between snapshots (size mismatch) must not count
+// as a star change: comparing only shared repos keeps the walk-back looking
+// for the last version where an ACTUAL star value moved.
 function sameStars(a, b) {
-  if (a.size !== b.size) return false;
-  for (const [k, v] of a) if (b.get(k) !== v) return false;
+  for (const [k, v] of a) {
+    const other = b.get(k);
+    if (other !== undefined && other !== v) return false;
+  }
+  for (const [k, v] of b) {
+    const other = a.get(k);
+    if (other !== undefined && other !== v) return false;
+  }
   return true;
 }
 

@@ -33,6 +33,14 @@
 > 判断哪份是真的：`git -C <dir> log -1 --format=%h` 必须等于 `git ls-remote origin main` 的短 SHA。
 > 2026-11-09 的周更就是做错在这份副本里，导致线上停在 11-02 整整一周。
 
+**2026-11-23：第 6 次周更 —— 新增 3 条（Google 双仓 + 研究 skill）**
+- 数据：**24 条 5 类**（+3 新增：`google-labs-code/stitch-skills` 11.9K、`GoogleChrome/modern-web-guidance-src` 10.2K —— 均为 Google 官方且连续在榜；`mvanhorn/last30days-skill` 72.8K —— 本周 trending 主题匹配仓中涨势最猛，周 +4.7K；0 删除），24 条星数逐个核实（GitHub API 未认证限额耗尽，改抓 repo 页 `stargazerCount`，与数据零差异）
+- Movers TOP3（since Nov 16）：`DietrichGebert/ponytail` +5.4K（196.9K）/ `mattpocock/skills` +5.3K（330.5K）/ `HKUDS/CLI-Anything` +4K（62.8K）
+- 分类决策：设计/视觉类本周仅 `meta/astryx`（设计系统，非 agent skill）1 条沾边 → 不新建 `Design & Output Quality`，维持 5 类；`claude-seo` 未在榜 → 仍不收录
+- 本周 trending 复核：周榜 12 仓库；`kajisho5/ffmpeg-skill`（9.8K，单人新仓）、`tradermonty/claude-trading-skills`（7.8K，主题偏离）按"宁可少加"跳过；`backnotprop/plannotator`、`ChromeDevTools/chrome-devtools-mcp` 属工具非技能目录，跳过
+- 工程修正：修复 `sameStars` 把"仅新增/删除条目"误判为星数变化、导致当天二跑时 Movers 区块丢失的问题——历史回溯只看共有仓库的星数值
+- 维护：`.workbuddy/`（自动化本地记忆）移出 git 跟踪并加入 `.gitignore`（上期被 `git add -A` 误带入仓库）
+
 **2026-11-16：第 5 次周更 —— 新增 1 条（Google 官方 plugin）**
 - 数据：**21 条 5 类**（+1 新增 `google/elephant-goldfish-model` 19.8K，Google 官方 agent plugin、本周 trending 在榜且主题匹配；0 删除），21 条星数逐个核实刷新
 - Movers TOP3：`mattpocock/skills` +1.7K（325.2K）/ `cloudflare/security-audit-skill` +1.7K（73.3K）/ `Graphify-Labs/graphify` +1.5K（148.5K）

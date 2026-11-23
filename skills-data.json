@@ -184,6 +184,17 @@
           ]
         },
         {
+          "repo": "mvanhorn/last30days-skill",
+          "stars": "72.8K",
+          "desc": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket and the web &mdash; then synthesizes a grounded summary.",
+          "verdict": "Fastest riser among the topic-matched repos on this week&rsquo;s trending list &mdash; 4.7K stars in seven days at 72.8K total. Research-as-a-skill has become a category of its own.",
+          "tags": [
+            "Research",
+            "Web",
+            "Skill"
+          ]
+        },
+        {
           "repo": "Graphify-Labs/graphify",
           "stars": "152.1K",
           "desc": "Turns codebases, docs, SQL schemas and PDFs into a queryable knowledge graph &mdash; local AST parsing, no vector store.",

@@ -10,3 +10,6 @@ Thumbs.db
 *.log
 *.tmp
 *.swp
+
+# WorkBuddy local data (automation memory etc.) — never commit
+.workbuddy/
