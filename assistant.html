@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Docs Assistant - Ask About GetToolkit Tools &amp; Guides</title>
+  <meta name="description" content="Ask questions about GetToolkit's tools and guides and get cited answers from the site documentation. Which hash to pick, cron fields, timestamps, Base64 and more.">
+  <link rel="canonical" href="https://getoolkit.com/assistant">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GetToolkit">
+  <meta property="og:title" content="AI Docs Assistant - Ask About GetToolkit">
+  <meta property="og:description" content="Get cited answers from the site documentation: hash algorithms, cron expressions, timestamps, Base64, UUIDs and more.">
+  <meta property="og:url" content="https://getoolkit.com/assistant">
+  <meta property="og:image" content="https://getoolkit.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "AI Docs Assistant",
+    "url": "https://getoolkit.com/assistant",
+    "description": "Ask questions about GetToolkit tools and guides, answered from the site documentation with citations."
+  }
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">GetToolkit</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-header">
+    <h1>AI Docs Assistant</h1>
+    <p>Ask anything about the tools and guides on this site. Answers come from the site's own documentation, with links to the exact pages they came from.</p>
+  </div>
+
+  <div class="chat-box" id="chat-box">
+    <div class="chat-log" id="chat-log" aria-live="polite"></div>
+    <div class="chat-chips" id="chat-chips">
+      <button class="chip" data-q="Which hash algorithm should I use for hashing passwords?">Password hashing</button>
+      <button class="chip" data-q="How do I tell if a Unix timestamp is in seconds or milliseconds?">Timestamp units</button>
+      <button class="chip" data-q="Why does base64url remove padding, and where is it used?">Base64 vs Base64URL</button>
+      <button class="chip" data-q="What does the day-of-week field mean in a cron expression?">Cron day-of-week</button>
+    </div>
+    <div class="chat-input-row">
+      <input id="chat-input" type="text" maxlength="300" placeholder="Ask about hash algorithms, cron, timestamps..." aria-label="Your question">
+      <button class="btn" id="chat-send">Ask</button>
+    </div>
+    <p class="chat-note">Answers are generated from this site's documentation only and may occasionally be imperfect &mdash; always check the linked source. This assistant sends your question to an AI service; don't include sensitive data.</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <nav class="footer-nav">
+    <a href="/agent-skills">Agent Skills</a>
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/contact">Contact</a>
+    <a href="/sitemap">Sitemap</a>
+  </nav>
+  <p>&copy; 2026 GetToolkit. All processing happens in your browser.</p>
+</footer>
+
+<script src="js/assistant.js"></script>
+</body>
+</html>
