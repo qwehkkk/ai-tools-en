@@ -179,3 +179,7 @@ node indexnow.js             # 部署之后，推给搜索引擎
 - QR 编码器只实现 byte mode；数字/字母模式能省容量，但 URL 场景用不上
 - 掩码选择用 ISO 完整惩罚规则，与 python-qrcode 约三成用例选到不同掩码
   （都合法，扫描器读 format 位即可还原）
+
+## 2026-11-24
+
+- AI Docs Assistant shipped (see commit 8f0aa9f). Env vars SILICONFLOW_API_KEY / DEEPSEEK_API_KEY added in Pages dashboard; this deploy activates them.
