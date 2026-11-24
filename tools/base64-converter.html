@@ -18,8 +18,7 @@
   <meta property="og:image:height" content="630">
   <link rel="stylesheet" href="../css/style.css">
   <script src="../js/theme.js"></script>
-  <script type="application/ld+json">
-  {
+    {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Base64 Converter",
@@ -27,7 +26,23 @@
     "description": "Free online Base64 converter. Encode and decode Base64 strings.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "getoolkit",
+      "url": "https://getoolkit.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "getoolkit",
+      "url": "https://getoolkit.com"
+    },
+    "dateModified": "2026-11-09",
+    "datePublished": "2026-11-09"
   }
   </script>
 <!-- BREADCRUMB-LD:START -->
@@ -132,7 +147,24 @@
   <label for="output">Result:</label>
   <div id="output" class="output" style="margin-top:8px;"></div>
 
+  <!-- COMPARE:START -->
   <section class="faq">
+    <h2>Base64 vs Base64URL vs Hex</h2>
+    <p style="margin:0 0 10px;">All three encode binary data as text, but they trade off URL safety against size.</p>
+    <div style="overflow-x:auto;">
+      <table style="border-collapse:collapse;width:100%;font-size:14px;">
+        <thead><tr><th style="text-align:left;padding:6px 10px;border-bottom:1px solid #ddd;">Encoding</th><th style="text-align:left;padding:6px 10px;border-bottom:1px solid #ddd;">Alphabet</th><th style="text-align:left;padding:6px 10px;border-bottom:1px solid #ddd;">URL-safe</th><th style="text-align:left;padding:6px 10px;border-bottom:1px solid #ddd;">Size overhead</th><th style="text-align:left;padding:6px 10px;border-bottom:1px solid #ddd;">Typical use</th></tr></thead>
+        <tbody>
+        <tr><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Base64</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">A–Z a–z 0–9 + / =</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">No</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">~+33%</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Email attachments, data URIs, HTTP Basic auth</td></tr>
+        <tr><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Base64URL</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Base64 with - and _, padding optional</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Yes</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">~+33%</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">JWTs, URL parameters, cookie values</td></tr>
+        <tr><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Hex</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">0–9 a–f</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Yes</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">+100%</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Debugging, checksum display, short binary blobs</td></tr>
+        </tbody>
+      </table>
+    </div>
+      <p style="margin:8px 0 0;"><a href="https://getoolkit.com/guides/base64-vs-url-encoding">Full guide: Base64 vs URL encoding</a></p>
+  </section>
+  <!-- COMPARE:END -->
+<section class="faq">
     <h2>About Base64 Converter</h2>
     <div class="faq-item">
       <h3>What is Base64 encoding?</h3>
@@ -186,6 +218,9 @@
 </main>
 
 <footer class="footer">
+  <!-- TRUST-BYLINE:START -->
+  <p style="margin:10px 0 0;font-size:12.5px;color:#888;">Maintained by the <a href="https://getoolkit.com/about" style="color:#888;">getoolkit team</a> · Updated <time datetime="2026-11-09">2026-11-09</time></p>
+  <!-- TRUST-BYLINE:END -->
   <nav class="footer-nav">
     <a href="/agent-skills">Agent Skills</a>
     <a href="/about">About</a>

@@ -18,8 +18,7 @@
   <meta property="og:image:height" content="630">
   <link rel="stylesheet" href="../css/style.css">
   <script src="../js/theme.js"></script>
-  <script type="application/ld+json">
-  {
+    {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "UUID Generator",
@@ -27,7 +26,23 @@
     "description": "Free online UUID v4 generator. Generate one or many UUIDs instantly.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "getoolkit",
+      "url": "https://getoolkit.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "getoolkit",
+      "url": "https://getoolkit.com"
+    },
+    "dateModified": "2026-10-26",
+    "datePublished": "2026-10-26"
   }
   </script>
 <!-- BREADCRUMB-LD:START -->
@@ -122,7 +137,23 @@
   <label for="output">Generated UUIDs:</label>
   <div id="output" class="output" style="margin-top:8px; min-height:60px;"></div>
 
+  <!-- COMPARE:START -->
   <section class="faq">
+    <h2>UUID v4 vs the alternatives</h2>
+    <p style="margin:0 0 10px;">This tool generates UUID v4 (random). Other identifiers trade uniqueness guarantees for sortability or length.</p>
+    <div style="overflow-x:auto;">
+      <table style="border-collapse:collapse;width:100%;font-size:14px;">
+        <thead><tr><th style="text-align:left;padding:6px 10px;border-bottom:1px solid #ddd;">Identifier</th><th style="text-align:left;padding:6px 10px;border-bottom:1px solid #ddd;">Makeup</th><th style="text-align:left;padding:6px 10px;border-bottom:1px solid #ddd;">Sortable</th><th style="text-align:left;padding:6px 10px;border-bottom:1px solid #ddd;">Best for</th></tr></thead>
+        <tbody>
+        <tr><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">UUID v4</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">122 random bits</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">No</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Unique IDs with no coordination service</td></tr>
+        <tr><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">UUID v7</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Unix timestamp prefix + random bits</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Yes (time-ordered)</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Database primary keys where index locality matters</td></tr>
+        <tr><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">NanoID</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">21-char URL-safe string</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">No</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Shorter IDs when storage or URL space is tight</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <!-- COMPARE:END -->
+<section class="faq">
     <h2>About UUIDs</h2>
     <div class="faq-item">
       <h3>What is a UUID?</h3>
@@ -168,6 +199,9 @@
 </main>
 
 <footer class="footer">
+  <!-- TRUST-BYLINE:START -->
+  <p style="margin:10px 0 0;font-size:12.5px;color:#888;">Maintained by the <a href="https://getoolkit.com/about" style="color:#888;">getoolkit team</a> · Updated <time datetime="2026-10-26">2026-10-26</time></p>
+  <!-- TRUST-BYLINE:END -->
   <nav class="footer-nav">
     <a href="/agent-skills">Agent Skills</a>
     <a href="/about">About</a>

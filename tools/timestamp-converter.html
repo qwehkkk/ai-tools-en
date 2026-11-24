@@ -18,8 +18,7 @@
   <meta property="og:image:height" content="630">
   <link rel="stylesheet" href="../css/style.css">
   <script src="../js/theme.js"></script>
-  <script type="application/ld+json">
-  {
+    {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Unix Timestamp Converter",
@@ -31,7 +30,19 @@
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
-    }
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "getoolkit",
+      "url": "https://getoolkit.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "getoolkit",
+      "url": "https://getoolkit.com"
+    },
+    "dateModified": "2026-10-26",
+    "datePublished": "2026-10-26"
   }
   </script>
 <!-- BREADCRUMB-LD:START -->
@@ -206,7 +217,24 @@
     </div>
   </div>
 
+  <!-- COMPARE:START -->
   <section class="faq">
+    <h2>Epoch time units across systems</h2>
+    <p style="margin:0 0 10px;">The same moment in time is represented with different digits depending on the unit. This tool converts seconds and milliseconds; for the finer units, drop the trailing digits.</p>
+    <div style="overflow-x:auto;">
+      <table style="border-collapse:collapse;width:100%;font-size:14px;">
+        <thead><tr><th style="text-align:left;padding:6px 10px;border-bottom:1px solid #ddd;">Unit</th><th style="text-align:left;padding:6px 10px;border-bottom:1px solid #ddd;">Typical source</th><th style="text-align:left;padding:6px 10px;border-bottom:1px solid #ddd;">This tool</th><th style="text-align:left;padding:6px 10px;border-bottom:1px solid #ddd;">Convert to seconds</th></tr></thead>
+        <tbody>
+        <tr><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Seconds</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Unix time: most APIs, databases and file formats</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Supported</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">As-is</td></tr>
+        <tr><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Milliseconds</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">JavaScript Date.now(), Java System.currentTimeMillis()</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Supported</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Divide by 1,000</td></tr>
+        <tr><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Microseconds</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Database event columns, profilers</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Convert first</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Divide by 1,000,000</td></tr>
+        <tr><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Nanoseconds</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Go time.Now(), high-resolution timing</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Convert first</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Divide by 1,000,000,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <!-- COMPARE:END -->
+<section class="faq">
     <h2>About Unix Timestamps</h2>
     <div class="faq-item">
       <h3>What is a Unix timestamp?</h3>
@@ -256,6 +284,9 @@
 </main>
 
 <footer class="footer">
+  <!-- TRUST-BYLINE:START -->
+  <p style="margin:10px 0 0;font-size:12.5px;color:#888;">Maintained by the <a href="https://getoolkit.com/about" style="color:#888;">getoolkit team</a> · Updated <time datetime="2026-10-26">2026-10-26</time></p>
+  <!-- TRUST-BYLINE:END -->
   <nav class="footer-nav">
     <a href="/agent-skills">Agent Skills</a>
     <a href="/about">About</a>

@@ -18,8 +18,7 @@
   <meta property="og:image:height" content="630">
   <link rel="stylesheet" href="../css/style.css">
   <script src="../js/theme.js"></script>
-  <script type="application/ld+json">
-  {
+    {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Hash Generator",
@@ -31,7 +30,19 @@
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
-    }
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "getoolkit",
+      "url": "https://getoolkit.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "getoolkit",
+      "url": "https://getoolkit.com"
+    },
+    "dateModified": "2026-11-09",
+    "datePublished": "2026-11-09"
   }
   </script>
 <!-- BREADCRUMB-LD:START -->
@@ -160,7 +171,25 @@
     </div>
   </div>
 
+  <!-- COMPARE:START -->
   <section class="faq">
+    <h2>Which hash algorithm for which job</h2>
+    <p style="margin:0 0 10px;">All four algorithms below are computed by this tool. They differ in security status, not in convenience.</p>
+    <div style="overflow-x:auto;">
+      <table style="border-collapse:collapse;width:100%;font-size:14px;">
+        <thead><tr><th style="text-align:left;padding:6px 10px;border-bottom:1px solid #ddd;">Algorithm</th><th style="text-align:left;padding:6px 10px;border-bottom:1px solid #ddd;">Security status</th><th style="text-align:left;padding:6px 10px;border-bottom:1px solid #ddd;">Appropriate use</th></tr></thead>
+        <tbody>
+        <tr><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">MD5</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Broken — collisions practical since 2004</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Non-security checksums, legacy data fingerprinting</td></tr>
+        <tr><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">SHA-1</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Deprecated — collision demonstrated in 2017</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Legacy interoperability (Git object IDs are integrity, not security)</td></tr>
+        <tr><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">SHA-256</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Secure — current default</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Signatures, certificates, file integrity, APIs</td></tr>
+        <tr><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">SHA-512</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Secure</td><td style="padding:6px 10px;border-bottom:1px solid #eee;vertical-align:top;">Larger digest; often faster on 64-bit hardware for bulk data</td></tr>
+        </tbody>
+      </table>
+    </div>
+      <p style="margin:8px 0 0;"><a href="https://getoolkit.com/guides/choosing-a-hash-algorithm">Full guide: choosing a hash algorithm</a></p>
+  </section>
+  <!-- COMPARE:END -->
+<section class="faq">
     <h2>About Hashes</h2>
     <div class="faq-item">
       <h3>Is MD5 still safe to use?</h3>
@@ -214,6 +243,9 @@
 </main>
 
 <footer class="footer">
+  <!-- TRUST-BYLINE:START -->
+  <p style="margin:10px 0 0;font-size:12.5px;color:#888;">Maintained by the <a href="https://getoolkit.com/about" style="color:#888;">getoolkit team</a> · Updated <time datetime="2026-11-09">2026-11-09</time></p>
+  <!-- TRUST-BYLINE:END -->
   <nav class="footer-nav">
     <a href="/agent-skills">Agent Skills</a>
     <a href="/about">About</a>
